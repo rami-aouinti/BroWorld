@@ -1,0 +1,65 @@
+version: 2
+jobs:
+  build:
+    working_directory: ~/html
+    machine:
+        image: ubuntu-2204:2023.04.2
+    branches:
+        ignore:
+          - develop
+    steps:
+      - checkout
+
+      - run:
+          name: Start containers and verify it's working
+          command: |
+            make start-test
+
+      - run:
+          name: Wait for DB container is running and initialize DB & messenger component
+          command: |
+            make wait-for-db
+            make drop-migrate
+            make messenger-setup-transports
+
+      - run:
+          name: Run unit/functional tests
+          command: |
+            make phpunit
+
+      - run:
+          name: Report code coverage
+          command: |
+            make report-code-coverage
+
+      - run:
+          name: Check coding standard & CodeSniffer
+          command: |
+            make ecs
+            make phpcs
+
+      - run:
+          name: Run PHP copy/paste detector
+          command: |
+            make phpcpd
+
+      - run:
+          name: Run PHP mess detector
+          command: |
+            make phpmd
+
+      - run:
+          name: Run PHPStan static analysis tool
+          command: |
+            make phpstan
+
+      - run:
+          name: Run Phpinsights PHP quality checks
+          command: |
+            make phpinsights
+
+      - store_artifacts:
+          path: reports
+
+      - store_test_results:
+          path: reports

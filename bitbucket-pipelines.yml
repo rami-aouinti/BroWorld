@@ -1,0 +1,26 @@
+image: docker:stable
+
+options:
+  docker: true
+
+pipelines:
+  default:
+    - step:
+        script:
+          - chmod +x .bitbucket/dependencies.sh
+          - .bitbucket/dependencies.sh
+          - make build-test
+          - make start-test
+          - docker ps -a
+          - make wait-for-db
+          - make drop-migrate
+          - make messenger-setup-transports
+          - make info
+          - make phpunit
+          - make ecs
+          - make phpcs
+          - make phpcpd
+          - make phpmd
+          - make phpstan
+          - make phpinsights
+          - make stop-test
