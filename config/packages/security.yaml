@@ -19,8 +19,12 @@ security:
         main:
             lazy: true
             provider: app_user_provider
+            entry_point: App\Security\LoginFormAuthenticator
             custom_authenticators:
                 - App\Security\LoginFormAuthenticator
+                - App\Security\GoogleAuthenticator
+                - App\Security\MyFacebookAuthenticator
+
             logout:
                 path: app_logout
             # activate different ways to authenticate

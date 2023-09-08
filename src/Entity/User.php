@@ -32,6 +32,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(type: 'boolean')]
     private $isVerified = false;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $googleId = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $facebookId = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $hostedDomain = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $avatar = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -116,5 +128,69 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         $this->isVerified = $isVerified;
 
         return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getGoogleId()
+    {
+        return $this->googleId;
+    }
+
+    /**
+     * @param mixed $googleId
+     */
+    public function setGoogleId($googleId): void
+    {
+        $this->googleId = $googleId;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getAvatar()
+    {
+        return $this->avatar;
+    }
+
+    /**
+     * @param mixed $avatar
+     */
+    public function setAvatar($avatar): void
+    {
+        $this->avatar = $avatar;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getHostedDomain()
+    {
+        return $this->hostedDomain;
+    }
+
+    /**
+     * @param mixed $hostedDomain
+     */
+    public function setHostedDomain($hostedDomain): void
+    {
+        $this->hostedDomain = $hostedDomain;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getFacebookId(): ?string
+    {
+        return $this->facebookId;
+    }
+
+    /**
+     * @param string|null $facebookId
+     */
+    public function setFacebookId(?string $facebookId): void
+    {
+        $this->facebookId = $facebookId;
     }
 }
