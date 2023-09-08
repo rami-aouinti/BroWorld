@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Entity;
 
 use App\Repository\UserRepository;
@@ -68,7 +70,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     public function getUserIdentifier(): string
     {
-        return (string) $this->email;
+        return (string)$this->email;
     }
 
     /**
@@ -84,7 +86,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     }
 
     /**
-     * @param array $roles
      * @return $this
      */
     public function setRoles(array $roles): static
@@ -178,17 +179,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         $this->hostedDomain = $hostedDomain;
     }
 
-    /**
-     * @return string|null
-     */
     public function getFacebookId(): ?string
     {
         return $this->facebookId;
     }
 
-    /**
-     * @param string|null $facebookId
-     */
     public function setFacebookId(?string $facebookId): void
     {
         $this->facebookId = $facebookId;

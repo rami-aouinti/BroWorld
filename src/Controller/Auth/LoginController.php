@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Controller\Auth;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -19,7 +21,10 @@ class LoginController extends AbstractController
         $error = $authenticationUtils->getLastAuthenticationError();
         $lastUsername = $authenticationUtils->getLastUsername();
 
-        return $this->render('login/index.html.twig', ['last_username' => $lastUsername, 'error' => $error]);
+        return $this->render('login/index.html.twig', [
+            'last_username' => $lastUsername,
+            'error' => $error,
+        ]);
     }
 
     #[Route(path: '/logout', name: 'app_logout')]
@@ -27,5 +32,4 @@ class LoginController extends AbstractController
     {
         return $this->redirectToRoute('app_home');
     }
-
 }

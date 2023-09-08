@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Security;
 
 use App\Entity\User; // your user entity
@@ -24,8 +26,11 @@ class MyFacebookAuthenticator extends OAuth2Authenticator implements Authenticat
     private EntityManagerInterface $entityManager;
     private RouterInterface $router;
 
-    public function __construct(ClientRegistry $clientRegistry, EntityManagerInterface $entityManager, RouterInterface $router)
-    {
+    public function __construct(
+        ClientRegistry $clientRegistry,
+        EntityManagerInterface $entityManager,
+        RouterInterface $router,
+    ) {
         $this->clientRegistry = $clientRegistry;
         $this->entityManager = $entityManager;
         $this->router = $router;
@@ -43,21 +48,25 @@ class MyFacebookAuthenticator extends OAuth2Authenticator implements Authenticat
         $accessToken = $this->fetchAccessToken($client);
 
         return new SelfValidatingPassport(
-            new UserBadge($accessToken->getToken(), function() use ($accessToken, $client) {
+            new UserBadge($accessToken->getToken(), function () use ($accessToken, $client) {
                 /** @var FacebookUser $facebookUser */
                 $facebookUser = $client->fetchUserFromToken($accessToken);
 
                 $email = $facebookUser->getEmail();
 
                 // 1) have they logged in with Facebook before? Easy!
-                $existingUser = $this->entityManager->getRepository(User::class)->findOneBy(['facebookId' => $facebookUser->getId()]);
+                $existingUser = $this->entityManager->getRepository(User::class)->findOneBy([
+                    'facebookId' => $facebookUser->getId(),
+                ]);
 
                 if ($existingUser) {
                     return $existingUser;
                 }
 
                 // 2) do we have a matching user by email?
-                $user = $this->entityManager->getRepository(User::class)->findOneBy(['email' => $email]);
+                $user = $this->entityManager->getRepository(User::class)->findOneBy([
+                    'email' => $email,
+                ]);
 
                 // 3) Maybe you just want to "register" them by creating
                 // a User object
@@ -76,7 +85,6 @@ class MyFacebookAuthenticator extends OAuth2Authenticator implements Authenticat
         $targetUrl = $this->router->generate('app_home');
 
         return new RedirectResponse($targetUrl);
-
         // or, on success, let the request continue to be handled by the controller
         //return null;
     }

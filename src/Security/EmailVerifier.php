@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Security;
 
 use Doctrine\ORM\EntityManagerInterface;
@@ -19,8 +21,11 @@ class EmailVerifier
     ) {
     }
 
-    public function sendEmailConfirmation(string $verifyEmailRouteName, UserInterface $user, TemplatedEmail $email): void
-    {
+    public function sendEmailConfirmation(
+        string $verifyEmailRouteName,
+        UserInterface $user,
+        TemplatedEmail $email
+    ): void {
         $signatureComponents = $this->verifyEmailHelper->generateSignature(
             $verifyEmailRouteName,
             $user->getId(),

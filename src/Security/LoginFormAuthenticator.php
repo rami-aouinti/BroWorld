@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Security;
 
 use Symfony\Component\HttpFoundation\RedirectResponse;
@@ -21,8 +23,9 @@ class LoginFormAuthenticator extends AbstractLoginFormAuthenticator
 
     public const LOGIN_ROUTE = 'app_login';
 
-    public function __construct(private UrlGeneratorInterface $urlGenerator)
-    {
+    public function __construct(
+        private UrlGeneratorInterface $urlGenerator
+    ) {
     }
 
     public function authenticate(Request $request): Passport
@@ -42,9 +45,11 @@ class LoginFormAuthenticator extends AbstractLoginFormAuthenticator
 
     public function onAuthenticationSuccess(Request $request, TokenInterface $token, string $firewallName): ?Response
     {
-        if ($targetPath = $this->getTargetPath($request->getSession(), $firewallName)) {
+        $targetPath = $this->getTargetPath($request->getSession(), $firewallName);
+        if ($targetPath) {
             return new RedirectResponse($targetPath);
         }
+
         return new RedirectResponse($this->urlGenerator->generate('app_home'));
     }
 

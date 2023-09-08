@@ -1,6 +1,9 @@
 <?php
 
+declare(strict_types=1);
+
 # Controller/GoogleController
+
 namespace App\Controller\Auth;
 
 use KnpU\OAuth2ClientBundle\Client\ClientRegistry;
@@ -10,7 +13,6 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class GoogleController extends AbstractController
 {
-
     #[Route('/connect/google', name: 'connect_google')]
     public function connectAction(ClientRegistry $clientRegistry)
     {

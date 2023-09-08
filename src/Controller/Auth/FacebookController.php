@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Controller\Auth;
 
 use KnpU\OAuth2ClientBundle\Client\ClientRegistry;
@@ -23,7 +25,7 @@ class FacebookController extends AbstractController
         return $clientRegistry
             ->getClient('facebook_main') // key used in config/packages/knpu_oauth2_client.yaml
             ->redirect([
-                'public_profile', 'email' // the scopes you want to access
+                'public_profile', 'email', // the scopes you want to access
             ]);
     }
 
@@ -50,12 +52,14 @@ class FacebookController extends AbstractController
 
             // do something with all this new power!
             // e.g. $name = $user->getFirstName();
-            var_dump($user); die;
+            var_dump($user);
+            die;
             // ...
         } catch (IdentityProviderException $e) {
             // something went wrong!
             // probably you should return the reason to the user
-            var_dump($e->getMessage()); die;
+            var_dump($e->getMessage());
+            die;
         }
     }
 }
