@@ -574,6 +574,9 @@
     "symfony/yaml": {
         "version": "v4.4.3"
     },
+    "symfonycasts/verify-email-bundle": {
+        "version": "v1.13.0"
+    },
     "systemsdk/easy-log-bundle": {
         "version": "v1.10.0"
     },
