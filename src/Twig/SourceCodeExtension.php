@@ -1,13 +1,6 @@
 <?php
 
-/*
- * This file is part of the Symfony package.
- *
- * (c) Fabien Potencier <fabien@symfony.com>
- *
- * For the full copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
- */
+declare(strict_types=1);
 
 namespace App\Twig;
 
@@ -15,6 +8,7 @@ use Twig\Environment;
 use Twig\Extension\AbstractExtension;
 use Twig\TemplateWrapper;
 use Twig\TwigFunction;
+
 use function Symfony\Component\String\u;
 
 /**
@@ -41,7 +35,10 @@ final class SourceCodeExtension extends AbstractExtension
     public function getFunctions(): array
     {
         return [
-            new TwigFunction('show_source_code', [$this, 'showSourceCode'], ['is_safe' => ['html'], 'needs_environment' => true]),
+            new TwigFunction('show_source_code', [$this, 'showSourceCode'], [
+                'is_safe' => ['html'],
+                'needs_environment' => true,
+            ]),
         ];
     }
 
@@ -62,7 +59,7 @@ final class SourceCodeExtension extends AbstractExtension
     private function getController(): ?array
     {
         // this happens for example for exceptions (404 errors, etc.)
-        if (null === $this->controller) {
+        if ($this->controller === null) {
             return null;
         }
 
@@ -70,9 +67,12 @@ final class SourceCodeExtension extends AbstractExtension
 
         /** @var string $fileName */
         $fileName = $method->getFileName();
+        $classCode = file($fileName);
 
-        if (false === $classCode = file($fileName)) {
-            throw new \LogicException(sprintf('There was an error while trying to read the contents of the "%s" file.', $fileName));
+        if ($classCode === false) {
+            throw new \LogicException(
+                sprintf('There was an error while trying to read the contents of the "%s" file.', $fileName)
+            );
         }
 
         $startLine = $method->getStartLine() - 1;
@@ -85,7 +85,7 @@ final class SourceCodeExtension extends AbstractExtension
                 break;
             }
 
-            --$startLine;
+            $startLine--;
         }
 
         $controllerCode = implode('', \array_slice($classCode, $startLine, $endLine - $startLine));
@@ -101,6 +101,7 @@ final class SourceCodeExtension extends AbstractExtension
      * Gets a reflector for a callable.
      *
      * This logic is copied from Symfony\Component\HttpKernel\Controller\ControllerResolver::getArguments
+     * @throws \ReflectionException
      */
     private function getCallableReflector(callable $callable): \ReflectionFunctionAbstract
     {

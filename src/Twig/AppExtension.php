@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the Symfony package.
  *
@@ -59,13 +61,16 @@ final class AppExtension extends AbstractExtension
      */
     public function getLocales(): array
     {
-        if (null !== $this->locales) {
+        if ($this->locales !== null) {
             return $this->locales;
         }
 
         $this->locales = [];
         foreach ($this->localeCodes as $localeCode) {
-            $this->locales[] = ['code' => $localeCode, 'name' => Locales::getName($localeCode, $localeCode)];
+            $this->locales[] = [
+                'code' => $localeCode,
+                'name' => Locales::getName($localeCode, $localeCode),
+            ];
         }
 
         return $this->locales;
