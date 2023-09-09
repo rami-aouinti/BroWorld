@@ -18,7 +18,7 @@ class ExampleTest extends FunctionalTestCase
 {
 
     private KernelBrowser $client;
-    private string $path = '/';
+    private string $path = '/en';
 
     protected function setUp(): void
     {
