@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace App\Twig;
 
 use LogicException;
-use PHPUnit\Runner\ReflectionException;
 use ReflectionFunction;
 use ReflectionMethod;
 use ReflectionObject;
@@ -106,8 +105,6 @@ final class SourceCodeExtension extends AbstractExtension
      * Gets a reflector for a callable.
      *
      * This logic is copied from Symfony\Component\HttpKernel\Controller\ControllerResolver::getArguments
-     * @param callable $callable
-     * @return \ReflectionFunctionAbstract
      * @throws \ReflectionException
      */
     private function getCallableReflector(callable $callable): \ReflectionFunctionAbstract
@@ -118,6 +115,7 @@ final class SourceCodeExtension extends AbstractExtension
 
         if (\is_object($callable) && !$callable instanceof \Closure) {
             $resp = new ReflectionObject($callable);
+
             return $resp->getMethod('__invoke');
         }
 
