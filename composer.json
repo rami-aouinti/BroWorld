@@ -35,6 +35,12 @@
 		"doctrine/doctrine-migrations-bundle": "^3.2",
 		"doctrine/orm": "^2.15",
 		"dukecity/command-scheduler-bundle": "^5.0",
+		"knpuniversity/oauth2-client-bundle": "^2.15",
+		"league/oauth2-facebook": "^2.2",
+		"league/oauth2-github": "^3.1",
+		"league/oauth2-google": "^4.0",
+		"league/oauth2-instagram": "^3.1",
+		"league/oauth2-linkedin": "^5.1",
 		"phpdocumentor/reflection-docblock": "^5.3",
 		"symfony/amqp-messenger": "6.3.*",
 		"symfony/apache-pack": "^1.0",
@@ -69,6 +75,7 @@
 		"symfony/web-link": "6.3.*",
 		"symfony/webpack-encore-bundle": "^2.0",
 		"symfony/yaml": "6.3.*",
+		"symfonycasts/verify-email-bundle": "^1.13",
 		"twig/extra-bundle": "^2.12|^3.0"
 	},
 	"conflict": {
@@ -145,6 +152,12 @@
 	},
 	"prefer-stable": true,
 	"scripts": {
+		"prepare": [
+			"php bin/console doctrine:database:drop --if-exists --force",
+			"php bin/console doctrine:database:create",
+			"php bin/console doctrine:schema:update --force",
+			"php bin/console doctrine:fixtures:load -n"
+		],
 		"post-install-cmd": [
 			"if test -d vendor/symfony/requirements-checker; then ./vendor/bin/requirements-checker; fi",
 			"if test -d vendor/bamarni/composer-bin-plugin; then composer bin all install; fi",
