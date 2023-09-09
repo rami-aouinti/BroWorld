@@ -244,6 +244,9 @@ migrate: ## Runs all migrations for main/test databases
 fixtures: ## Runs all fixtures for test database without --append option (tables will be dropped and recreated)
 	@make exec cmd="php bin/console doctrine:fixtures:load --env=test"
 
+prepare: ## Runs all migrations for main/test databases
+	@make exec-bash cmd="COMPOSER_MEMORY_LIMIT=-1 composer prepare --optimize-autoloader"
+
 messenger-setup-transports: ## Initializes transports for Symfony Messenger bundle
 	@make exec cmd="php bin/console messenger:setup-transports"
 
