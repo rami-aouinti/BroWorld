@@ -4,7 +4,10 @@ declare(strict_types=1);
 
 namespace App\Tests\Functional;
 
+use App\Entity\User;
 use App\Tests\FunctionalTestCase;
+use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Bundle\FrameworkBundle\KernelBrowser;
 
 /**
  * Class ExampleTest
@@ -13,14 +16,23 @@ use App\Tests\FunctionalTestCase;
  */
 class ExampleTest extends FunctionalTestCase
 {
-    /**
-     * A basic test example.
-     */
-    public function testBasicTest(): void
+
+    private KernelBrowser $client;
+    private string $path = '/';
+
+    protected function setUp(): void
     {
-        $client = static::createClient();
-        $client->request('GET', '/command-scheduler/list');
-        // check for 401 due to allow only for user with admin role
-        static::assertSame(401, $client->getResponse()->getStatusCode());
+        $this->client = static::createClient();
+    }
+
+    public function testIndex(): void
+    {
+        $crawler = $this->client->request('GET', $this->path);
+
+        self::assertResponseStatusCodeSame(200);
+        self::assertPageTitleContains('Hello HomeController!');
+
+        // Use the $crawler to perform additional assertions e.g.
+        // self::assertSame('Some text on the page', $crawler->filter('.p')->first());
     }
 }
