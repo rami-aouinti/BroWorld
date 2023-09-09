@@ -4,6 +4,11 @@ declare(strict_types=1);
 
 namespace App\Twig;
 
+use LogicException;
+use PHPUnit\Runner\ReflectionException;
+use ReflectionFunction;
+use ReflectionMethod;
+use ReflectionObject;
 use Twig\Environment;
 use Twig\Extension\AbstractExtension;
 use Twig\TemplateWrapper;
@@ -70,7 +75,7 @@ final class SourceCodeExtension extends AbstractExtension
         $classCode = file($fileName);
 
         if ($classCode === false) {
-            throw new \LogicException(
+            throw new LogicException(
                 sprintf('There was an error while trying to read the contents of the "%s" file.', $fileName)
             );
         }
@@ -101,21 +106,24 @@ final class SourceCodeExtension extends AbstractExtension
      * Gets a reflector for a callable.
      *
      * This logic is copied from Symfony\Component\HttpKernel\Controller\ControllerResolver::getArguments
+     * @param callable $callable
+     * @return \ReflectionFunctionAbstract
      * @throws \ReflectionException
      */
     private function getCallableReflector(callable $callable): \ReflectionFunctionAbstract
     {
         if (\is_array($callable)) {
-            return new \ReflectionMethod($callable[0], $callable[1]);
+            return new ReflectionMethod($callable[0], $callable[1]);
         }
 
         if (\is_object($callable) && !$callable instanceof \Closure) {
-            $r = new \ReflectionObject($callable);
 
-            return $r->getMethod('__invoke');
+            $resp = new ReflectionObject($callable);
+
+            return $resp->getMethod('__invoke');
         }
 
-        return new \ReflectionFunction($callable);
+        return new ReflectionFunction($callable);
     }
 
     /**
