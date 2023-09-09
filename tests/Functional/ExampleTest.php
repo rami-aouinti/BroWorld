@@ -8,13 +8,14 @@ use App\Entity\User;
 use App\Tests\FunctionalTestCase;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\KernelBrowser;
+use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 /**
  * Class ExampleTest
  *
  * @package App\Tests\Functional
  */
-class ExampleTest extends FunctionalTestCase
+class ExampleTest extends WebTestCase
 {
 
     private KernelBrowser $client;
