@@ -117,9 +117,7 @@ final class SourceCodeExtension extends AbstractExtension
         }
 
         if (\is_object($callable) && !$callable instanceof \Closure) {
-
             $resp = new ReflectionObject($callable);
-
             return $resp->getMethod('__invoke');
         }
 
