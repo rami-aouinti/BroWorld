@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\User;
+use App\Form\ChangePasswordType;
 use App\Form\UserType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -10,6 +11,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Http\Attribute\CurrentUser;
+use Symfony\Component\Security\Http\Logout\LogoutUrlGenerator;
 
 class ProfileController extends AbstractController
 {
@@ -48,5 +50,26 @@ class ProfileController extends AbstractController
         }
 
         return $this->redirectToRoute('app_home', [], Response::HTTP_SEE_OTHER);
+    }
+
+    #[Route('/profile/change-password', name: 'profile_change_password', methods: ['GET', 'POST'])]
+    public function changePassword(
+        #[CurrentUser] User $user,
+        Request $request,
+        EntityManagerInterface $entityManager,
+        LogoutUrlGenerator $logoutUrlGenerator,
+    ): Response {
+        $form = $this->createForm(ChangePasswordType::class, $user);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $entityManager->flush();
+
+            return $this->redirect($logoutUrlGenerator->getLogoutPath());
+        }
+
+        return $this->render('profile/change_password.html.twig', [
+            'form' => $form,
+        ]);
     }
 }
