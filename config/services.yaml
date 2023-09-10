@@ -7,6 +7,7 @@ parameters:
     locale: 'en'
     app_locales: ar|en|fr|de
     brochures_directory: '%kernel.project_dir%/public/uploads/users/images'
+    app.notifications.email_sender: info@ramyworld.de
 
 services:
     # default configuration for services in *this* file
