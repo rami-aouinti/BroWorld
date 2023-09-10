@@ -36,6 +36,7 @@
 		"doctrine/orm": "^2.15",
 		"dukecity/command-scheduler-bundle": "^5.0",
 		"knpuniversity/oauth2-client-bundle": "^2.15",
+		"league/commonmark": "^2.4",
 		"league/oauth2-facebook": "^2.2",
 		"league/oauth2-github": "^3.1",
 		"league/oauth2-google": "^4.0",
@@ -53,6 +54,7 @@
 		"symfony/flex": "^2.2",
 		"symfony/form": "6.3.*",
 		"symfony/framework-bundle": "6.3.*",
+		"symfony/html-sanitizer": "6.3.*",
 		"symfony/http-client": "6.3.*",
 		"symfony/intl": "6.3.*",
 		"symfony/mailer": "6.3.*",
@@ -76,7 +78,9 @@
 		"symfony/webpack-encore-bundle": "^2.0",
 		"symfony/yaml": "6.3.*",
 		"symfonycasts/verify-email-bundle": "^1.13",
-		"twig/extra-bundle": "^2.12|^3.0"
+		"twig/extra-bundle": "^2.12|^3.0",
+		"twig/intl-extra": "^3.7",
+		"twig/markdown-extra": "^3.7"
 	},
 	"conflict": {
 		"symfony/debug": "<3.3",

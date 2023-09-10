@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Profile{% endblock %}
+
+{% block body %}
+    <div class="card card-body blur shadow-blur mx-3 mx-md-4 mt-n3">
+        <section>
+            <div class="container py-4">
+                <div class="row">
+                    <div class="col-lg-12 mx-auto d-flex justify-content-center flex-column">
+                        <h3 class="text-center">Update</h3>
+                        <form role="form" id="contact-form" method="post" autocomplete="off">
+                            <div class="card-body">
+                                {{ include('profile/_form.html.twig', {'button_label': 'Update'}) }}
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+{% endblock %}
