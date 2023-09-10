@@ -1,0 +1,13 @@
+<div class="card">
+    <div class="card-body pt-4 p-3">
+        <ul class="list-group">
+            <li class="list-group-item border-0 d-flex p-4 mb-2 bg-gray-100 border-radius-lg">
+                <div class="section rss">
+                    <a href="{{ path('blog_rss', app.request.query.all) }}">
+                        <i class="fa fa-rss" aria-hidden="true"></i> {{ 'menu.rss'|trans }}
+                    </a>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>

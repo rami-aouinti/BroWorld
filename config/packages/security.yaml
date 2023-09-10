@@ -36,9 +36,9 @@ security:
     # Easy way to control access for large sections of your site
     # Note: Only the *first* access control that matches will be used
     access_control:
-        - { path: ^/admin, roles: ROLE_ADMIN }
-        - { path: ^/profile, roles: ROLE_USER }
-        - { path: ^/command-scheduler, roles: ROLE_ADMIN }
+        - { path: ^/(%app_locales%)/admin, roles: ROLE_ADMIN }
+        - { path: ^/(%app_locales%)/profile, roles: ROLE_USER }
+        - { path: ^/(%app_locales%)/command-scheduler, roles: ROLE_ADMIN }
 
 when@test:
     security:

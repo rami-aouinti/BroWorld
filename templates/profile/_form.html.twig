@@ -1,0 +1,94 @@
+{{ form_start(form) }}
+<div class="row">
+    <div class="col-md-6">
+        <div class="input-group input-group-dynamic mb-4">
+            <label class="form-label">First Name</label>
+        {{ form_widget(form.firstName) }}
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="input-group input-group-dynamic mb-4">
+            <label class="form-label">Last Name</label>
+            {{ form_widget(form.lastName) }}
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="input-group input-group-dynamic mb-4">
+            <label class="form-label">Email</label>
+            {{ form_widget(form.email) }}
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="input-group input-group-dynamic mb-4">
+            <label class="form-label">Description</label>
+            {{ form_widget(form.description) }}
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="input-group input-group-dynamic mb-4">
+            <label class="form-label">Country</label>
+            {{ form_widget(form.country) }}
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="input-group input-group-dynamic mb-4">
+            <label class="form-label">State</label>
+            {{ form_widget(form.state) }}
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="input-group input-group-dynamic mb-4">
+            <label class="form-label">Country</label>
+            {{ form_widget(form.city) }}
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="input-group input-group-dynamic mb-4">
+            <label class="form-label">State</label>
+            {{ form_widget(form.housnumber) }}
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="input-group input-group-dynamic mb-4">
+            <label class="form-label">Country</label>
+            {{ form_widget(form.phone) }}
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="input-group input-group-dynamic mb-4">
+            <label class="form-label">State</label>
+            {{ form_widget(form.photo) }}
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="input-group input-group-dynamic mb-4">
+            <label class="form-label">Country</label>
+            {{ form_widget(form.nationality) }}
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="input-group input-group-dynamic mb-4">
+            <label class="form-label">State</label>
+            {{ form_widget(form.birthday) }}
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="input-group input-group-dynamic mb-4">
+            <label class="form-label">Country</label>
+            {{ form_widget(form.street) }}
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="input-group input-group-dynamic mb-4">
+            <label class="form-label">State</label>
+            {{ form_widget(form.position) }}
+        </div>
+    </div>
+    <div class="col-md-6">
+        <button class="btn bg-gradient-dark w-100">{{ button_label|default('Save') }}</button>
+    </div>
+    <div class="col-md-6">
+        {{ include('profile/_delete_form.html.twig') }}
+    </div>
+</div>
+{{ form_end(form) }}

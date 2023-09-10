@@ -33,6 +33,7 @@ reports/*
 /public/build/
 /public/assets/
 /public/frontend
+/public/uploads
 npm-debug.log
 yarn-error.log
 ###< symfony/webpack-encore-bundle ###

@@ -1,0 +1,15 @@
+<div class="d-flex flex-column">
+    <h6 class="mb-3 text-sm">
+        <a href="{{ path('blog_post', {slug: post.slug}) }}">
+            {{ post.title }}
+        </a>
+    </h6>
+
+    <p>{{ post.summary }}</p>
+    {{ include('blog/_post_tags.html.twig') }}
+</div>
+<div class="ms-auto text-end">
+    <span class="metadata"><i class="fa fa-calendar"></i> {{ post.publishedAt|format_datetime('none', 'short', '', 'UTC') }}</span>
+</div>
+
+
