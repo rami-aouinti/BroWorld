@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Tests\Controller;
 
 use App\DataFixtures\QuizFixtures;
-use App\Quiz\Controller\QuizController;
+use App\Quiz\Transport\Controller\QuizController;
 use App\Tests\WebTestCase;
 use Symfony\Component\Config\Definition\Exception\InvalidTypeException;
 use Symfony\Component\DomCrawler\Field\ChoiceFormField;

@@ -35,7 +35,9 @@
         </div>
     </div>
     {% endfor %}
+    <div class="container-fluid px-5 py-0">
         {% block body %}{% endblock %}
+    </div>
     {% include 'layouts/footer.html.twig' %}
     <script src="{{ preload(asset('js/ui.js'), {as: 'script'}) }}"></script>
         <!--   Core JS Files   -->

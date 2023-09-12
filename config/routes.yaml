@@ -1,6 +1,6 @@
 homepage:
     path: /{_locale}
-    controller: App\Frontend\Controller\HomeController::index
+    controller: App\Frontend\Transport\Controller\HomeController::index
     requirements:
         _locale: '%app_locales%'
     defaults:
@@ -10,8 +10,8 @@ homepage:
 
 frontend-controllers:
     resource:
-        path: '../src/Frontend/Controller/'
-        namespace: App\Frontend\Controller
+        path: '../src/Frontend/Transport/Controller/'
+        namespace: App\Frontend\Transport\Controller
     type: attribute
     prefix: /{_locale}
     requirements:
@@ -21,8 +21,8 @@ frontend-controllers:
 
 user-controllers:
     resource:
-        path: '../src/User/Controller/'
-        namespace: App\User\Controller
+        path: '../src/User/Transport/Controller/'
+        namespace: App\User\Transport\Controller
     type: attribute
     prefix: /{_locale}
     requirements:
@@ -33,8 +33,8 @@ user-controllers:
 
 task-controllers:
     resource:
-        path: '../src/Task/Controller/'
-        namespace: App\Task\Controller
+        path: '../src/Task/Transport/Controller/'
+        namespace: App\Task\Transport\Controller
     type: attribute
     prefix: /{_locale}
     requirements:
@@ -45,8 +45,8 @@ task-controllers:
 
 blog-controllers:
     resource:
-        path: '../src/Blog/Controller/'
-        namespace: App\Blog\Controller
+        path: '../src/Blog/Transport/Controller/'
+        namespace: App\Blog\Transport\Controller
     type: attribute
     prefix: /{_locale}
     requirements:
@@ -56,8 +56,8 @@ blog-controllers:
 
 quiz-controllers:
     resource:
-        path: '../src/Quiz/Controller/'
-        namespace: App\Quiz\Controller
+        path: '../src/Quiz/Transport/Controller/'
+        namespace: App\Quiz\Transport\Controller
     type: attribute
     prefix: /{_locale}
     requirements:
@@ -67,8 +67,8 @@ quiz-controllers:
 
 resume-controllers:
     resource:
-        path: '../src/Resume/Controller/'
-        namespace: App\Resume\Controller
+        path: '../src/Resume/Transport/Controller/'
+        namespace: App\Resume\Transport\Controller
     type: attribute
     prefix: /{_locale}
     requirements:

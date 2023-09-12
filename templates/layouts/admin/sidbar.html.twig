@@ -7,7 +7,7 @@
         </a>
     </div>
     <hr class="horizontal light mt-0 mb-2">
-    <div class="collapse navbar-collapse  w-auto " id="sidenav-collapse-main">
+    <li class="collapse navbar-collapse  w-auto " id="sidenav-collapse-main">
         <ul class="navbar-nav">
             <li class="nav-item">
                 <a class="nav-link text-white active bg-gradient-primary" href="{{ path('app_home') }}">
@@ -17,79 +17,324 @@
                     <span class="nav-link-text ms-1">Dashboard</span>
                 </a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link text-white " href="{{ path('admin_news_index') }}">
+            <li class="nav-item dropdown align-items-center">
+                <a href="javascript:;" class="nav-link" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
                     <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-                        <i class="material-icons opacity-10">table_view</i>
+                        <i class="material-icons opacity-10">dashboard</i>
                     </div>
-                    <span class="nav-link-text ms-1">News</span>
+                    <span class="nav-link-text ms-1">Frontend</span>
                 </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link text-white " href="../pages/billing.html">
-                    <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-                        <i class="material-icons opacity-10">receipt_long</i>
-                    </div>
-                    <span class="nav-link-text ms-1">Billing</span>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link text-white " href="../pages/virtual-reality.html">
-                    <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-                        <i class="material-icons opacity-10">view_in_ar</i>
-                    </div>
-                    <span class="nav-link-text ms-1">Virtual Reality</span>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link text-white " href="../pages/rtl.html">
-                    <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-                        <i class="material-icons opacity-10">format_textdirection_r_to_l</i>
-                    </div>
-                    <span class="nav-link-text ms-1">RTL</span>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link text-white " href="../pages/notifications.html">
-                    <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-                        <i class="material-icons opacity-10">notifications</i>
-                    </div>
-                    <span class="nav-link-text ms-1">Notifications</span>
-                </a>
+                <ul class="navbar-nav dropdown-menu  dropdown-menu  px-2 py-3 me-sm-n4" aria-labelledby="dropdownMenuButton">
+                    <li class="nav-item mb-1">
+                        <a class="dropdown-item border-radius-md" href="{{ path('admin_news_index') }}">
+                            <div class="d-flex py-1">
+                                <div class="my-auto">
+                                    <span class="material-icons text-warning">settings</span>
+                                </div>
+                                <div class="d-flex flex-column justify-content-center">
+                                    <h6 class="text-sm font-weight-normal mb-1">
+                                        <span class="font-weight-bold">Setting</span>
+                                    </h6>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="nav-item mb-1">
+                        <a class="dropdown-item border-radius-md" href="{{ path('admin_news_index') }}">
+                            <div class="d-flex py-1">
+                                <div class="my-auto">
+                                    <span class="material-icons text-warning">grade</span>
+                                </div>
+                                <div class="d-flex flex-column justify-content-center">
+                                    <h6 class="text-sm font-weight-normal mb-1">
+                                        <span class="font-weight-bold">News</span>
+                                    </h6>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="nav-item mb-1">
+                        <a class="dropdown-item border-radius-md" href="{{ path('admin_news_index') }}">
+                            <div class="d-flex py-1">
+                                <div class="my-auto">
+                                    <span class="material-icons text-warning">inbox</span>
+                                </div>
+                                <div class="d-flex flex-column justify-content-center">
+                                    <h6 class="text-sm font-weight-normal mb-1">
+                                        <span class="font-weight-bold">Contact</span>
+                                    </h6>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                </ul>
             </li>
             <li class="nav-item mt-3">
-                <h6 class="ps-4 ms-2 text-uppercase text-xs text-white font-weight-bolder opacity-8">Account pages</h6>
+                <h6 class="ps-4 ms-2 text-uppercase text-xs text-white font-weight-bolder opacity-8">System Management</h6>
             </li>
-            <li class="nav-item">
-                <a class="nav-link text-white " href="../pages/profile.html">
+            <li class="nav-item dropdown align-items-center">
+                <a href="javascript:;" class="nav-link" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
                     <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-                        <i class="material-icons opacity-10">person</i>
+                        <i class="material-icons opacity-10">dashboard</i>
                     </div>
-                    <span class="nav-link-text ms-1">Profile</span>
+                    <span class="nav-link-text ms-1">Users Management</span>
                 </a>
+                <ul class="navbar-nav dropdown-menu  dropdown-menu  px-2 py-3 me-sm-n4" aria-labelledby="dropdownMenuButton">
+                    <li class="nav-item mb-1">
+                        <a class="dropdown-item border-radius-md" href="{{ path('admin_news_index') }}">
+                            <div class="d-flex py-1">
+                                <div class="my-auto">
+                                    <span class="material-icons text-warning">settings</span>
+                                </div>
+                                <div class="d-flex flex-column justify-content-center">
+                                    <h6 class="text-sm font-weight-normal mb-1">
+                                        <span class="font-weight-bold">Setting</span>
+                                    </h6>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="nav-item mb-1">
+                        <a class="dropdown-item border-radius-md" href="{{ path('admin_news_index') }}">
+                            <div class="d-flex py-1">
+                                <div class="my-auto">
+                                    <span class="material-icons text-warning">grade</span>
+                                </div>
+                                <div class="d-flex flex-column justify-content-center">
+                                    <h6 class="text-sm font-weight-normal mb-1">
+                                        <span class="font-weight-bold">News</span>
+                                    </h6>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="nav-item mb-1">
+                        <a class="dropdown-item border-radius-md" href="{{ path('admin_news_index') }}">
+                            <div class="d-flex py-1">
+                                <div class="my-auto">
+                                    <span class="material-icons text-warning">inbox</span>
+                                </div>
+                                <div class="d-flex flex-column justify-content-center">
+                                    <h6 class="text-sm font-weight-normal mb-1">
+                                        <span class="font-weight-bold">Contact</span>
+                                    </h6>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                </ul>
             </li>
-            <li class="nav-item">
-                <a class="nav-link text-white " href="../pages/sign-in.html">
-                    <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-                        <i class="material-icons opacity-10">login</i>
-                    </div>
-                    <span class="nav-link-text ms-1">Sign In</span>
-                </a>
+            <li class="nav-item mt-3">
+                <h6 class="ps-4 ms-2 text-uppercase text-xs text-white font-weight-bolder opacity-8">Components</h6>
             </li>
-            <li class="nav-item">
-                <a class="nav-link text-white " href="../pages/sign-up.html">
+            <li class="nav-item dropdown align-items-center">
+                <a href="javascript:;" class="nav-link" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
                     <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-                        <i class="material-icons opacity-10">assignment</i>
+                        <i class="material-icons opacity-10">dashboard</i>
                     </div>
-                    <span class="nav-link-text ms-1">Sign Up</span>
+                    <span class="nav-link-text ms-1">Blog</span>
                 </a>
+                <ul class="navbar-nav dropdown-menu  dropdown-menu  px-2 py-3 me-sm-n4" aria-labelledby="dropdownMenuButton">
+                    <li class="nav-item mb-1">
+                        <a class="dropdown-item border-radius-md" href="{{ path('admin_news_index') }}">
+                            <div class="d-flex py-1">
+                                <div class="my-auto">
+                                    <span class="material-icons text-warning">settings</span>
+                                </div>
+                                <div class="d-flex flex-column justify-content-center">
+                                    <h6 class="text-sm font-weight-normal mb-1">
+                                        <span class="font-weight-bold">Setting</span>
+                                    </h6>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="nav-item mb-1">
+                        <a class="dropdown-item border-radius-md" href="{{ path('admin_news_index') }}">
+                            <div class="d-flex py-1">
+                                <div class="my-auto">
+                                    <span class="material-icons text-warning">grade</span>
+                                </div>
+                                <div class="d-flex flex-column justify-content-center">
+                                    <h6 class="text-sm font-weight-normal mb-1">
+                                        <span class="font-weight-bold">News</span>
+                                    </h6>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="nav-item mb-1">
+                        <a class="dropdown-item border-radius-md" href="{{ path('admin_news_index') }}">
+                            <div class="d-flex py-1">
+                                <div class="my-auto">
+                                    <span class="material-icons text-warning">inbox</span>
+                                </div>
+                                <div class="d-flex flex-column justify-content-center">
+                                    <h6 class="text-sm font-weight-normal mb-1">
+                                        <span class="font-weight-bold">Contact</span>
+                                    </h6>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li class="nav-item dropdown align-items-center">
+                <a href="javascript:;" class="nav-link" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                    <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+                        <i class="material-icons opacity-10">dashboard</i>
+                    </div>
+                    <span class="nav-link-text ms-1">Quiz</span>
+                </a>
+                <ul class="navbar-nav dropdown-menu  dropdown-menu  px-2 py-3 me-sm-n4" aria-labelledby="dropdownMenuButton">
+                    <li class="nav-item mb-1">
+                        <a class="dropdown-item border-radius-md" href="{{ path('admin_news_index') }}">
+                            <div class="d-flex py-1">
+                                <div class="my-auto">
+                                    <span class="material-icons text-warning">settings</span>
+                                </div>
+                                <div class="d-flex flex-column justify-content-center">
+                                    <h6 class="text-sm font-weight-normal mb-1">
+                                        <span class="font-weight-bold">Setting</span>
+                                    </h6>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="nav-item mb-1">
+                        <a class="dropdown-item border-radius-md" href="{{ path('admin_news_index') }}">
+                            <div class="d-flex py-1">
+                                <div class="my-auto">
+                                    <span class="material-icons text-warning">grade</span>
+                                </div>
+                                <div class="d-flex flex-column justify-content-center">
+                                    <h6 class="text-sm font-weight-normal mb-1">
+                                        <span class="font-weight-bold">News</span>
+                                    </h6>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="nav-item mb-1">
+                        <a class="dropdown-item border-radius-md" href="{{ path('admin_news_index') }}">
+                            <div class="d-flex py-1">
+                                <div class="my-auto">
+                                    <span class="material-icons text-warning">inbox</span>
+                                </div>
+                                <div class="d-flex flex-column justify-content-center">
+                                    <h6 class="text-sm font-weight-normal mb-1">
+                                        <span class="font-weight-bold">Contact</span>
+                                    </h6>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li class="nav-item dropdown align-items-center">
+                <a href="javascript:;" class="nav-link" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                    <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+                        <i class="material-icons opacity-10">dashboard</i>
+                    </div>
+                    <span class="nav-link-text ms-1">Resume</span>
+                </a>
+                <ul class="navbar-nav dropdown-menu  dropdown-menu  px-2 py-3 me-sm-n4" aria-labelledby="dropdownMenuButton">
+                    <li class="nav-item mb-1">
+                        <a class="dropdown-item border-radius-md" href="{{ path('admin_news_index') }}">
+                            <div class="d-flex py-1">
+                                <div class="my-auto">
+                                    <span class="material-icons text-warning">settings</span>
+                                </div>
+                                <div class="d-flex flex-column justify-content-center">
+                                    <h6 class="text-sm font-weight-normal mb-1">
+                                        <span class="font-weight-bold">Setting</span>
+                                    </h6>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="nav-item mb-1">
+                        <a class="dropdown-item border-radius-md" href="{{ path('admin_news_index') }}">
+                            <div class="d-flex py-1">
+                                <div class="my-auto">
+                                    <span class="material-icons text-warning">grade</span>
+                                </div>
+                                <div class="d-flex flex-column justify-content-center">
+                                    <h6 class="text-sm font-weight-normal mb-1">
+                                        <span class="font-weight-bold">News</span>
+                                    </h6>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="nav-item mb-1">
+                        <a class="dropdown-item border-radius-md" href="{{ path('admin_news_index') }}">
+                            <div class="d-flex py-1">
+                                <div class="my-auto">
+                                    <span class="material-icons text-warning">inbox</span>
+                                </div>
+                                <div class="d-flex flex-column justify-content-center">
+                                    <h6 class="text-sm font-weight-normal mb-1">
+                                        <span class="font-weight-bold">Contact</span>
+                                    </h6>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li class="nav-item dropdown align-items-center">
+                <a href="javascript:;" class="nav-link" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                    <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+                        <i class="material-icons opacity-10">dashboard</i>
+                    </div>
+                    <span class="nav-link-text ms-1">Task</span>
+                </a>
+                <ul class="navbar-nav dropdown-menu  dropdown-menu  px-2 py-3 me-sm-n4" aria-labelledby="dropdownMenuButton">
+                    <li class="nav-item ps-3 d-flex align-items-center">
+                        <a class="dropdown-item border-radius-md" href="{{ path('admin_news_index') }}">
+                            <div class="d-flex py-1">
+                                <div class="my-auto">
+                                    <span class="material-icons text-warning">settings</span>
+                                </div>
+                                <div class="d-flex flex-column justify-content-center">
+                                    <h6 class="text-sm font-weight-normal mb-1">
+                                        <span class="font-weight-bold">Settings</span>
+                                    </h6>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="nav-item ps-3 d-flex align-items-center">
+                        <a class="dropdown-item border-radius-md" href="{{ path('admin_news_index') }}">
+                            <div class="d-flex py-1">
+                                <div class="my-auto">
+                                    <span class="material-icons text-warning">grade</span>
+                                </div>
+                                <div class="d-flex flex-column justify-content-center">
+                                    <h6 class="text-sm font-weight-normal mb-1">
+                                        <span class="font-weight-bold">News</span>
+                                    </h6>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="nav-item ps-3 d-flex align-items-center">
+                        <a class="dropdown-item border-radius-md" href="{{ path('admin_news_index') }}">
+                            <div class="d-flex py-1">
+                                <div class="my-auto">
+                                    <span class="material-icons text-warning">inbox</span>
+                                </div>
+                                <div class="d-flex flex-column justify-content-center">
+                                    <h6 class="text-sm font-weight-normal mb-1">
+                                        <span class="font-weight-bold">Contact</span>
+                                    </h6>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                </ul>
             </li>
         </ul>
-    </div>
-    <div class="sidenav-footer position-absolute w-100 bottom-0 ">
-        <div class="mx-3">
-            <a class="btn btn-outline-primary mt-4 w-100" href="https://www.creative-tim.com/learning-lab/bootstrap/overview/material-dashboard?ref=sidebarfree" type="button">Documentation</a>
-            <a class="btn bg-gradient-primary w-100" href="https://www.creative-tim.com/product/material-dashboard-pro?ref=sidebarfree" type="button">Upgrade to pro</a>
-        </div>
-    </div>
+    </li>
 </aside>

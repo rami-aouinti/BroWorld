@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Tests\Controller;
 
 use App\DataFixtures\QuizFixtures;
-use App\Quiz\Controller\AppController;
+use App\Quiz\Transport\Controller\AppController;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 /**

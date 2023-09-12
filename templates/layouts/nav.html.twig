@@ -1,11 +1,15 @@
 <div class="container position-sticky z-index-sticky top-0"><div class="row"><div class="col-12">
             <nav class="navbar navbar-expand-lg  blur border-radius-xl top-0 z-index-fixed shadow position-absolute my-3 py-2 start-0 end-0 mx-4">
                 <div class="container-fluid px-0">
-                    <a href="{{ path('app_home') }}" class="avatar avatar rounded-circle">
-                        <img alt="Image placeholder" src="{{ asset('frontend/assets/img/world.svg') }}">
-                    </a>
-                    <a class="navbar-brand font-weight-bolder ms-3" href="{{ path('app_home') }}" rel="tooltip" title="Designed and Coded by Creative Tim" data-placement="bottom">
-                        <h6>BroWorld</h6>
+                    <a class="navbar-brand" href="{{ path('app_home') }}">
+                        <a href="{{ path('app_home') }}" class="avatar rounded-circle"  style="margin-top: -25px;">
+                            <img alt="Image placeholder" src="{{ asset('frontend/assets/img/world.svg') }}">
+                        </a>
+                        <a href="{{ path('app_home') }}">
+                            <div class="text-dark text-center text-2xl"  style="margin-top: -25px;">
+                                BroWorld
+                            </div>
+                        </a>
                     </a>
                     <button class="navbar-toggler shadow-none ms-2" type="button" data-bs-toggle="collapse" data-bs-target="#navigation" aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon mt-2">
@@ -16,7 +20,7 @@
                     </button>
                     <div class="collapse navbar-collapse pt-3 pb-2 py-lg-0 w-100" id="navigation">
                         <ul class="navbar-nav navbar-nav-hover ms-auto">
-                            <li class="nav-item dropdown dropdown-hover mx-3 py-2">
+                            <li class="nav-item dropdown dropdown-hover mx-3 py-1">
                                 <a class="nav-link ps-2 d-flex cursor-pointer align-items-center" id="dropdownMenuPages" data-bs-toggle="dropdown" aria-expanded="false">
                                     News
                                 </a>
@@ -69,13 +73,13 @@
                                 </div>
                             </li>
 
-                            <li class="nav-item mx-3 py-2">
+                            <li class="nav-item mx-3 py-1">
                                 <a class="nav-link ps-2 d-flex cursor-pointer align-items-center" href="{{ path('blog_index') }}">
                                     Blog
                                 </a>
                             </li>
 
-                            <li class="nav-item dropdown dropdown-hover mx-3 py-2">
+                            <li class="nav-item dropdown dropdown-hover mx-3 py-1">
                                 <a class="nav-link ps-2 d-flex cursor-pointer align-items-center" id="dropdownMenuDocs" data-bs-toggle="dropdown" aria-expanded="false">
                                     Service
                                 </a>
@@ -147,12 +151,12 @@
                                 </ul>
                             </li>
 
-                            <li class="nav-item mx-3 py-2">
+                            <li class="nav-item mx-3 py-1">
                                 <a class="nav-link ps-2 d-flex cursor-pointer align-items-center" href="{{ path('app_about') }}">
                                     About
                                 </a>
                             </li>
-                            <li class="nav-item mx-3 py-2">
+                            <li class="nav-item mx-3 py-1">
                                 <a class="nav-link ps-2 d-flex cursor-pointer align-items-center" href="{{ path('app_contact') }}">
                                     Contact
                                 </a>
@@ -163,7 +167,7 @@
                                     <input class="form-control" placeholder="Search" type="text" >
                                 </div>
                             </li>
-                            <li class="nav-item dropdown dropdown-hover py-2">
+                            <li class="nav-item dropdown py-1">
                                 <a href="javascript:;" class="nav-link ps-2 d-flex cursor-pointer align-items-center" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
                                     <i class="material-icons opacity-6 me-2 text-md">language</i>
                                 </a>
@@ -180,7 +184,7 @@
                                 </ul>
                             </li>
                             {% if is_granted('IS_AUTHENTICATED_FULLY') %}
-                                <li class="nav-item dropdown dropdown-hover py-2">
+                                <li class="nav-item dropdown py-1">
                                     <a class="nav-link ps-2 d-flex cursor-pointer align-items-center" id="dropdownMenuDocs" data-bs-toggle="dropdown" aria-expanded="false">
                                         <i class="material-icons opacity-6 me-2 text-md">notifications</i>
                                     </a>
@@ -251,7 +255,7 @@
 
                                     </ul>
                                 </li>
-                                <li class="nav-item dropdown dropdown-hover py-2">
+                                <li class="nav-item dropdown py-1">
                                     <a class="nav-link ps-2 d-flex cursor-pointer align-items-center" id="dropdownMenuDocs" data-bs-toggle="dropdown" aria-expanded="false">
                                         <i class="material-icons opacity-6 me-2 text-md">email</i>
                                     </a>
@@ -322,7 +326,7 @@
 
                                     </ul>
                                 </li>
-                                <li class="nav-item dropdown dropdown-hover mx-2 py-1">
+                                <li class="nav-item dropdown py-1">
                                 <a href="javascript:;" class="avatar avatar rounded-circle" data-bs-placement="bottom" title="Ryan Tompson" id="dropdownMenuDocs" data-bs-toggle="dropdown" aria-expanded="false">
                                     <img alt="Image placeholder" src="{{ app.user.avatar }}">
                                 </a>
@@ -361,7 +365,7 @@
                                 </ul>
                             </li>
                             {% else %}
-                                <li class="nav-item dropdown dropdown-hover mx-2 py-2">
+                                <li class="nav-item dropdown dropdown-hover mx-2 py-1">
                                     <a class="nav-link ps-2 d-flex cursor-pointer align-items-center" id="dropdownMenuDocs" data-bs-toggle="dropdown" aria-expanded="false">
                                         <i class="material-icons opacity-6 me-2 text-md">person</i>
                                     </a>
