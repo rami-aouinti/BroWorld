@@ -18,6 +18,12 @@
         "build": "encore production --progress"
     },
     "dependencies": {
-        "admin-lte": "^3.0"
+        "admin-lte": "^3.0",
+        "clipboard": "^2.0.11",
+        "purecss": "^3.0.0",
+        "toastr": "^2.1.4",
+        "vue": "^3.3.4",
+        "vue-loader": "^17.2.2",
+        "vue-template-compiler": "^2.7.14"
     }
 }

@@ -11,8 +11,8 @@
 
 namespace App\Command;
 
-use App\Entity\User;
-use App\Repository\UserRepository;
+use App\User\Model\Entity\User;
+use App\User\Model\Repository\UserRepository;
 use App\Utils\Validator;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Console\Attribute\AsCommand;

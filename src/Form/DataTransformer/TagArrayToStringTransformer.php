@@ -11,8 +11,8 @@
 
 namespace App\Form\DataTransformer;
 
-use App\Entity\Tag;
-use App\Repository\TagRepository;
+use App\Blog\Model\Entity\Tag;
+use App\Blog\Model\Repository\TagRepository;
 use Symfony\Component\Form\DataTransformerInterface;
 use function Symfony\Component\String\u;
 

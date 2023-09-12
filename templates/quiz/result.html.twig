@@ -1,0 +1,60 @@
+{% extends 'base.html.twig' %}
+
+{% set scorePercent = (score/count*100)|round %}
+
+{% block body %}
+    <div class="header">
+        <h1>Congratulations! The quiz is over!</h1>
+        <h3>Your score: {{ score }}/{{ count }} - {{ scorePercent }}%</h3>
+    </div>
+
+    <div class="content">
+        <ul>
+            <li>Your score: <b>{{ score }}/{{ count }}</b></li>
+            <li>Score percent: <b>{{ scorePercent }}%</b></li>
+            <li>Total time : <b>{% include '_time_interval.html.twig' with {startDate: quiz.createdAt, endDate: (questions|last).updatedAt} %}</b></li>
+        </ul>
+
+        <table class="pure-table pure-table-bordered table-center">
+            <thead>
+            <tr>
+                <th>#</th>
+                <th>Code</th>
+                <th>Correct?</th>
+                <th>Time to answer</th>
+                <th>Answer</th>
+            </tr>
+            </thead>
+            <tbody>
+                {% set dateRef = quiz.createdAt %}
+                {% for questionQuestion in questions %}
+                    {% set timeToAnswer = date(questionQuestion.updatedAt).diff(date(dateRef)) %}
+                    <tr>
+                        <td>{{ questionQuestion.rank }}</td>
+                        <td>
+                            <details>
+                                <summary>Show code</summary>
+                                <img class="pure-img" src="{{ question_image(questionQuestion.question) }}" alt="PHP Quiz n°{{ questionQuestion.rank }}"/>
+                            </details>
+                        </td>
+                        <td>{{ questionQuestion.answer.code }} &raquo; {{ questionQuestion.answer.correct ? '✅' : '❌' }} </td>
+                        <td>
+                            {% include '_time_interval.html.twig' with {startDate: dateRef, endDate: questionQuestion.updatedAt} %}
+                        </td>
+                        <td><a href="{{ path('question_show', {id: questionQuestion.question.id}) }}">🔎 View answer</a></td>
+                        {% set dateRef = questionQuestion.updatedAt %}
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <p>You can also check all the correct answers with the learn mode.</p>
+
+        <p class="center">
+            <a class="pure-button pure-button-primary button-xlarge" href="{{ path('question_show') }}">Learn mode 🤓</a>
+            {% if count > score %}
+                <a href="{{ path('quiz_retry', {uuid: quiz.uuid}) }}" class="pure-button pure-button-primary button-xlarge">Retry ⏩</a>
+            {% endif %}
+        </p>
+    </div>
+{% endblock %}

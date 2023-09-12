@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Setting index{% endblock %}
+
+{% block body %}
+    <h1>Setting index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Sidebar</th>
+                <th>Sidenav</th>
+                <th>Navbar</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for setting in settings %}
+            <tr>
+                <td>{{ setting.id }}</td>
+                <td>{{ setting.sidebar }}</td>
+                <td>{{ setting.sidenav }}</td>
+                <td>{{ setting.navbar }}</td>
+                <td>
+                    <a href="{{ path('app_setting_show', {'id': setting.id}) }}">show</a>
+                    <a href="{{ path('app_setting_edit', {'id': setting.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_setting_new') }}">Create new</a>
+{% endblock %}

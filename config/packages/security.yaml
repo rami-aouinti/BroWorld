@@ -8,7 +8,7 @@ security:
         # used to reload user from session & other features (e.g. switch_user)
         app_user_provider:
             entity:
-                class: App\Entity\User
+                class: App\User\Model\Entity\User
                 property: email
 
     # https://symfony.com/doc/current/security.html#a-configuring-how-your-users-will-authenticate

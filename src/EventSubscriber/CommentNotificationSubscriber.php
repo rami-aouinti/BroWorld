@@ -11,9 +11,9 @@
 
 namespace App\EventSubscriber;
 
-use App\Entity\Post;
-use App\Entity\User;
+use App\Blog\Model\Entity\Post;
 use App\Event\CommentCreatedEvent;
+use App\User\Model\Entity\User;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Mime\Email;

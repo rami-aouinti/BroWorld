@@ -2,8 +2,8 @@
 
 namespace App\Test\Controller;
 
-use App\Entity\News;
-use App\Repository\NewsRepository;
+use App\Frontend\Model\Entity\News;
+use App\Frontend\Model\Repository\NewsRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\KernelBrowser;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;

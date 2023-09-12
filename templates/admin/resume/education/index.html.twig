@@ -1,0 +1,47 @@
+{% extends '../../../base.html.twig' %}
+
+{% block title %}Education index{% endblock %}
+
+{% block body %}
+    <h1>Education index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Start</th>
+                <th>End</th>
+                <th>School</th>
+                <th>City</th>
+                <th>Description</th>
+                <th>Diploma</th>
+                <th>Specality</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for education in education %}
+            <tr>
+                <td>{{ education.id }}</td>
+                <td>{{ education.start ? education.start|date('Y-m-d') : '' }}</td>
+                <td>{{ education.end ? education.end|date('Y-m-d') : '' }}</td>
+                <td>{{ education.school }}</td>
+                <td>{{ education.city }}</td>
+                <td>{{ education.description }}</td>
+                <td>{{ education.diploma }}</td>
+                <td>{{ education.specality }}</td>
+                <td>
+                    <a href="{{ path('app_education_show', {'id': education.id}) }}">show</a>
+                    <a href="{{ path('app_education_edit', {'id': education.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="9">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_education_new') }}">Create new</a>
+{% endblock %}

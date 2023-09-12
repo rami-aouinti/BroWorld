@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Security;
 
-use App\Entity\User;
+use App\User\Model\Entity\User;
 use Doctrine\ORM\EntityManagerInterface;
 use KnpU\OAuth2ClientBundle\Client\ClientRegistry;
 use KnpU\OAuth2ClientBundle\Security\Authenticator\OAuth2Authenticator;
@@ -58,7 +58,7 @@ class GoogleAuthenticator extends OAuth2Authenticator
 
                 // have they logged in with Google before? Easy!
                 $existingUser = $this->entityManager->getRepository(User::class)->findOneBy([
-                    'googleId' => $googleUser->getId(),
+                    'email' => $googleUser->getEmail(),
                 ]);
 
                 if (!$existingUser) {
@@ -74,12 +74,24 @@ class GoogleAuthenticator extends OAuth2Authenticator
                             'password'
                         )
                     );
-                    $this->entityManager->persist($existingUser);
                     $existingUser->setAvatar($googleUser->getAvatar());
+                    $this->entityManager->persist($existingUser);
                     $this->entityManager->flush();
+                } else {
+                    if (!$existingUser->getAvatar()) {
+                        $existingUser->setAvatar($googleUser->getAvatar());
+                        $this->entityManager->persist($existingUser);
+                        $this->entityManager->flush();
+                    }
+                    else if (!$existingUser->getAvatar()) {
+                        $existingUser->setGoogleId($googleUser->getId());
+                        $this->entityManager->persist($existingUser);
+                        $this->entityManager->flush();
+                    }
+                    else {
+                        return $existingUser;
+                    }
                 }
-
-                return $existingUser;
             })
         );
     }

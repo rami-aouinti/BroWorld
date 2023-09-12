@@ -2,11 +2,11 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
+        <title>{% block title %}BroWorld Platform{% endblock %}</title>
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <link rel="apple-touch-icon" sizes="76x76" href="{{ asset('frontend/assets/img/apple-icon.png') }}">
-        <link rel="icon" type="image/png" href="{{ asset('frontend/assets/img/favicon.png') }}">
-        <title> Material Kit 2 by Creative Tim </title>
+        <link rel="apple-touch-icon" sizes="76x76" href="{{ asset('frontend/assets/img/world.svg') }}">
+        <link rel="icon" type="image/png" href="{{ asset('frontend/assets/img/world.svg') }}">
+        <title> BroWorld Platform</title>
         <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900|Roboto+Slab:400,700" />
         <link href="{{ asset('frontend/assets/css/nucleo-icons.css') }}" rel="stylesheet" />
         <link href="{{ asset('frontend/assets/css/nucleo-svg.css') }}" rel="stylesheet" />
@@ -16,9 +16,11 @@
         <script defer data-site="YOUR_DOMAIN_HERE" src="https://api.nepcha.com/js/nepcha-analytics.js"></script>        {% block stylesheets %}
             {{ encore_entry_link_tags('app') }}
         {% endblock %}
+        <meta name="jsapp" content="{% block jsapp %}app{% endblock %}">
 
         {% block javascripts %}
             {{ encore_entry_script_tags('app') }}
+            {{ encore_entry_script_tags(block('jsapp')) }}
         {% endblock %}
     </head>
     <body class="index-page bg-gray-200">
@@ -35,6 +37,7 @@
     {% endfor %}
         {% block body %}{% endblock %}
     {% include 'layouts/footer.html.twig' %}
+    <script src="{{ preload(asset('js/ui.js'), {as: 'script'}) }}"></script>
         <!--   Core JS Files   -->
         <script src="{{ asset('frontend/assets/js/core/popper.min.js') }}" type="text/javascript"></script>
         <script src="{{ asset('frontend/assets/js/core/bootstrap.min.js') }}" type="text/javascript"></script>

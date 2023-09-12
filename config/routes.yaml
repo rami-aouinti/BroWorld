@@ -1,16 +1,17 @@
 homepage:
     path: /{_locale}
-    controller: App\Controller\HomeController::index
+    controller: App\Frontend\Controller\HomeController::index
     requirements:
         _locale: '%app_locales%'
     defaults:
         template: home/index.html.twig
         _locale: '%locale%'
 
-controllers:
+
+frontend-controllers:
     resource:
-        path: '../src/Controller/'
-        namespace: App\Controller
+        path: '../src/Frontend/Controller/'
+        namespace: App\Frontend\Controller
     type: attribute
     prefix: /{_locale}
     requirements:
@@ -18,3 +19,59 @@ controllers:
     defaults:
         _locale: '%locale%'
 
+user-controllers:
+    resource:
+        path: '../src/User/Controller/'
+        namespace: App\User\Controller
+    type: attribute
+    prefix: /{_locale}
+    requirements:
+        _locale: '%app_locales%'
+    defaults:
+        _locale: '%locale%'
+
+
+task-controllers:
+    resource:
+        path: '../src/Task/Controller/'
+        namespace: App\Task\Controller
+    type: attribute
+    prefix: /{_locale}
+    requirements:
+        _locale: '%app_locales%'
+    defaults:
+        _locale: '%locale%'
+
+
+blog-controllers:
+    resource:
+        path: '../src/Blog/Controller/'
+        namespace: App\Blog\Controller
+    type: attribute
+    prefix: /{_locale}
+    requirements:
+        _locale: '%app_locales%'
+    defaults:
+        _locale: '%locale%'
+
+quiz-controllers:
+    resource:
+        path: '../src/Quiz/Controller/'
+        namespace: App\Quiz\Controller
+    type: attribute
+    prefix: /{_locale}
+    requirements:
+        _locale: '%app_locales%'
+    defaults:
+        _locale: '%locale%'
+
+resume-controllers:
+    resource:
+        path: '../src/Resume/Controller/'
+        namespace: App\Resume\Controller
+    type: attribute
+    prefix: /{_locale}
+    requirements:
+        _locale: '%app_locales%'
+    defaults:
+        _locale: '%locale%'

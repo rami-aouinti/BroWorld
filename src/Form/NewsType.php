@@ -2,7 +2,7 @@
 
 namespace App\Form;
 
-use App\Entity\News;
+use App\Frontend\Model\Entity\News;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -15,6 +15,7 @@ class NewsType extends AbstractType
             ->add('title')
             ->add('description')
             ->add('url')
+            ->add('active')
         ;
     }
 
