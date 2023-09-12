@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Tests\ApiPlatform;
 
 use ApiPlatform\Core\Bridge\Symfony\Bundle\Test\ApiTestCase;
-use App\Entity\Question;
+use App\Quiz\Model\Entity\Question;
 
 final class QuestionsTest extends ApiTestCase
 {
