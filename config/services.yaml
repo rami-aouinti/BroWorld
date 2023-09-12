@@ -25,7 +25,7 @@ services:
     App\:
         resource: '../src/'
         exclude:
-            - '../src/DataFixtures/'
+            - '../src/*/DataFixtures/'
             - '../src/DependencyInjection/'
             - '../src/*/Model/Entity/'
             - '../src/Kernel.php'
@@ -34,14 +34,14 @@ services:
     # controllers are imported separately to make sure services can be injected
     # as action arguments even if you don't extend any base controller class
 
-    App\Service\Interfaces\MessageServiceInterface:
-        class: App\Service\MessageService
+    App\Frontend\Infrastructure\Service\Interfaces\MessageServiceInterface:
+        class: App\Frontend\Infrastructure\Service\MessageService
 
-    App\Service\FileUploader:
+    App\Frontend\Infrastructure\Service\FileUploader:
         arguments:
             $targetDirectory: '%brochures_directory%'
 
-    App\EventSubscriber\CommentNotificationSubscriber:
+    App\Blog\Transport\EventSubscriber\CommentNotificationSubscriber:
         $sender: '%app.notifications.email_sender%'
 
     # add more service definitions when explicit configuration is needed
@@ -55,10 +55,14 @@ when@dev:
         _defaults:
             autowire: true
             autoconfigure: true
-        App\DataFixtures\:
-            resource: '../src/DataFixtures/'
+
+        App\Blog\Infrastructure\DataFixtures\:
+            resource: '../src/Blog/Infrastructure/DataFixtures/*'
             tags: [ 'doctrine.fixture.orm' ]
 
+        App\Quiz\:
+            resource: '../src/Quiz/*/DataFixtures/*'
+            tags: [ 'doctrine.fixture.orm' ]
 when@test:
     services:
         _defaults:
@@ -67,5 +71,5 @@ when@test:
             public: true
 
         App\DataFixtures\:
-            resource: '../src/DataFixtures/'
+            resource: '../src/*/DataFixtures/*'
             tags: [ 'doctrine.fixture.orm' ]

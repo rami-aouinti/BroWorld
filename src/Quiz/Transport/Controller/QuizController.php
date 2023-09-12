@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Quiz\Transport\Controller;
 
-use App\Data\QuizData;
+use App\Frontend\Application\Data\QuizData;
 use App\Quiz\Model\Entity\Answer;
 use App\Quiz\Model\Repository\QuizQuestionRepository;
 use App\Quiz\Transport\Form\QuizType;

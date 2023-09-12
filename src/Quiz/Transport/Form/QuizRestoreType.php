@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Quiz\Transport\Form;
 
-use App\Data\QuizData;
+use App\Frontend\Application\Data\QuizData;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Form;

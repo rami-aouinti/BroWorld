@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Twig\Tests;
 
-use App\Data\QuestionData;
+use App\Frontend\Application\Data\QuestionData;
 use App\Twig\QuestionExtension;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 

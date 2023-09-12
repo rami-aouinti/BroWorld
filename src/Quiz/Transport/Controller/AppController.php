@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Quiz\Transport\Controller;
 
-use App\Data\QuestionData;
+use App\Frontend\Application\Data\QuestionData;
 use App\Quiz\Transport\Form\QuizRestoreType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
