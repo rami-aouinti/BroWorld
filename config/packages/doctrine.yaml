@@ -14,17 +14,49 @@ doctrine:
     orm:
         auto_generate_proxy_classes: true
         enable_lazy_ghost_objects: true
-        naming_strategy: doctrine.orm.naming_strategy.underscore_number_aware
-        auto_mapping: true
-        report_fields_where_declared: true
-        validate_xml_mapping: true
-        mappings:
-            App:
-                is_bundle: false
-                type: attribute
-                dir: '%kernel.project_dir%/src/Entity'
-                prefix: 'App\Entity'
-                alias: App
+        default_entity_manager: default
+        entity_managers:
+            default:
+                naming_strategy: doctrine.orm.naming_strategy.underscore_number_aware
+                auto_mapping: true
+                connection: default
+                mappings:
+                    Frontend:
+                        is_bundle: false
+                        type: attribute
+                        dir: '%kernel.project_dir%/src/Frontend/Model/Entity'
+                        prefix: 'App\Frontend\Model\Entity'
+                        alias: Frontend
+                    User:
+                        is_bundle: false
+                        type: attribute
+                        dir: '%kernel.project_dir%/src/User/Model/Entity'
+                        prefix: 'App\User\Model\Entity'
+                        alias: User
+                    Blog:
+                        is_bundle: false
+                        type: attribute
+                        dir: '%kernel.project_dir%/src/Blog/Model/Entity'
+                        prefix: 'App\Blog\Model\Entity'
+                        alias: Blog
+                    Task:
+                        is_bundle: false
+                        type: attribute
+                        dir: '%kernel.project_dir%/src/Task/Model/Entity'
+                        prefix: 'App\Task\Model\Entity'
+                        alias: Task
+                    Resume:
+                        is_bundle: false
+                        type: attribute
+                        dir: '%kernel.project_dir%/src/Resume/Model/Entity'
+                        prefix: 'App\Resume\Model\Entity'
+                        alias: Resume
+                    Quiz:
+                        is_bundle: false
+                        type: attribute
+                        dir: '%kernel.project_dir%/src/Quiz/Model/Entity'
+                        prefix: 'App\Quiz\Model\Entity'
+                        alias: Quiz
 
 when@prod: &not-dev
     dbal:

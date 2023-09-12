@@ -33,9 +33,10 @@
         <div class="jumbotron">{{ 'post.no_posts_found'|trans }}</div>
     {% endfor %}
         {% if paginator.hasToPaginate %}
-            <div class="row align-items-center justify-content-center" id="pagination-badge">
-                <div class="navigation text-center">
-                    <ul class="pagination pagination-lg">
+            <div class="row text-center py-3 mt-3" id="pagination-badge">
+                <div class="col-4 mx-auto">
+                    <div class="nav-wrapper position-relative end-0">
+                        <ul class="pagination pagination-lg">
                         {% if paginator.hasPreviousPage %}
                             <li class="page-item">
                                 <a class="page-link" href="{{ path('blog_index_paginated', {page: paginator.previousPage, tag: tagName}) }}" rel="previous">
@@ -70,6 +71,7 @@
                             </li>
                         {% endif %}
                     </ul>
+                    </div>
                 </div>
             </div>
         {% endif %}

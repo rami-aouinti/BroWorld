@@ -2,8 +2,8 @@
 
 namespace App\Test\Controller;
 
-use App\Entity\About;
-use App\Repository\AboutRepository;
+use App\Frontend\Model\Entity\About;
+use App\Frontend\Model\Repository\AboutRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\KernelBrowser;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;

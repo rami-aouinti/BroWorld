@@ -1,0 +1,13 @@
+- add facebook connect
+- add github connect
+- add add Notification System
+- Add Message System
+- Fix Blog System
+- Fix translation
+- Add About Page
+- Fix Home Page
+- Add Resume System
+- Add Project System
+- Fix Profile Page
+- Fix Setting Page
+- Administration System

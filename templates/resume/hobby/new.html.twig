@@ -1,0 +1,11 @@
+{% extends '../../../base.html.twig' %}
+
+{% block title %}New Hobby{% endblock %}
+
+{% block body %}
+    <h1>Create new Hobby</h1>
+
+    {{ include('hobby/_form.html.twig') }}
+
+    <a href="{{ path('app_hobby_index') }}">back to list</a>
+{% endblock %}

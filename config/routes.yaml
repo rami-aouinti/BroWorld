@@ -1,16 +1,17 @@
 homepage:
     path: /{_locale}
-    controller: App\Controller\HomeController::index
+    controller: App\Frontend\Transport\Controller\HomeController::index
     requirements:
         _locale: '%app_locales%'
     defaults:
         template: home/index.html.twig
         _locale: '%locale%'
 
-controllers:
+
+frontend-controllers:
     resource:
-        path: '../src/Controller/'
-        namespace: App\Controller
+        path: '../src/Frontend/Transport/Controller/'
+        namespace: App\Frontend\Transport\Controller
     type: attribute
     prefix: /{_locale}
     requirements:
@@ -18,3 +19,59 @@ controllers:
     defaults:
         _locale: '%locale%'
 
+user-controllers:
+    resource:
+        path: '../src/User/Transport/Controller/'
+        namespace: App\User\Transport\Controller
+    type: attribute
+    prefix: /{_locale}
+    requirements:
+        _locale: '%app_locales%'
+    defaults:
+        _locale: '%locale%'
+
+
+task-controllers:
+    resource:
+        path: '../src/Task/Transport/Controller/'
+        namespace: App\Task\Transport\Controller
+    type: attribute
+    prefix: /{_locale}
+    requirements:
+        _locale: '%app_locales%'
+    defaults:
+        _locale: '%locale%'
+
+
+blog-controllers:
+    resource:
+        path: '../src/Blog/Transport/Controller/'
+        namespace: App\Blog\Transport\Controller
+    type: attribute
+    prefix: /{_locale}
+    requirements:
+        _locale: '%app_locales%'
+    defaults:
+        _locale: '%locale%'
+
+quiz-controllers:
+    resource:
+        path: '../src/Quiz/Transport/Controller/'
+        namespace: App\Quiz\Transport\Controller
+    type: attribute
+    prefix: /{_locale}
+    requirements:
+        _locale: '%app_locales%'
+    defaults:
+        _locale: '%locale%'
+
+resume-controllers:
+    resource:
+        path: '../src/Resume/Transport/Controller/'
+        namespace: App\Resume\Transport\Controller
+    type: attribute
+    prefix: /{_locale}
+    requirements:
+        _locale: '%app_locales%'
+    defaults:
+        _locale: '%locale%'

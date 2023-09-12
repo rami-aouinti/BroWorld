@@ -1,0 +1,153 @@
+{% extends 'base.html.twig' %}
+
+{% set isRandom = app.request.get('_route') == 'question_random' %}
+{% set isLast = app.request.get('_route') == 'question_last' %}
+{% set codeImage = question_image(question) %}
+{% set progress = (question.id / count * 100)|round %}
+{% set isBeforeLastQuestion = (question.id + 1) == count %}
+
+{% block title %}Quiz n°{{ question.id }}/{{ count }}: Answer the following question{% endblock %}
+
+{% block og_image %}{{ codeImage }}{% endblock %}
+
+{% block jsapp %}show{% endblock %}
+
+{% block javascripts %}
+    <script>
+      const questionId = {{ question.id }}
+      const code = `{{ code }}`
+      const questionUrl = '/api/questions' + '{{ question.id }}';
+    </script>
+    {{ parent() }}
+{% endblock %}
+
+{% block body %}
+    <div class="header">
+        <h1>Quiz {{ question.id }}/{{ count }}: Answer the following question</h1>
+        {% if not (isRandom or isLast) %}
+            <h4>Your progression: {{ progress }}%</h4>
+            <progress value="{{ progress }}" max="100">{{ progress }}%</progress>
+        {% endif  %}
+    </div>
+
+    <div class="content">
+        <ul>
+            <li>Suggested by <a target="_blank" href="https://twitter.com/{{ question.suggestedBy.twitter }}">{{ question.suggestedBy.twitter }}</a>
+            <li>Created on <b>{{ question.createdAt|date('Y-m-d') }}</b></li>
+            {% if question.updatedAt != question.createdAt %}
+                <li>Modified on <b>{{ question.updatedAt|date('Y-m-d') }}</b></li>
+            {% endif %}
+            <li>Difficulty: <b>{{ question.difficulty.label }}</b></li>
+        </ul>
+
+        <h3>{{ question.label }} 🤔</h3>
+
+        {% if app.environment == 'dev' %}
+            <img class="pure-img" src="{{ question.codeImage }}" alt="PHP Quiz n°{{ question.id }}"/>
+        {% endif %}
+        <img class="pure-img" src="{{ codeImage }}" alt="PHP Quiz n°{{ question.id }}"/>
+
+        <p class="center">
+            <button class="copy pure-button pure-button-primary button-small">Copy the code in your clipboard 📋</button>
+            <textarea class="hidden" v-html="code" id="code"></textarea>
+        </p>
+
+        <div v-if="!hasValidated">
+            <form class="pure-form pure-form-stacked" method="post" ref="form">
+                <fieldset>
+                    <legend>Select your answer: 🧐</legend>
+
+                    {% for answer in question.answers %}
+                        <label class="pure-radio" for="answer_{{ loop.index0 }}">
+                            <input required="required" v-model="answer" name="answer" id="answer_{{ loop.index0 }}" type="radio" value="{{ answer.code }}" />&nbsp;
+                            <b>{{ answer.code }}</b>: {{ answer.label|raw }}
+                        </label>
+                    {% endfor %}
+
+                    <p v-if="ready" class="center">
+                        <button type="submit" v-on:click="validateAnswer" class="pure-button pure-button-primary button-xlarge">Submit</button>
+                    </p>
+                </fieldset>
+            </form>
+        </div>
+
+        <div v-if="hasValidated">
+            <hr/>
+
+            <h1 v-if="isCorrect">✅ { answer }: correct!</h1>
+            <h1 v-else>❌ { answer }: Wrong answer!</h1>
+
+            <blockquote class="content-quote">{{ question.answerExplanations|raw }}</blockquote>
+
+            <span class="size-60">▶&nbsp;</span> <a target="_blank" href="{{ question.liveSnippetUrl }}"> Click here to run this code on 3v4l.org</a><br/>
+
+            <h3>Poll</h3>
+            <ul>
+                {% for answer in question.answers %}
+                    {% set percent = answer.pollResult/100 %}
+                    <li>
+                        <b>{{ answer.correct ? '✅ ' : ''}}{{ answer.code }}</b>: {{ answer.label|raw }} - <b>{{ percent }}</b>%<br/>
+                        <progress value="{{ percent }}" max="100"> percent% </progress>
+                    </li>
+                {% endfor %}
+            </ul>
+
+            <span class="size-60">▶&nbsp;</span> <a target="_blank" href="{{ question.twitterPollUrl }}"> Click here to see the Twitter poll</a><br/>
+
+            {% if question.differencesOutputNotes %}
+                <details>
+                    <summary>Click here to see output differences between PHP versions</summary>
+                    <p>{{ question.differencesOutputNotes|raw }}</p>
+                </details>
+            {% endif %}
+
+            <br/>
+            <hr/>
+
+            {% if question.links|length %}
+                <h3>Going further... 🤓</h3>
+
+                <ul>
+                    {% for link in question.links %}
+                        <li><a class="read-more" target="_blank" href="{{ link.url }}">{{ link.label|raw }}</a></li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+
+            {% if isRandom %}
+                <h3>Want More? 🤔</h3>
+
+                <p class="center">
+                    <a href="{{ path('question_random') }}" class="pure-button pure-button-primary button-xlarge">New random question ⏩</a>
+                </p>
+            {% elseif isLast %}
+                <h3>Want More? 🤔</h3>
+
+                <p class="center">
+                    <a href="{{ path('question_show') }}" class="pure-button pure-button-primary button-xlarge">👈️ Get back to first question</a>
+                </p>
+            {% elseif question.nextQuestion %}
+                <h3>Want More? 🤔</h3>
+
+                <p class="center">
+                    <a href="{{ path('question_show', {id: question.nextQuestion.id}) }}" class="pure-button pure-button-primary button-xlarge">{{ isBeforeLastQuestion ? 'Last question' : 'Next question' }} ⏩</a>
+                </p>
+            {% else %}
+                <h3>The end. 😭</h3>
+
+                <p>Congratulations! You have reach the end of the quiz. We hope
+                you enjoyed it and that you learned new things.</p>
+
+                <p>
+                    As you can see, this website relies on 3v4l.org to test the
+                    PHP snippets. If you like it, consider making a <a target="_blank" href="https://3v4l.org/sponsor">
+                    donation</a>. See you soon! 😊
+                </p>
+
+                <p class="center">
+                    <a href="{{ path('home') }}" class="pure-button pure-button-primary button-xlarge">Home</a>
+                </p>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}
