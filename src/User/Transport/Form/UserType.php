@@ -13,6 +13,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\File;
+use Vich\UploaderBundle\Form\Type\VichImageType;
 
 class UserType extends AbstractType
 {
@@ -40,70 +41,113 @@ class UserType extends AbstractType
             ->add('description', TextareaType::class, [
                 'attr' => [
                     'class' => 'form-control'
-                ]
+                ],
+                'required' => false,
             ])
             ->add('nationality', CountryType::class, [
                 'attr' => [
                     'class' => 'form-control'
-                ]
+                ],
+                'required' => false,
             ])
             ->add('country', CountryType::class, [
                 'attr' => [
                     'class' => 'form-control'
-                ]
+                ],
+                'required' => false,
             ])
             ->add('state', TextType::class, [
                 'attr' => [
                     'class' => 'form-control'
-                ]
+                ],
+                'required' => false,
             ])
             ->add('city',TextType::class, [
                 'attr' => [
                     'class' => 'form-control'
-                ]
+                ],
+                'required' => false,
             ])
             ->add('street', TextType::class, [
                 'attr' => [
                     'class' => 'form-control'
-                ]
+                ],
+                'required' => false,
             ])
             ->add('housnumber', TextType::class, [
                 'attr' => [
                     'class' => 'form-control'
-                ]
+                ],
+                'required' => false,
             ])
             ->add('birthday', DateType::class, [
                 'attr' => [
                     'class' => 'form-control'
-                ]
+                ],
+                'required' => false,
             ])
             ->add('position', TextType::class, [
                 'attr' => [
                     'class' => 'form-control'
-                ]
+                ],
+                'required' => false,
             ])
-            ->add('photo', FileType::class, [
+            ->add('phone', TextType::class, [
                 'attr' => [
                     'class' => 'form-control'
                 ],
-                'label' => false,
-                'mapped' => false,
                 'required' => false,
+            ])
+            ->add('imageFile', VichImageType::class, [
+                'required' => false,
+            ])
+            ->add('imageName')
+            ->add('imageSize')
+            ->add('brochure', FileType::class, [
+                'label' => 'Brochure (PDF file)',
+
+                // unmapped means that this field is not associated to any entity property
+                'mapped' => false,
+
+                // make it optional so you don't have to re-upload the PDF file
+                // every time you edit the Product details
+                'required' => false,
+
+                // unmapped fields can't define their validation using annotations
+                // in the associated entity, so you can use the PHP constraint classes
                 'constraints' => [
                     new File([
                         'maxSize' => '1024k',
                         'mimeTypes' => [
-                            'image/png',
-                            'image/jpeg',
+                            'application/pdf',
+                            'application/x-pdf',
                         ],
                         'mimeTypesMessage' => 'Please upload a valid PDF document',
                     ])
                 ],
             ])
-            ->add('phone', TextType::class, [
-                'attr' => [
-                    'class' => 'form-control'
-                ]
+            ->add('photo', FileType::class, [
+                'label' => 'Brochure (PDF file)',
+
+                // unmapped means that this field is not associated to any entity property
+                'mapped' => false,
+
+                // make it optional so you don't have to re-upload the PDF file
+                // every time you edit the Product details
+                'required' => false,
+
+                // unmapped fields can't define their validation using annotations
+                // in the associated entity, so you can use the PHP constraint classes
+                'constraints' => [
+                    new File([
+                        'maxSize' => '1024k',
+                        'mimeTypes' => [
+                            'application/pdf',
+                            'application/x-pdf',
+                        ],
+                        'mimeTypesMessage' => 'Please upload a valid PDF document',
+                    ])
+                ],
             ])
         ;
     }

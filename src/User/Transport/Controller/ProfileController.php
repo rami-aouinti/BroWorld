@@ -2,6 +2,7 @@
 
 namespace App\User\Transport\Controller;
 
+use App\Frontend\Infrastructure\Service\FileUploader;
 use App\User\Model\Entity\User;
 use App\User\Transport\Form\ChangePasswordType;
 use App\User\Transport\Form\UserType;
@@ -24,12 +25,27 @@ class ProfileController extends AbstractController
     }
 
     #[Route('/profile/edit', name: 'app_profile_edit', methods: ['GET', 'POST'])]
-    public function edit(#[CurrentUser] ?User $user, Request $request, EntityManagerInterface $entityManager): Response
+    public function edit(
+        #[CurrentUser] ?User $user,
+        Request $request,
+        EntityManagerInterface $entityManager,
+        FileUploader $fileUploader
+    ): Response
     {
+        /** @var User $user */
+        $user = $this->getUser();
         $form = $this->createForm(UserType::class, $user);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $image = $form->get('imageFile')->getData();
+
+            if($image) {
+                dd('hi');
+                $brochureFileName = $fileUploader->upload($image);
+            $user->setAvatar($brochureFileName);
+            $user->setPhoto($brochureFileName);
+            }
             $entityManager->flush();
 
             return $this->redirectToRoute('app_profile', [], Response::HTTP_SEE_OTHER);

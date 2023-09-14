@@ -1,79 +1,243 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
+    <div class="container-fluid py-2">
+        <div class="row">
+            <div class="col-12 mx-auto">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="{{ path('app_home') }}">Home</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Blog</li>
+                    </ol>
+                </nav>
+            </div>
+
+        </div>
+        <div class="row">
+            <div class="card card-body mx-3 mx-md-4 mt-n3">
+                <div class="card bg-gradient-dark shadow-lg">
+                    <div class="card-body mx-3 mx-md-4 mt-n3">
+                        <div class="row text-center py-2 mt-3">
+                            <div class="col-4 mx-auto">
+                                <div class="input-group input-group-dynamic mb-4">
+                                    <span class="input-group-text"><i class="fas fa-search" aria-hidden="true"></i></span>
+                                    <input class="form-control" placeholder="Search" type="text" >
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     <div class="card card-body mx-3 mx-md-4 mt-n3">
-    {% for post in paginator.results %}
-            <div class="card">
-                <div class="card-header pb-0 px-3">
+        <div class="row">
+            <div class="col-3">
+                <div class="row">
+                    <div class="col-md-12 mb-4">
+                        <div class="card bg-gradient-dark shadow-lg">
+                            <span class="badge rounded-pill bg-primary w-50 mt-n2 mx-auto">Categories</span>
+                            <div class="card-header text-center pt-4 pb-3 bg-transparent">
+                                <h1 class="font-weight-bold mt-2 text-white">
+                                    <small class="text-lg mb-auto">$</small>89<small class="text-lg">/mo</small>
+                                </h1>
+                            </div>
+                            <div class="card-body text-lg-start text-center pt-0">
+                                <div class="d-flex justify-content-lg-start justify-content-center p-2">
+                                    <i class="material-icons my-auto text-white">done</i>
+                                    <span class="ps-3 text-white">10 team members</span>
+                                </div>
+
+                                <div class="d-flex justify-content-lg-start justify-content-center p-2">
+                                    <i class="material-icons my-auto text-white">done</i>
+                                    <span class="ps-3 text-white">40GB Cloud storage </span>
+                                </div>
+
+                                <div class="d-flex justify-content-lg-start justify-content-center p-2">
+                                    <i class="material-icons my-auto text-white">done</i>
+                                    <span class="ps-3 text-white">Integration help </span>
+                                </div>
+
+                                <div class="d-flex justify-content-lg-start justify-content-center p-2">
+                                    <i class="material-icons my-auto text-white">done</i>
+                                    <span class="ps-3 text-white">Sketch Files </span>
+                                </div>
+
+                                <div class="d-flex justify-content-lg-start justify-content-center p-2">
+                                    <i class="material-icons my-auto text-white">remove</i>
+                                    <span class="ps-3 text-white">API Access </span>
+                                </div>
+
+                                <div class="d-flex justify-content-lg-start justify-content-center p-2">
+                                    <i class="material-icons my-auto text-white">remove</i>
+                                    <span class="ps-3 text-white">Complete documentation </span>
+                                </div>
+
+                                <a href="javascript:;" class="btn btn-icon bg-gradient-primary d-lg-block mt-3 mb-0">
+                                    Try Premium
+                                    <i class="fas fa-arrow-right ms-1"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="container py-1">
                     <div class="row">
-                        <div class="col-10">
+                        <div class="col-sm-12 col-12 mx-auto">
+                            <!-- Button trigger modal -->
+                            <button type="button" class="btn bg-gradient-dark w-100" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                New Post
+                            </button>
+
+                            <!-- Modal -->
+                            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">Your modal title</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            Society has put up so many boundaries, so many limitations on what’s right and wrong that it’s almost impossible to get a pure thought out.
+                                            <br><br>
+                                            It’s like a little kid, a little boy, looking at colors, and no one told him what colors are good, before somebody tells you you shouldn’t like pink because that’s for girls, or you’d instantly become a gay two-year-old.
+                                        </div>
+                                        <div class="modal-footer justify-content-between">
+                                            <button type="button" class="btn bg-gradient-dark" data-bs-dismiss="modal">Close</button>
+                                            <button type="button" class="btn bg-gradient-primary">Save changes</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                {% for post in paginator.results %}
+                    <div class="card-header pb-0 px-3">
+                        <div class="row">
+                            <div class="col-10">
                             <span class="metadata">
                         <i class="fa fa-user"></i>
                         {{ post.author.firstName }}
                     </span>
+                            </div>
+                            <div class="col-1">
+                                <a class="btn btn-link text-danger text-gradient px-3 mb-0" href="javascript:;"><i class="material-icons text-sm me-2">delete</i></a>
+                            </div>
+                            <div class="col-1">
+                                <a class="btn btn-link text-dark px-3 mb-0" href="javascript:;"><i class="material-icons text-sm me-2">edit</i></a>
+                            </div>
                         </div>
-                        <div class="col-1">
-                            <a class="btn btn-link text-danger text-gradient px-3 mb-0" href="javascript:;"><i class="material-icons text-sm me-2">delete</i></a>
+                    </div>
+                    <div class="card-body pt-4 p-3">
+                        <ul class="list-group">
+                            <li class="list-group-item border-0 d-flex p-4 mb-2 bg-gray-100 border-radius-lg">
+                                {{ include('blog/_post.html.twig') }}
+                            </li>
+                        </ul>
+                    </div>
+                    <br><br>
+                {% else %}
+                    <div class="jumbotron">{{ 'post.no_posts_found'|trans }}</div>
+                {% endfor %}
+                {% if paginator.hasToPaginate %}
+                    <div class="row text-center py-3 mt-3" id="pagination-badge">
+                        <div class="col-4 mx-auto">
+                            <div class="nav-wrapper position-relative end-0">
+                                <ul class="pagination pagination-lg">
+                                    {% if paginator.hasPreviousPage %}
+                                        <li class="page-item">
+                                            <a class="page-link" href="{{ path('blog_index_paginated', {page: paginator.previousPage, tag: tagName}) }}" rel="previous">
+                                                <i class="fa fw fa-long-arrow-left"></i>
+                                            </a>
+                                        </li>
+                                    {% else %}
+                                        <li class="page-item disabled">
+                                            <span class="page-link"><i class="fa fw fa-arrow-left"></i> </span>
+                                        </li>
+                                    {% endif %}
+
+                                    {% for i in 1..paginator.lastPage %}
+                                        {% if i == paginator.currentPage %}
+                                            <li class="page-item active">
+                                                <span class="page-link">{{ i }} <span class="sr-only">{{ i }}</span></span>
+                                            </li>
+                                        {% else %}
+                                            <li class="page-item"><a class="page-link" href="{{ path('blog_index_paginated', {page: i, tag: tagName}) }}">{{ i }}</a></li>
+                                        {% endif %}
+                                    {% endfor %}
+
+                                    {% if paginator.hasNextPage %}
+                                        <li class="page-item">
+                                            <a class="page-link" href="{{ path('blog_index_paginated', {page: paginator.nextPage, tag: tagName}) }}">
+                                                <span> <i class="fa fw fa-long-arrow-right"></i></span>
+                                            </a>
+                                        </li>
+                                    {% else %}
+                                        <li class="page-item disabled">
+                                            <span class="page-link"> <i class="fa fw fa-long-arrow-right"></i></span>
+                                        </li>
+                                    {% endif %}
+                                </ul>
+                            </div>
                         </div>
-                        <div class="col-1">
-                            <a class="btn btn-link text-dark px-3 mb-0" href="javascript:;"><i class="material-icons text-sm me-2">edit</i></a>
+                    </div>
+                {% endif %}
+            </div>
+            <div class="col-3">
+                <div class="row">
+                    <div class="col-md-12 mb-4">
+                        <div class="card bg-gradient-dark shadow-lg">
+                            <span class="badge rounded-pill bg-primary w-30 mt-n2 mx-auto">Tags</span>
+                            <div class="card-header text-center pt-4 pb-3 bg-transparent">
+                                <h1 class="font-weight-bold mt-2 text-white">
+                                    <small class="text-lg mb-auto">$</small>89<small class="text-lg">/mo</small>
+                                </h1>
+                            </div>
+                            <div class="card-body text-lg-start text-center pt-0">
+                                <div class="d-flex justify-content-lg-start justify-content-center p-2">
+                                    <i class="material-icons my-auto text-white">done</i>
+                                    <span class="ps-3 text-white">10 team members</span>
+                                </div>
+
+                                <div class="d-flex justify-content-lg-start justify-content-center p-2">
+                                    <i class="material-icons my-auto text-white">done</i>
+                                    <span class="ps-3 text-white">40GB Cloud storage </span>
+                                </div>
+
+                                <div class="d-flex justify-content-lg-start justify-content-center p-2">
+                                    <i class="material-icons my-auto text-white">done</i>
+                                    <span class="ps-3 text-white">Integration help </span>
+                                </div>
+
+                                <div class="d-flex justify-content-lg-start justify-content-center p-2">
+                                    <i class="material-icons my-auto text-white">done</i>
+                                    <span class="ps-3 text-white">Sketch Files </span>
+                                </div>
+
+                                <div class="d-flex justify-content-lg-start justify-content-center p-2">
+                                    <i class="material-icons my-auto text-white">remove</i>
+                                    <span class="ps-3 text-white">API Access </span>
+                                </div>
+
+                                <div class="d-flex justify-content-lg-start justify-content-center p-2">
+                                    <i class="material-icons my-auto text-white">remove</i>
+                                    <span class="ps-3 text-white">Complete documentation </span>
+                                </div>
+
+                                <a href="javascript:;" class="btn btn-icon bg-gradient-primary d-lg-block mt-3 mb-0">
+                                    Try Premium
+                                    <i class="fas fa-arrow-right ms-1"></i>
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="card-body pt-4 p-3">
-                    <ul class="list-group">
-                        <li class="list-group-item border-0 d-flex p-4 mb-2 bg-gray-100 border-radius-lg">
-                            {{ include('blog/_post.html.twig') }}
-                        </li>
-                    </ul>
-                </div>
             </div>
-            <br><br>
-    {% else %}
-        <div class="jumbotron">{{ 'post.no_posts_found'|trans }}</div>
-    {% endfor %}
-        {% if paginator.hasToPaginate %}
-            <div class="row text-center py-3 mt-3" id="pagination-badge">
-                <div class="col-4 mx-auto">
-                    <div class="nav-wrapper position-relative end-0">
-                        <ul class="pagination pagination-lg">
-                        {% if paginator.hasPreviousPage %}
-                            <li class="page-item">
-                                <a class="page-link" href="{{ path('blog_index_paginated', {page: paginator.previousPage, tag: tagName}) }}" rel="previous">
-                                    <i class="fa fw fa-long-arrow-left"></i>
-                                </a>
-                            </li>
-                        {% else %}
-                            <li class="page-item disabled">
-                                <span class="page-link"><i class="fa fw fa-arrow-left"></i> </span>
-                            </li>
-                        {% endif %}
-
-                        {% for i in 1..paginator.lastPage %}
-                            {% if i == paginator.currentPage %}
-                                <li class="page-item active">
-                                    <span class="page-link">{{ i }} <span class="sr-only">{{ i }}</span></span>
-                                </li>
-                            {% else %}
-                                <li class="page-item"><a class="page-link" href="{{ path('blog_index_paginated', {page: i, tag: tagName}) }}">{{ i }}</a></li>
-                            {% endif %}
-                        {% endfor %}
-
-                        {% if paginator.hasNextPage %}
-                            <li class="page-item">
-                                <a class="page-link" href="{{ path('blog_index_paginated', {page: paginator.nextPage, tag: tagName}) }}">
-                                    <span> <i class="fa fw fa-long-arrow-right"></i></span>
-                                </a>
-                            </li>
-                        {% else %}
-                            <li class="page-item disabled">
-                                <span class="page-link"> <i class="fa fw fa-long-arrow-right"></i></span>
-                            </li>
-                        {% endif %}
-                    </ul>
-                    </div>
-                </div>
-            </div>
-        {% endif %}
+        </div>
     </div>
 {% endblock %}

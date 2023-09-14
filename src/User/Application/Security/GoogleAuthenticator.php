@@ -83,7 +83,7 @@ class GoogleAuthenticator extends OAuth2Authenticator
                         $this->entityManager->persist($existingUser);
                         $this->entityManager->flush();
                     }
-                    else if (!$existingUser->getAvatar()) {
+                    else if (!$existingUser->getGoogleId()) {
                         $existingUser->setGoogleId($googleUser->getId());
                         $this->entityManager->persist($existingUser);
                         $this->entityManager->flush();

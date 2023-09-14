@@ -1,6 +1,5 @@
 <?php
 
-// src/Service/FileUploader.php
 namespace App\Frontend\Infrastructure\Service;
 
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
