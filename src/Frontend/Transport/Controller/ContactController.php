@@ -27,11 +27,11 @@ class ContactController extends AbstractController
             $entityManager->flush();
             $email = (new Email())
                 ->from(new Address(
-                    $contact->getEmail(),
+                    'info@ramyworld.de',
                     $contact->getFirstName() .  " " . $contact->getLastName()
                 ))
                 ->to('info@ramyworld.de')
-                ->subject('Contact from BroWorld')
+                ->subject('Contact from BroWorld from ' . $contact->getEmail())
                 ->text($contact->getMessage())
                 ->html($contact->getMessage());
 

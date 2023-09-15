@@ -14,7 +14,9 @@
         <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
         <link id="pagestyle" href="{{ asset('frontend/assets/css/material-kit.css') }}" rel="stylesheet" />
-        <script defer data-site="YOUR_DOMAIN_HERE" src="https://api.nepcha.com/js/nepcha-analytics.js"></script>        {% block stylesheets %}
+        <meta name="google-site-verification" content="Kvcv0yhf4zzYxJ1f46wybMKDelxhse-GnzdBZ9Qr468" />
+        <script defer data-site="www.broworld.de/de" src="https://api.nepcha.com/js/nepcha-analytics.js"></script>
+        {% block stylesheets %}
             {{ encore_entry_link_tags('app') }}
         {% endblock %}
         <meta name="jsapp" content="{% block jsapp %}app{% endblock %}">
@@ -23,8 +25,30 @@
             {{ encore_entry_script_tags('app') }}
             {{ encore_entry_script_tags(block('jsapp')) }}
         {% endblock %}
+
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-6B9Y9GGZ8L"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+
+            gtag('config', 'G-6B9Y9GGZ8L');
+        </script>
+        <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+                    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+                j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+                'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+            })(window,document,'script','dataLayer','GTM-T7ZFGLGD');
+        </script>
     </head>
     <body class="index-page bg-gray-200">
+    <noscript>
+        <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-T7ZFGLGD"
+                      height="0" width="0" style="display:none;visibility:hidden">
+
+        </iframe>
+    </noscript>
+    <!-- End Google Tag Manager (noscript) -->
     {% include 'layouts/nav.html.twig' %}
     {% include 'layouts/header.html.twig' %}
     {% for message in app.flashes('success') %}
@@ -40,6 +64,34 @@
         {% block body %}{% endblock %}
     </div>
     {% include 'layouts/footer.html.twig' %}
+    <!-- Google Tag Manager -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-6B9Y9GGZ8L"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-6B9Y9GGZ8L');
+    </script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({
+            'authorData' : {
+                'pagePostAuthor': 'Julius Fedorovicius'
+            }
+        });
+
+        //The 2nd Push
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({
+            'authorData' : {
+                'pageCategory': 'google-tag-manager-tips',
+                'pagePostType': 'post'
+            }
+        });
+    </script>
+    <!-- End Google Tag Manager -->
+
         <!--   Core JS Files   -->
         <script src="{{ asset('frontend/assets/js/core/popper.min.js') }}" type="text/javascript"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>        <script src="{{ asset('frontend/assets/js/plugins/perfect-scrollbar.min.js') }}"></script>

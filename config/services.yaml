@@ -19,7 +19,7 @@ services:
             string $locales: '%app_locales%'
             string $defaultLocale: '%locale%'
             $sourceCodeDirectory: "%kernel.project_dir%/code"
-
+            string $emailSender: '%app.notifications.email_sender%'
     # makes classes in src/ available to be used as services
     # this creates a service per class whose id is the fully-qualified class name
     App\:
