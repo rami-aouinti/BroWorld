@@ -11,7 +11,7 @@
 
 namespace App\Blog\Transport\Event;
 
-use App\Blog\Model\Entity\Comment;
+use App\Blog\Domain\Entity\Comment;
 use Symfony\Contracts\EventDispatcher\Event;
 
 final class CommentCreatedEvent extends Event

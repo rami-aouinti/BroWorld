@@ -2,8 +2,8 @@
 
 namespace App\Frontend\Transport\Controller;
 
-use App\Frontend\Model\Entity\Setting;
-use App\Frontend\Model\Repository\SettingRepository;
+use App\Frontend\Domain\Entity\Setting;
+use App\Frontend\Domain\Repository\SettingRepository;
 use App\Frontend\Transport\Form\SettingType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;

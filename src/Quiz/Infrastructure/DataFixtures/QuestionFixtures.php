@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Quiz\Infrastructure\DataFixtures;
 
-use App\Quiz\Model\Entity\Question;
+use App\Quiz\Domain\Entity\Question;
 use DateTimeInterface;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;

@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Twig;
 
-use App\Quiz\Model\Entity\Question;
+use App\Quiz\Domain\Entity\Question;
 use Symfony\Bridge\Twig\Extension\AssetExtension;
 use Symfony\Bridge\Twig\Extension\HttpFoundationExtension;
 use Twig\Extension\AbstractExtension;

@@ -2,8 +2,8 @@
 
 namespace App\Test\Controller;
 
-use App\Resume\Model\Entity\Language;
-use App\Resume\Model\Repository\LanguageRepository;
+use App\Resume\Domain\Entity\Language;
+use App\Resume\Domain\Repository\LanguageRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\KernelBrowser;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;

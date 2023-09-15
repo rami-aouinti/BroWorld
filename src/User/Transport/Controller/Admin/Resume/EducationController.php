@@ -2,8 +2,8 @@
 
 namespace App\User\Transport\Controller\Admin\Resume;
 
-use App\Resume\Model\Entity\Education;
-use App\Resume\Model\Repository\EducationRepository;
+use App\Resume\Domain\Entity\Education;
+use App\Resume\Domain\Repository\EducationRepository;
 use App\Resume\Transport\Form\EducationType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;

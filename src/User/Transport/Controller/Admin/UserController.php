@@ -2,8 +2,8 @@
 
 namespace App\User\Transport\Controller\Admin;
 
-use App\User\Model\Entity\User;
-use App\User\Model\Repository\UserRepository;
+use App\User\Domain\Entity\User;
+use App\User\Domain\Repository\UserRepository;
 use App\User\Transport\Form\UserType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;

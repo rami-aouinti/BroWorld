@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Quiz\Infrastructure\DataFixtures;
 
-use App\Quiz\Model\Entity\Link;
+use App\Quiz\Domain\Entity\Link;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Persistence\ObjectManager;

@@ -2,7 +2,7 @@
 
 namespace App\Resume\Transport\Form;
 
-use App\Resume\Model\Entity\Skill;
+use App\Resume\Domain\Entity\Skill;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;

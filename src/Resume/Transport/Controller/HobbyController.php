@@ -2,8 +2,8 @@
 
 namespace App\Resume\Transport\Controller;
 
-use App\Resume\Model\Entity\Hobby;
-use App\Resume\Model\Repository\HobbyRepository;
+use App\Resume\Domain\Entity\Hobby;
+use App\Resume\Domain\Repository\HobbyRepository;
 use App\Resume\Transport\Form\HobbyType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;

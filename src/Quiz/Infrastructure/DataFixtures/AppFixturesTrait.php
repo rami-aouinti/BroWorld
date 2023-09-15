@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace App\Quiz\Infrastructure\DataFixtures;
 
-use App\Quiz\Model\Entity\Difficulty;
-use App\Quiz\Model\Entity\Person;
-use App\Quiz\Model\Entity\Question;
-use App\Quiz\Model\Entity\Quiz;
+use App\Quiz\Domain\Entity\Difficulty;
+use App\Quiz\Domain\Entity\Person;
+use App\Quiz\Domain\Entity\Question;
+use App\Quiz\Domain\Entity\Quiz;
 use Symfony\Component\Config\Definition\Exception\InvalidTypeException;
 use Symfony\Component\Yaml\Yaml;
 

@@ -2,8 +2,8 @@
 
 namespace App\Test\Controller;
 
-use App\Resume\Model\Entity\Skill;
-use App\Resume\Model\Repository\SkillRepository;
+use App\Resume\Domain\Entity\Skill;
+use App\Resume\Domain\Repository\SkillRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\KernelBrowser;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;

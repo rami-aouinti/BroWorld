@@ -2,8 +2,8 @@
 
 namespace App\Resume\Transport\Controller;
 
-use App\Resume\Model\Entity\Experience;
-use App\Resume\Model\Repository\ExperienceRepository;
+use App\Resume\Domain\Entity\Experience;
+use App\Resume\Domain\Repository\ExperienceRepository;
 use App\Resume\Transport\Form\ExperienceType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;

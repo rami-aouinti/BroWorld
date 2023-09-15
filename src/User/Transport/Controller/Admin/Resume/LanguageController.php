@@ -2,8 +2,8 @@
 
 namespace App\User\Transport\Controller\Admin\Resume;
 
-use App\Resume\Model\Entity\Language;
-use App\Resume\Model\Repository\LanguageRepository;
+use App\Resume\Domain\Entity\Language;
+use App\Resume\Domain\Repository\LanguageRepository;
 use App\Resume\Transport\Form\LanguageType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;

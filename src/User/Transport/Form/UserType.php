@@ -2,7 +2,7 @@
 
 namespace App\User\Transport\Form;
 
-use App\User\Model\Entity\User;
+use App\User\Domain\Entity\User;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CountryType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;

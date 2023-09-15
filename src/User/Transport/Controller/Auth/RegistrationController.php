@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\User\Transport\Controller\Auth;
 
 use App\User\Application\Security\EmailVerifier;
-use App\User\Model\Entity\User;
+use App\User\Domain\Entity\User;
 use App\User\Transport\Form\RegistrationFormType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;

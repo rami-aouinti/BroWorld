@@ -2,8 +2,8 @@
 
 namespace App\Task\Transport\Controller;
 
-use App\Task\Model\Entity\Status;
-use App\Task\Model\Repository\StatusRepository;
+use App\Task\Domain\Entity\Status;
+use App\Task\Domain\Repository\StatusRepository;
 use App\Task\Transport\Form\StatusType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;

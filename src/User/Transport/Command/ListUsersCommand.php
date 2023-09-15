@@ -11,8 +11,8 @@
 
 namespace App\User\Transport\Command;
 
-use App\User\Model\Entity\User;
-use App\User\Model\Repository\UserRepository;
+use App\User\Domain\Entity\User;
+use App\User\Domain\Repository\UserRepository;
 use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;

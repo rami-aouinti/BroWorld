@@ -2,7 +2,7 @@
 
 namespace App\Frontend\Transport\Form;
 
-use App\Frontend\Model\Entity\About;
+use App\Frontend\Domain\Entity\About;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;

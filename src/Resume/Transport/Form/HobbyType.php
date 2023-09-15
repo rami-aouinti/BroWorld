@@ -2,7 +2,7 @@
 
 namespace App\Resume\Transport\Form;
 
-use App\Resume\Model\Entity\Hobby;
+use App\Resume\Domain\Entity\Hobby;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;

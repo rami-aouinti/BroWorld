@@ -11,10 +11,10 @@
 
 namespace App\Blog\Infrastructure\DataFixtures;
 
-use App\Blog\Model\Entity\Comment;
-use App\Blog\Model\Entity\Post;
-use App\Blog\Model\Entity\Tag;
-use App\User\Model\Entity\User;
+use App\Blog\Domain\Entity\Comment;
+use App\Blog\Domain\Entity\Post;
+use App\Blog\Domain\Entity\Tag;
+use App\User\Domain\Entity\User;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;

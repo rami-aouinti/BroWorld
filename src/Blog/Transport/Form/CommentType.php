@@ -11,7 +11,7 @@
 
 namespace App\Blog\Transport\Form;
 
-use App\Blog\Model\Entity\Comment;
+use App\Blog\Domain\Entity\Comment;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\FormBuilderInterface;

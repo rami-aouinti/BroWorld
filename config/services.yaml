@@ -27,7 +27,7 @@ services:
         exclude:
             - '../src/*/DataFixtures/'
             - '../src/DependencyInjection/'
-            - '../src/*/Model/Entity/'
+            - '../src/*/Domain/Entity/'
             - '../src/Kernel.php'
             - '../src/Tests/'
 

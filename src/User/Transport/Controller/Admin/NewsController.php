@@ -2,8 +2,8 @@
 
 namespace App\User\Transport\Controller\Admin;
 
-use App\Frontend\Model\Entity\News;
-use App\Frontend\Model\Repository\NewsRepository;
+use App\Frontend\Domain\Entity\News;
+use App\Frontend\Domain\Repository\NewsRepository;
 use App\Frontend\Transport\Form\NewsType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;

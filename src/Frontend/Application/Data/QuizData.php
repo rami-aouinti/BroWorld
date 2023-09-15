@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace App\Frontend\Application\Data;
 
-use App\Quiz\Model\Entity\Quiz;
-use App\Quiz\Model\Entity\QuizQuestion;
-use App\Quiz\Model\Repository\QuestionRepository;
-use App\Quiz\Model\Repository\QuizQuestionRepository;
-use App\Quiz\Model\Repository\QuizRepository;
+use App\Quiz\Domain\Entity\Quiz;
+use App\Quiz\Domain\Entity\QuizQuestion;
+use App\Quiz\Domain\Repository\QuestionRepository;
+use App\Quiz\Domain\Repository\QuizQuestionRepository;
+use App\Quiz\Domain\Repository\QuizRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;

@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Quiz\Transport\Form;
 
-use App\Quiz\Model\Entity\Question;
-use App\Quiz\Model\Entity\QuizQuestion;
+use App\Quiz\Domain\Entity\Question;
+use App\Quiz\Domain\Entity\QuizQuestion;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\FormBuilderInterface;

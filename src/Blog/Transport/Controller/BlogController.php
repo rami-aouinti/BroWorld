@@ -11,13 +11,13 @@
 
 namespace App\Blog\Transport\Controller;
 
-use App\Blog\Model\Entity\Comment;
-use App\Blog\Model\Entity\Post;
-use App\Blog\Model\Repository\PostRepository;
-use App\Blog\Model\Repository\TagRepository;
+use App\Blog\Domain\Entity\Comment;
+use App\Blog\Domain\Entity\Post;
+use App\Blog\Domain\Repository\PostRepository;
+use App\Blog\Domain\Repository\TagRepository;
 use App\Blog\Transport\Event\CommentCreatedEvent;
 use App\Blog\Transport\Form\CommentType;
-use App\User\Model\Entity\User;
+use App\User\Domain\Entity\User;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bridge\Doctrine\Attribute\MapEntity;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;

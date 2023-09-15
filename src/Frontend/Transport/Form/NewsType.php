@@ -2,7 +2,7 @@
 
 namespace App\Frontend\Transport\Form;
 
-use App\Frontend\Model\Entity\News;
+use App\Frontend\Domain\Entity\News;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;

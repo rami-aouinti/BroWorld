@@ -2,7 +2,7 @@
 
 namespace App\Frontend\Transport\Controller;
 
-use App\Frontend\Model\Entity\Contact;
+use App\Frontend\Domain\Entity\Contact;
 use App\Frontend\Transport\Form\ContactType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;

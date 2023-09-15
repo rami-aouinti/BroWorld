@@ -3,7 +3,7 @@
 namespace App\User\Transport\Controller;
 
 use App\Frontend\Infrastructure\Service\FileUploader;
-use App\User\Model\Entity\User;
+use App\User\Domain\Entity\User;
 use App\User\Transport\Form\ChangePasswordType;
 use App\User\Transport\Form\UserType;
 use Doctrine\ORM\EntityManagerInterface;

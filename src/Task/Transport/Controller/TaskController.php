@@ -2,8 +2,8 @@
 
 namespace App\Task\Transport\Controller;
 
-use App\Task\Model\Entity\Task;
-use App\Task\Model\Repository\TaskRepository;
+use App\Task\Domain\Entity\Task;
+use App\Task\Domain\Repository\TaskRepository;
 use App\Task\Transport\Form\TaskType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;

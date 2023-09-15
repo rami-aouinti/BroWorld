@@ -11,7 +11,7 @@
 
 namespace App\User\Transport\Controller;
 
-use App\User\Model\Entity\User;
+use App\User\Domain\Entity\User;
 use App\User\Transport\Form\ChangePasswordType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;

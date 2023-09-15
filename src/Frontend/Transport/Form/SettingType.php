@@ -2,7 +2,7 @@
 
 namespace App\Frontend\Transport\Form;
 
-use App\Frontend\Model\Entity\Setting;
+use App\Frontend\Domain\Entity\Setting;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ColorType;
 use Symfony\Component\Form\FormBuilderInterface;

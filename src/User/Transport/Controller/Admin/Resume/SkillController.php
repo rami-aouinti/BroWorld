@@ -2,8 +2,8 @@
 
 namespace App\User\Transport\Controller\Admin\Resume;
 
-use App\Resume\Model\Entity\Skill;
-use App\Resume\Model\Repository\SkillRepository;
+use App\Resume\Domain\Entity\Skill;
+use App\Resume\Domain\Repository\SkillRepository;
 use App\Resume\Transport\Form\SkillType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;

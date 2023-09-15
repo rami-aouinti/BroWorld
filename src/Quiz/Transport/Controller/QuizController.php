@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace App\Quiz\Transport\Controller;
 
 use App\Frontend\Application\Data\QuizData;
-use App\Quiz\Model\Entity\Answer;
-use App\Quiz\Model\Repository\QuizQuestionRepository;
+use App\Quiz\Domain\Entity\Answer;
+use App\Quiz\Domain\Repository\QuizQuestionRepository;
 use App\Quiz\Transport\Form\QuizType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;

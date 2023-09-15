@@ -2,7 +2,7 @@
 
 namespace App\Frontend\Transport\Controller;
 
-use App\Frontend\Model\Repository\AboutRepository;
+use App\Frontend\Domain\Repository\AboutRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;

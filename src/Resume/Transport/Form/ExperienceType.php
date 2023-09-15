@@ -2,7 +2,7 @@
 
 namespace App\Resume\Transport\Form;
 
-use App\Resume\Model\Entity\Experience;
+use App\Resume\Domain\Entity\Experience;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;

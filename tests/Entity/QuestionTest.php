@@ -9,12 +9,12 @@ use App\Entity\Question;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 
 /**
- * @covers \App\Quiz\Model\Entity\Question
+ * @covers \App\Quiz\Domain\Entity\Question
  */
 final class QuestionTest extends KernelTestCase
 {
     /**
-     * @covers \App\Quiz\Model\Entity\Question::getCorrectAnswerCode
+     * @covers \App\Quiz\Domain\Entity\Question::getCorrectAnswerCode
      */
     public function testGetCorrectAnswerCode(): void
     {
@@ -27,7 +27,7 @@ final class QuestionTest extends KernelTestCase
     }
 
     /**
-     * @covers \App\Quiz\Model\Entity\Question::getCorrectAnswerCode
+     * @covers \App\Quiz\Domain\Entity\Question::getCorrectAnswerCode
      */
     public function testGetCorrectAnswerCodeException(): void
     {
@@ -41,9 +41,9 @@ final class QuestionTest extends KernelTestCase
     }
 
     /**
-     * @covers \App\Quiz\Model\Entity\Question::addAnswer
-     * @covers \App\Quiz\Model\Entity\Question::removeAnswer
-     * @covers \App\Quiz\Model\Entity\Question::getAnswers
+     * @covers \App\Quiz\Domain\Entity\Question::addAnswer
+     * @covers \App\Quiz\Domain\Entity\Question::removeAnswer
+     * @covers \App\Quiz\Domain\Entity\Question::getAnswers
      */
     public function testAnswersGetters(): void
     {

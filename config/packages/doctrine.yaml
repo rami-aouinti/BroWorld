@@ -24,36 +24,36 @@ doctrine:
                     Frontend:
                         is_bundle: false
                         type: attribute
-                        dir: '%kernel.project_dir%/src/Frontend/Model/Entity'
-                        prefix: 'App\Frontend\Model\Entity'
+                        dir: '%kernel.project_dir%/src/Frontend/Domain/Entity'
+                        prefix: 'App\Frontend\Domain\Entity'
                         alias: Frontend
                     User:
                         is_bundle: false
                         type: attribute
-                        dir: '%kernel.project_dir%/src/User/Model/Entity'
-                        prefix: 'App\User\Model\Entity'
+                        dir: '%kernel.project_dir%/src/User/Domain/Entity'
+                        prefix: 'App\User\Domain\Entity'
                         alias: User
                     Blog:
                         is_bundle: false
                         type: attribute
-                        dir: '%kernel.project_dir%/src/Blog/Model/Entity'
-                        prefix: 'App\Blog\Model\Entity'
+                        dir: '%kernel.project_dir%/src/Blog/Domain/Entity'
+                        prefix: 'App\Blog\Domain\Entity'
                         alias: Blog
                     Task:
                         is_bundle: false
                         type: attribute
-                        dir: '%kernel.project_dir%/src/Task/Model/Entity'
-                        prefix: 'App\Task\Model\Entity'
+                        dir: '%kernel.project_dir%/src/Task/Domain/Entity'
+                        prefix: 'App\Task\Domain\Entity'
                         alias: Task
                     Resume:
                         is_bundle: false
                         type: attribute
-                        dir: '%kernel.project_dir%/src/Resume/Model/Entity'
-                        prefix: 'App\Resume\Model\Entity'
+                        dir: '%kernel.project_dir%/src/Resume/Domain/Entity'
+                        prefix: 'App\Resume\Domain\Entity'
                         alias: Resume
                     Quiz:
                         is_bundle: false
                         type: attribute
-                        dir: '%kernel.project_dir%/src/Quiz/Model/Entity'
-                        prefix: 'App\Quiz\Model\Entity'
+                        dir: '%kernel.project_dir%/src/Quiz/Domain/Entity'
+                        prefix: 'App\Quiz\Domain\Entity'
                         alias: Quiz

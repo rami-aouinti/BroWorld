@@ -2,7 +2,7 @@
 
 namespace App\Task\Transport\Form;
 
-use App\Task\Model\Entity\Task;
+use App\Task\Domain\Entity\Task;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;

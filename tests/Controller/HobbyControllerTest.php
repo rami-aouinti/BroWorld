@@ -2,8 +2,8 @@
 
 namespace App\Test\Controller;
 
-use App\Resume\Model\Entity\Hobby;
-use App\Resume\Model\Repository\HobbyRepository;
+use App\Resume\Domain\Entity\Hobby;
+use App\Resume\Domain\Repository\HobbyRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\KernelBrowser;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;

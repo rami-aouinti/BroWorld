@@ -2,8 +2,8 @@
 
 namespace App\User\Transport\Controller\Admin\Resume;
 
-use App\Resume\Model\Entity\Projects;
-use App\Resume\Model\Repository\ProjectsRepository;
+use App\Resume\Domain\Entity\Projects;
+use App\Resume\Domain\Repository\ProjectsRepository;
 use App\Resume\Transport\Form\ProjectsType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;

@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\User\Application\Security;
 
-use App\User\Model\Entity\User;
+use App\User\Domain\Entity\User;
 use Doctrine\ORM\EntityManagerInterface;
 use KnpU\OAuth2ClientBundle\Client\ClientRegistry;
 use KnpU\OAuth2ClientBundle\Security\Authenticator\OAuth2Authenticator;

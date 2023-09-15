@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace App\Frontend\Application\Data;
 
-use App\Quiz\Model\Entity\Question;
-use App\Quiz\Model\Repository\AnswerRepository;
-use App\Quiz\Model\Repository\QuestionRepository;
+use App\Quiz\Domain\Entity\Question;
+use App\Quiz\Domain\Repository\AnswerRepository;
+use App\Quiz\Domain\Repository\QuestionRepository;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 

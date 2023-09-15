@@ -2,8 +2,8 @@
 
 namespace App\Test\Controller;
 
-use App\Resume\Model\Entity\Experience;
-use App\Resume\Model\Repository\ExperienceRepository;
+use App\Resume\Domain\Entity\Experience;
+use App\Resume\Domain\Repository\ExperienceRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\KernelBrowser;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;

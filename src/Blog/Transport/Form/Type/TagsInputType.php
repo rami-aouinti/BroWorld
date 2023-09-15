@@ -11,7 +11,7 @@
 
 namespace App\Blog\Transport\Form\Type;
 
-use App\Blog\Model\Repository\TagRepository;
+use App\Blog\Domain\Repository\TagRepository;
 use App\Blog\Transport\Form\DataTransformer\TagArrayToStringTransformer;
 use Symfony\Bridge\Doctrine\Form\DataTransformer\CollectionToArrayTransformer;
 use Symfony\Component\Form\AbstractType;

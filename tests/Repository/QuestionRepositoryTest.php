@@ -11,7 +11,7 @@ use App\Repository\QuestionRepository;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 
 /**
- * @covers \App\Quiz\Model\Repository\QuestionRepository
+ * @covers \App\Quiz\Domain\Repository\QuestionRepository
  */
 final class QuestionRepositoryTest extends KernelTestCase
 {
@@ -24,7 +24,7 @@ final class QuestionRepositoryTest extends KernelTestCase
     }
 
     /**
-     * @covers \App\Quiz\Model\Repository\QuestionRepository::findOneWithNav
+     * @covers \App\Quiz\Domain\Repository\QuestionRepository::findOneWithNav
      *
      * @see QuestionFixtures
      */
@@ -41,7 +41,7 @@ final class QuestionRepositoryTest extends KernelTestCase
     }
 
     /**
-     * @covers \App\Quiz\Model\Repository\QuestionRepository::findAllByDate
+     * @covers \App\Quiz\Domain\Repository\QuestionRepository::findAllByDate
      * @covers AnswerFixtures::load
      */
     public function testFindAllByDate(): void

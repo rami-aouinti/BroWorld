@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Quiz\Transport\Controller;
 
 use App\Frontend\Application\Data\QuestionData;
-use App\Quiz\Model\Entity\Question;
+use App\Quiz\Domain\Entity\Question;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;

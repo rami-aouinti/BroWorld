@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Quiz\Infrastructure\DataFixtures;
 
-use App\Quiz\Model\Entity\Difficulty;
+use App\Quiz\Domain\Entity\Difficulty;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 
