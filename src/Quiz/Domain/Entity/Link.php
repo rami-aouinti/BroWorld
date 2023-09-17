@@ -12,6 +12,7 @@ use Doctrine\ORM\Mapping\ManyToOne;
 use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: LinkRepository::class)]
+#[ORM\Table(name: 'quiz_link')]
 class Link extends BaseEntity
 {
     #[ORM\Id]

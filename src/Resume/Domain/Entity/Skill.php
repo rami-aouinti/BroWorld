@@ -9,6 +9,7 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: SkillRepository::class)]
+#[ORM\Table(name: 'resume_skills')]
 class Skill
 {
     #[ORM\Id]

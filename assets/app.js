@@ -7,3 +7,11 @@
 
 // any CSS you import will output into a single css file (app.css in this case)
 import './styles/app.css';
+import $ from 'jquery';
+window.jQuery = $;
+window.$ = $;
+import 'popper.js';
+import 'bootstrap';
+import 'lazysizes';
+import bootbox from 'bootbox';
+window.bootbox = bootbox;

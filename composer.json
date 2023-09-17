@@ -1,5 +1,5 @@
 {
-	"name": "broworld/ymfony",
+	"name": "broworld/symfony",
 	"type": "project",
 	"description": "Docker symfony environment",
 	"keywords": [
@@ -37,6 +37,7 @@
 		"doctrine/orm": "^2.15",
 		"dukecity/command-scheduler-bundle": "^5.0",
 		"gedmo/doctrine-extensions": "*",
+		"knplabs/knp-paginator-bundle": "^6.2",
 		"knpuniversity/oauth2-client-bundle": "^2.15",
 		"league/commonmark": "^2.4",
 		"league/oauth2-facebook": "^2.2",
@@ -44,9 +45,13 @@
 		"league/oauth2-google": "^4.0",
 		"league/oauth2-instagram": "^3.1",
 		"league/oauth2-linkedin": "^5.1",
+		"mark-gerarts/automapper-plus-bundle": "*",
+		"matomo/device-detector": "*",
 		"nelmio/cors-bundle": "^2.3",
 		"phpdocumentor/reflection-docblock": "^5.3",
 		"phpstan/phpdoc-parser": "^1.22",
+		"scheb/2fa-bundle": "*",
+		"scheb/2fa-google-authenticator": "*",
 		"symfony/amqp-messenger": "6.3.*",
 		"symfony/apache-pack": "^1.0",
 		"symfony/asset": "6.3.*",
@@ -71,6 +76,7 @@
 		"symfony/property-access": "6.3.*",
 		"symfony/property-info": "6.3.*",
 		"symfony/proxy-manager-bridge": "6.3.*",
+		"symfony/rate-limiter": "6.3.*",
 		"symfony/routing": "6.3.*",
 		"symfony/runtime": "6.3.*",
 		"symfony/security-bundle": "6.3.*",
@@ -86,7 +92,10 @@
 		"twig/extra-bundle": "^2.12|^3.0",
 		"twig/intl-extra": "^3.7",
 		"twig/markdown-extra": "^3.7",
-		"vich/uploader-bundle": "^2.2"
+		"twig/string-extra": "^3.7",
+		"twig/twig": "^3.7",
+		"vich/uploader-bundle": "^2.2",
+		"voku/portable-ascii": "^2.0"
 	},
 	"conflict": {
 		"symfony/debug": "<3.3",

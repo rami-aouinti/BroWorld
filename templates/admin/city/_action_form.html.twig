@@ -1,0 +1,13 @@
+<form action="{{ url('admin_city_delete', {id: city.id}) }}" method="post"
+      id="delete-form-{{ city.id }}">
+
+    <input type="hidden" name="token" value="{{ csrf_token('delete') }}"/>
+
+    <a href="{{ url('admin_city_edit', {id: city.id}) }}"
+       class="btn btn-warning btn-fab btn-fab-mini btn-round opacity-10">
+        <i class="material-icons">edit</i>
+    </a> &nbsp;&nbsp;&nbsp;
+
+    {{ include('common/_delete_button.html.twig') }}
+
+</form>

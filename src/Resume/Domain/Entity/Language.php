@@ -7,6 +7,7 @@ use App\User\Domain\Entity\User;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: LanguageRepository::class)]
+#[ORM\Table(name: 'resume_language')]
 class Language
 {
     #[ORM\Id]

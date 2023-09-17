@@ -22,7 +22,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @author Yonel Ceruto <yonelceruto@gmail.com>
  */
 #[ORM\Entity]
-#[ORM\Table(name: 'tag')]
+#[ORM\Table(name: 'blog_tag')]
 class Tag implements \JsonSerializable
 {
     #[ORM\Id]

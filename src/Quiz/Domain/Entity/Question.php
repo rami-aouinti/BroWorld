@@ -26,6 +26,7 @@ use Symfony\Component\Validator\Constraints as Assert;
         new GetCollection(normalizationContext: ['groups' => 'show'])
     ]
 )]
+#[ORM\Table(name: 'quiz_question')]
 class Question extends BaseEntity
 {
     #[ORM\Id]

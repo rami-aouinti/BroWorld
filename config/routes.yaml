@@ -75,3 +75,14 @@ resume-controllers:
         _locale: '%app_locales%'
     defaults:
         _locale: '%locale%'
+
+announce-controllers:
+    resource:
+        path: '../src/Announce/Transport/Controller/'
+        namespace: App\Announce\Transport\Controller
+    type: attribute
+    prefix: /{_locale}
+    requirements:
+        _locale: '%app_locales%'
+    defaults:
+        _locale: '%locale%'

@@ -7,6 +7,7 @@ use App\User\Domain\Entity\User;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: SettingRepository::class)]
+#[ORM\Table(name: 'frontend_setting')]
 class Setting
 {
     #[ORM\Id]

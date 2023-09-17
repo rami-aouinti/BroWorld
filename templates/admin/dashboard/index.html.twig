@@ -1,0 +1,159 @@
+{% extends 'base_admin.html.twig' %}
+
+{% block title %}{{ 'dashboard'|trans }}{% endblock %}
+
+{% block body %}
+
+    <div class="row">
+        <div class="col-xl-3 col-sm-6 mb-3">
+            <div class="card">
+                <div class="card-header p-3 pt-2">
+                    <div class="icon icon-lg icon-shape bg-gradient-dark shadow-dark text-center border-radius-xl mt-n4 position-absolute">
+                        <i class="material-icons opacity-10">home</i>
+                    </div>
+                    <div class="text-end pt-1">
+                        <p class="text-sm mb-0 text-capitalize">{{ 'properties'|trans }}</p>
+                        <h4 class="mb-0">{{ number_of_properties }}</h4>
+                    </div>
+                </div>
+                <hr class="dark horizontal my-0">
+                <div class="card-footer p-3">
+                    <a href="{{ path('admin_property') }}">
+                        <p class="mb-0">
+                            <span class="text-success text-sm font-weight-bolder"></span>{{ 'view_details'|trans }}
+                            <span class="float-right">
+                                <i class="fas fa-angle-right"></i>
+                            </span>
+                        </p>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xl-3 col-sm-6 mb-3">
+            <div class="card">
+                <div class="card-header p-3 pt-2">
+                    <div class="icon icon-lg icon-shape bg-gradient-dark shadow-dark text-center border-radius-xl mt-n4 position-absolute">
+                        <i class="material-icons opacity-10">location_city</i>
+                    </div>
+                    <div class="text-end pt-1">
+                        <p class="text-sm mb-0 text-capitalize">{{ 'cities'|trans }}</p>
+                        <h4 class="mb-0">{{ number_of_cities }}</h4>
+                    </div>
+                </div>
+                <hr class="dark horizontal my-0">
+                <div class="card-footer p-3">
+                    <a href="{{ path('admin_city') }}">
+                        <p class="mb-0">
+                            <span class="text-success text-sm font-weight-bolder"></span>{{ 'view_details'|trans }}
+                            <span class="float-right">
+                                <i class="fas fa-angle-right"></i>
+                            </span>
+                        </p>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xl-3 col-sm-6 mb-3">
+            <div class="card">
+                <div class="card-header p-3 pt-2">
+                    <div class="icon icon-lg icon-shape bg-gradient-dark shadow-dark text-center border-radius-xl mt-n4 position-absolute">
+                        <i class="material-icons opacity-10">height</i>
+                    </div>
+                    <div class="text-end pt-1">
+                        <p class="text-sm mb-0 text-capitalize">{{ 'deal_types'|trans }}</p>
+                        <h4 class="mb-0">{{ number_of_deal_types }}</h4>
+                    </div>
+                </div>
+                <hr class="dark horizontal my-0">
+                <div class="card-footer p-3">
+                    <a href="{{ path('admin_deal_type') }}">
+                        <p class="mb-0">
+                            <span class="text-success text-sm font-weight-bolder"></span>{{ 'view_details'|trans }}
+                            <span class="float-right">
+                                <i class="fas fa-angle-right"></i>
+                            </span>
+                        </p>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xl-3 col-sm-6 mb-3">
+            <div class="card">
+                <div class="card-header p-3 pt-2">
+                    <div class="icon icon-lg icon-shape bg-gradient-dark shadow-dark text-center border-radius-xl mt-n4 position-absolute">
+                        <i class="material-icons opacity-10">category</i>
+                    </div>
+                    <div class="text-end pt-1">
+                        <p class="text-sm mb-0 text-capitalize">{{ 'categories'|trans }}</p>
+                        <h4 class="mb-0">{{ number_of_categories }}</h4>
+                    </div>
+                </div>
+                <hr class="dark horizontal my-0">
+                <div class="card-footer p-3">
+                    <a href="{{ path('admin_category') }}">
+                        <p class="mb-0">
+                            <span class="text-success text-sm font-weight-bolder"></span>{{ 'view_details'|trans }}
+                            <span class="float-right">
+                                <i class="fas fa-angle-right"></i>
+                            </span>
+                        </p>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xl-3 col-sm-6 mb-3">
+            <div class="card">
+                <div class="card-header p-3 pt-2">
+                    <div class="icon icon-lg icon-shape bg-gradient-dark shadow-dark text-center border-radius-xl mt-n4 position-absolute">
+                        <i class="material-icons opacity-10">article</i>
+                    </div>
+                    <div class="text-end pt-1">
+                        <p class="text-sm mb-0 text-capitalize">{{ 'pages'|trans }}</p>
+                        <h4 class="mb-0">{{ number_of_pages }}</h4>
+                    </div>
+                </div>
+                <hr class="dark horizontal my-0">
+                <div class="card-footer p-3">
+                    <a href="{{ path('admin_page') }}">
+                        <p class="mb-0">
+                            <span class="text-success text-sm font-weight-bolder"></span>{{ 'view_details'|trans }}
+                            <span class="float-right">
+                                <i class="fas fa-angle-right"></i>
+                            </span>
+                        </p>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xl-3 col-sm-6 mb-3">
+            <div class="card">
+                <div class="card-header p-3 pt-2">
+                    <div class="icon icon-lg icon-shape bg-gradient-dark shadow-dark text-center border-radius-xl mt-n4 position-absolute">
+                        <i class="material-icons opacity-10">group</i>
+                    </div>
+                    <div class="text-end pt-1">
+                        <p class="text-sm mb-0 text-capitalize">{{ 'users'|trans }} </p>
+                        <h4 class="mb-0">{{ number_of_users }}</h4>
+                    </div>
+                </div>
+                <hr class="dark horizontal my-0">
+                <div class="card-footer p-3">
+                    <a href="{{ path('admin_user') }}">
+                        <p class="mb-0">
+                            <span class="text-success text-sm font-weight-bolder"></span>{{ 'view_details'|trans }}
+                            <span class="float-right">
+                                <i class="fas fa-angle-right"></i>
+                            </span>
+                        </p>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

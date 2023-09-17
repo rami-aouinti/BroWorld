@@ -7,6 +7,7 @@ use App\User\Domain\Entity\User;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: HobbyRepository::class)]
+#[ORM\Table(name: 'resume_hobby')]
 class Hobby
 {
     #[ORM\Id]

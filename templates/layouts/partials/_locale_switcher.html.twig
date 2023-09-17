@@ -1,0 +1,26 @@
+{% set route = app.request.attributes.get('_route') %}
+    {% set route_params = app.request.attributes.get('_route_params') %}
+    {% set params = route_params|merge(app.request.query.all) %}
+    {% set current_language = app.request.locale|locale_name(app.request.locale)|u.title %}
+
+    <li class="nav-item dropdown py-1{% if no_arrow is defined and no_arrow %} no-arrow{% endif %}">
+        <a class="nav-link ps-2 d-flex cursor-pointer align-items-center" href="javascript:;" id="dropdown-language" role="button"
+           data-bs-toggle="dropdown" aria-expanded="false">
+            <img src="{{ asset('images/languages/' ~ app.request.locale ~ '.png') }}"
+                 alt="{{ current_language }}"/>
+        </a>
+        <ul class="dropdown-menu dropdown-menu-end dropdown-menu-animation dropdown-sm dropdown-sm-responsive border-radius-lg" aria-labelledby="dropdown-language">
+            {% for locale in locales|split('|') %}
+                {% if locale is not same as(app.request.locale) %}
+                    {% set language = locale|locale_name(locale)|u.title %}
+                    <li class="nav-item pe-0 d-flex align-items-center p-0" translate="no">
+                        <a class="dropdown-item border-radius-sm stretched-link"
+                           href="{% if route == 'default_route' %}/{{ locale }}{% else %}{{ path(route, params|merge({ _locale: locale })) }}{% endif %}">
+                            <img src="{{ asset('images/languages/' ~ locale ~ '.png') }}"
+                                 alt="{{ language }}"/> {{ language }}
+                        </a>
+                    </li>
+                {% endif %}
+            {% endfor %}
+        </ul>
+    </li>

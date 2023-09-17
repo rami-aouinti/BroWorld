@@ -11,6 +11,7 @@ use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: QuizRepository::class)]
+#[ORM\Table(name: 'quiz')]
 class Quiz extends BaseEntity
 {
     #[ORM\Id]

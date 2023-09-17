@@ -4,7 +4,13 @@ declare(strict_types=1);
 
 namespace App\User\Domain\Entity;
 
+use App\Announce\Domain\Entity\Property;
+use App\User\Domain\Entity\Traits\EntityIdTrait;
+use App\User\Domain\Entity\Traits\TwoFactorTrait;
 use App\Frontend\Domain\Entity\Setting;
+use App\Log\Domain\Entity\LogLogin;
+use App\Log\Domain\Entity\LogLoginFailure;
+use App\Log\Domain\Entity\LogRequest;
 use App\Resume\Domain\Entity\Education;
 use App\Resume\Domain\Entity\Experience;
 use App\Resume\Domain\Entity\Hobby;
@@ -17,24 +23,37 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Scheb\TwoFactorBundle\Model\Google\TwoFactorInterface;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Serializer\Annotation\Groups;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 #[UniqueEntity(fields: ['email'], message: 'There is already an account with this email')]
 #[Vich\Uploadable]
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
+    use EntityIdTrait;
+
+
     final public const ROLE_USER = 'ROLE_USER';
     final public const ROLE_ADMIN = 'ROLE_ADMIN';
-    #[ORM\Id]
-    #[ORM\GeneratedValue]
-    #[ORM\Column]
-    private ?int $id = null;
+
+    final public const PASSWORD_MIN_LENGTH = 8;
+
+    /**
+     * Requests older than this many seconds will be considered expired.
+     */
+    final public const RETRY_TTL = 3600;
+    /**
+     * Maximum time that the confirmation token will be valid.
+     */
+    final public const TOKEN_TTL = 43200;
 
     #[ORM\Column(length: 180, unique: true)]
     private ?string $email = null;
@@ -117,6 +136,44 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(nullable: true)]
     private ?\DateTimeImmutable $updatedAt = null;
 
+    #[ORM\OneToMany(mappedBy: 'author', targetEntity: Property::class)]
+    private $properties;
+
+    #[ORM\Column(type: Types::STRING, length: 255, nullable: true)]
+    private $confirmation_token;
+
+    #[ORM\Column(type: Types::DATETIMETZ_MUTABLE, nullable: true)]
+    private $password_requested_at;
+
+
+    #[ORM\OneToOne(mappedBy: 'user', targetEntity: Profile::class, cascade: ['persist', 'remove'])]
+    private ?Profile $profile;
+
+    #[ORM\Column(type: Types::DATETIMETZ_MUTABLE, nullable: true)]
+    private $emailVerifiedAt;
+
+    /**
+     * @var Collection
+     *
+     * @ORM\ManyToMany(targetEntity="App\Entity\User", mappedBy="followers")
+     */
+    #[ORM\ManyToMany(targetEntity: User::class, mappedBy: 'followers')]
+    private Collection $followed;
+
+    /**
+     * @var Collection|User[]
+     *
+     * @ORM\ManyToMany(targetEntity="App\Entity\User", inversedBy="followed")
+     * @ORM\JoinTable(
+     *   name="rw_user_follower",
+     *   joinColumns={@ORM\JoinColumn(name="user_id", referencedColumnName="id")},
+     *   inverseJoinColumns={@ORM\JoinColumn(name="follower_id", referencedColumnName="id")}
+     * )
+     */
+    #[ORM\ManyToMany(targetEntity: User::class, inversedBy: 'followed')]
+    #[ORM\JoinTable(name: 'rw_user_follower')]
+    private Collection $followers;
+
     #[ORM\OneToOne(mappedBy: 'user', cascade: ['persist', 'remove'])]
     private ?Setting $setting = null;
 
@@ -141,6 +198,36 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\ManyToMany(targetEntity: Skill::class, mappedBy: 'user')]
     private Collection $skills;
 
+    #[ORM\OneToMany(
+        mappedBy: 'user',
+        targetEntity: LogRequest::class,
+    )]
+    #[Groups([
+        'User.logsRequest',
+    ])]
+    protected Collection | ArrayCollection $logsRequest;
+
+    #[ORM\OneToMany(
+        mappedBy: 'user',
+        targetEntity: LogLogin::class,
+    )]
+    #[Groups([
+        'User.logsLogin',
+    ])]
+    protected Collection | ArrayCollection $logsLogin;
+
+    /**
+     * @var Collection<int, LogLoginFailure>|ArrayCollection<int, LogLoginFailure>
+     */
+    #[ORM\OneToMany(
+        mappedBy: 'user',
+        targetEntity: LogLoginFailure::class,
+    )]
+    #[Groups([
+        'User.logsLoginFailure',
+    ])]
+    protected Collection | ArrayCollection $logsLoginFailure;
+
     public function __construct()
     {
         $this->tasks = new ArrayCollection();
@@ -153,6 +240,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     }
 
     public function __toString(): string
+    {
+        return $this->email;
+    }
+
+    public function getUsername(): string
     {
         return $this->email;
     }
@@ -228,6 +320,83 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         // If you store any temporary, sensitive data on the user, clear it here
         // $this->plainPassword = null;
+    }
+
+    /**
+     * Getter for user request log collection.
+     *
+     * @return Collection<int, LogRequest>|ArrayCollection<int, LogRequest>
+     */
+    public function getLogsRequest(): Collection | ArrayCollection
+    {
+        return $this->logsRequest;
+    }
+
+    /**
+     * Getter for user login log collection.
+     *
+     * @return Collection<int, LogLogin>|ArrayCollection<int, LogLogin>
+     */
+    public function getLogsLogin(): Collection | ArrayCollection
+    {
+        return $this->logsLogin;
+    }
+
+    /**
+     * Getter for user login failure log collection.
+     *
+     * @return Collection<int, LogLoginFailure>|ArrayCollection<int, LogLoginFailure>
+     */
+    public function getLogsLoginFailure(): Collection | ArrayCollection
+    {
+        return $this->logsLoginFailure;
+    }
+
+    public function follows(User $user): bool
+    {
+        return $this->followed->contains($user);
+    }
+
+    public function follow(User $user): void
+    {
+        if ($user->getFollowers()->contains($this)) {
+            return;
+        }
+
+        $user->getFollowers()->add($this);
+    }
+
+    public function unfollow(User $user): void
+    {
+        if (!$user->getFollowers()->contains($this)) {
+            return;
+        }
+
+        $user->getFollowers()->removeElement($this);
+    }
+
+    /**
+     * @return Collection|User[]
+     */
+    public function getFollowers(): Collection
+    {
+        return $this->followers;
+    }
+
+    /**
+     * @param Collection|User[] $followers
+     */
+    public function setFollowers(Collection $followers): void
+    {
+        $this->followers = $followers;
+    }
+
+    /**
+     * @return Collection|User[]
+     */
+    public function getFolloweds(): Collection
+    {
+        return $this->followed;
     }
 
     public function isVerified(): bool
@@ -787,6 +956,112 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setBrochureFilename(string $brochureFilename): self
     {
         $this->brochureFilename = $brochureFilename;
+
+        return $this;
+    }
+
+    public function __serialize(): array
+    {
+        // add $this->salt too if you don't use Bcrypt or Argon2i
+        return [$this->id, $this->email, $this->password];
+    }
+
+    /**
+     * @param array $data
+     * @return void
+     */
+    public function __unserialize(array $data): void
+    {
+        // add $this->salt too if you don't use Bcrypt or Argon2i
+        [$this->id, $this->email, $this->password] = $data;
+    }
+
+    public function getProperties(): Collection
+    {
+        return $this->properties;
+    }
+
+    public function addProperty(Property $property): self
+    {
+        if (!$this->properties->contains($property)) {
+            $this->properties[] = $property;
+            $property->setAuthor($this);
+        }
+
+        return $this;
+    }
+
+    public function removeProperty(Property $property): self
+    {
+        if ($this->properties->contains($property)) {
+            $this->properties->removeElement($property);
+            // set the owning side to null (unless already changed)
+            if ($property->getAuthor() === $this) {
+                $property->setAuthor(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function getConfirmationToken(): ?string
+    {
+        return $this->confirmation_token;
+    }
+
+    public function setConfirmationToken(?string $confirmation_token): self
+    {
+        $this->confirmation_token = $confirmation_token;
+
+        return $this;
+    }
+
+    public function getPasswordRequestedAt(): ?\DateTimeInterface
+    {
+        return $this->password_requested_at;
+    }
+
+    public function setPasswordRequestedAt(?\DateTimeInterface $password_requested_at): self
+    {
+        $this->password_requested_at = $password_requested_at;
+
+        return $this;
+    }
+
+    /**
+     * Checks whether the password reset request has expired.
+     */
+    public function isPasswordRequestNonExpired(int $ttl): bool
+    {
+        return $this->getPasswordRequestedAt() instanceof \DateTime
+            && $this->getPasswordRequestedAt()->getTimestamp() + $ttl > time();
+    }
+
+    public function getProfile(): ?Profile
+    {
+        return $this->profile;
+    }
+
+    public function setProfile(Profile $profile): self
+    {
+        // set the owning side of the relation if necessary
+        if ($profile->getUser() !== $this) {
+            $profile->setUser($this);
+        }
+
+        $this->profile = $profile;
+
+        return $this;
+    }
+
+    public function getEmailVerifiedAt(): ?\DateTime
+    {
+        return $this->emailVerifiedAt;
+    }
+
+    public function setEmailVerifiedAt(?\DateTime $dateTime): self
+    {
+        $this->emailVerifiedAt = $dateTime;
 
         return $this;
     }

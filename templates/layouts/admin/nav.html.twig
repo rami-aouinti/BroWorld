@@ -15,11 +15,37 @@
                 </div>
             </div>
             <ul class="navbar-nav  justify-content-end">
-                <li class="nav-item d-flex align-items-center">
-                    <a class="btn btn-outline-primary btn-sm mb-0 me-3" target="_blank" href="https://www.creative-tim.com/builder?ref=navbar-material-dashboard">Online Builder</a>
-                </li>
-                <li class="mt-2">
-                    <a class="github-button" href="https://github.com/creativetimofficial/material-dashboard" data-icon="octicon-star" data-size="large" data-show-count="true" aria-label="Star creativetimofficial/material-dashboard on GitHub">Star</a>
+                <li class="nav-item dropdown pe-2 d-flex align-items-center">
+                    <a class="nav-link text-body p-0" href="javascript:;" id="addDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="fas fa-plus-square text-danger"></i>
+                        <span class="hidden-sm"></span>
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-end  px-2 py-3 me-sm-n4" aria-labelledby="addDropdown">
+                        <div class="d-none d-lg-block">
+                            <ul class="list-group">
+                        <li class="nav-item list-group-item border-0 p-0">
+                            <a class="dropdown-item py-2 ps-3 border-radius-md" href="{{ path('admin_property_new') }}">
+                                {{ 'property'|trans }}
+                            </a>
+                        </li>
+                        <li class="nav-item list-group-item border-0 p-0">
+                            <a class="dropdown-item" href="{{ path('admin_city_new') }}">{{ 'city'|trans }}</a>
+                        </li>
+                        <li class="nav-item list-group-item border-0 p-0">
+                            <a class="dropdown-item" href="{{ path('admin_deal_type_new') }}">{{ 'deal_type'|trans }}</a>
+                        </li>
+                        <li class="nav-item list-group-item border-0 p-0">
+                            <a class="dropdown-item" href="{{ path('admin_category_new') }}">{{ 'category'|trans }}</a>
+                        </li>
+                        <li class="nav-item list-group-item border-0 p-0">
+                            <a class="dropdown-item" href="{{ path('admin_page_new') }}">{{ 'page'|trans }}</a>
+                        </li>
+                        <li class="nav-item list-group-item border-0 p-0">
+                            <a class="dropdown-item" href="{{ path('admin_user_new') }}">{{ 'user'|trans }}</a>
+                        </li>
+                            </ul>
+                        </div>
+                    </ul>
                 </li>
                 <li class="nav-item d-xl-none ps-3 d-flex align-items-center">
                     <a href="javascript:;" class="nav-link text-body p-0" id="iconNavbarSidenav">
@@ -179,6 +205,9 @@
 
                     </ul>
                 </li>
+                {% include 'layouts/partials/_locale_switcher.html.twig' with {
+                    no_arrow: true
+                } %}
                 <li class="nav-item dropdown mx-2 d-flex align-items-center">
                     <a href="javascript:;" class="avatar avatar rounded-circle" data-bs-placement="bottom" title="Ryan Tompson" id="dropdownMenuDocs" data-bs-toggle="dropdown" aria-expanded="false">
                         <img alt="Image placeholder" src="{{ app.user.avatar }}">

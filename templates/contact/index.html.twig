@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello ContactController!{% endblock %}
+{% block title %}BroWorld Contact{% endblock %}
 
 {% block body %}
     <div class="container-fluid py-2">
@@ -20,7 +20,7 @@
     <section>
         <div class="container py-6">
             <div class="row">
-                <div class="col-lg-7 mx-auto d-flex justify-content-center flex-column">
+                <div class="col-lg-6 mx-auto d-flex flex-column">
                     <h3 class="text-center">Contact us</h3>
                     <form role="form" id="contact-form" method="post" autocomplete="off">
                         {{ form_start(form) }}
@@ -57,6 +57,11 @@
                         </div>
                         {{ form_end(form) }}
                     </form>
+                </div>
+                <div class="col-lg-6 mx-auto d-flex flex-column justify-content-center">
+                    <div class="card bg-gradient-dark justify-content-center">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2653.080270527501!2d11.659202076457365!3d48.320537871264364!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x479e6db1b089af47%3A0xf31fabc1a49d3b68!2sVogelweide%204B%2C%2085375%20Neufahrn%20bei%20Freising!5e0!3m2!1sde!2sde!4v1694862325582!5m2!1sde!2sde" width="620" height="380" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </div>
                 </div>
             </div>
         </div>

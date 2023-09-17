@@ -57,3 +57,15 @@ doctrine:
                         dir: '%kernel.project_dir%/src/Quiz/Domain/Entity'
                         prefix: 'App\Quiz\Domain\Entity'
                         alias: Quiz
+                    Announce:
+                        is_bundle: false
+                        type: attribute
+                        dir: '%kernel.project_dir%/src/Announce/Domain/Entity'
+                        prefix: 'App\Announce\Domain\Entity'
+                        alias: Announce
+                    Log:
+                        is_bundle: false
+                        type: attribute
+                        dir: '%kernel.project_dir%/src/Log/Domain/Entity'
+                        prefix: 'App\Log\Domain\Entity'
+                        alias: Log

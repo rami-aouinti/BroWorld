@@ -10,8 +10,11 @@
     <!-- Material Icons -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
     <link id="pagestyle" href="{{ asset('assets/css/material-dashboard.css') }}" rel="stylesheet" />
+    {{ encore_entry_link_tags('css/app') }}
+    {{ encore_entry_link_tags('css/admin') }}
+    {{ encore_entry_link_tags('app') }}
     {% block stylesheets %}
-        {{ encore_entry_link_tags('app') }}
+
     {% endblock %}
     <script defer data-site="YOUR_DOMAIN_HERE" src="https://api.nepcha.com/js/nepcha-analytics.js"></script>
 </head>
@@ -25,8 +28,10 @@
     </div>
 </main>
 {% include 'layouts/admin/setting.html.twig' %}
+{{ encore_entry_script_tags('js/admin') }}
+{{ encore_entry_script_tags('app') }}
 {% block javascripts %}
-    {{ encore_entry_script_tags('app') }}
+
 {% endblock %}
 <script src="{{ asset('assets/js/core/popper.min.js') }}"></script>
 <script src="{{ asset('assets/js/core/bootstrap.min.js') }}"></script>

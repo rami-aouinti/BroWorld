@@ -1,7 +1,7 @@
 <aside class="sidenav navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-3   bg-gradient-dark" id="sidenav-main">
     <div class="sidenav-header">
         <i class="fas fa-times p-3 cursor-pointer text-white opacity-5 position-absolute end-0 top-0 d-none d-xl-none" aria-hidden="true" id="iconSidenav"></i>
-        <a class="navbar-brand m-0" href=" https://demos.creative-tim.com/material-dashboard/pages/dashboard " target="_blank">
+        <a class="navbar-brand m-0" href="{{ path('app_admin') }}">
             <img src="{{ asset('frontend/assets/img/world.svg') }}" class="navbar-brand-img h-100" alt="main_logo">
             <span class="ms-1 font-weight-bold text-white">BroWorld Administration</span>
         </a>
@@ -144,6 +144,58 @@
                                 <div class="d-flex flex-column justify-content-center">
                                     <h6 class="text-sm font-weight-normal mb-1">
                                         <span class="font-weight-bold">Setting</span>
+                                    </h6>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="nav-item mb-1">
+                        <a class="dropdown-item border-radius-md" href="{{ path('admin_news_index') }}">
+                            <div class="d-flex py-1">
+                                <div class="my-auto">
+                                    <span class="material-icons text-warning">grade</span>
+                                </div>
+                                <div class="d-flex flex-column justify-content-center">
+                                    <h6 class="text-sm font-weight-normal mb-1">
+                                        <span class="font-weight-bold">News</span>
+                                    </h6>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="nav-item mb-1">
+                        <a class="dropdown-item border-radius-md" href="{{ path('admin_news_index') }}">
+                            <div class="d-flex py-1">
+                                <div class="my-auto">
+                                    <span class="material-icons text-warning">inbox</span>
+                                </div>
+                                <div class="d-flex flex-column justify-content-center">
+                                    <h6 class="text-sm font-weight-normal mb-1">
+                                        <span class="font-weight-bold">Contact</span>
+                                    </h6>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li class="nav-item dropdown align-items-center">
+                <a href="javascript:;" class="nav-link" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                    <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+                        <i class="material-icons opacity-10">dashboard</i>
+                    </div>
+                    <span class="nav-link-text ms-1">Announcement</span>
+                </a>
+                <ul class="navbar-nav dropdown-menu  dropdown-menu  px-2 py-3 me-sm-n4" aria-labelledby="dropdownMenuButton">
+                    <li class="nav-item mb-1">
+                        <a class="dropdown-item border-radius-md" href="{{ path('admin_announce_dashboard') }}">
+                            <div class="d-flex py-1">
+                                <div class="my-auto">
+                                    <span class="material-icons text-warning">dashboard</span>
+                                </div>
+                                <div class="d-flex flex-column justify-content-center">
+                                    <h6 class="text-sm font-weight-normal mb-1">
+                                        <span class="font-weight-bold">Dashboard</span>
                                     </h6>
                                 </div>
                             </div>

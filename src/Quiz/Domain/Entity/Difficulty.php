@@ -10,6 +10,7 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: DifficultyRepository::class)]
+#[ORM\Table(name: 'quiz_difficulty')]
 class Difficulty extends BaseEntity
 {
     #[ORM\Id]

@@ -33,8 +33,8 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @author Yonel Ceruto <yonelceruto@gmail.com>
  */
 #[ORM\Entity(repositoryClass: PostRepository::class)]
-#[ORM\Table(name: 'post')]
-#[UniqueEntity(fields: ['slug'], errorPath: 'title', message: 'post.slug_unique')]
+#[ORM\Table(name: 'blog_post')]
+#[UniqueEntity(fields: ['slug'], message: 'post.slug_unique', errorPath: 'title')]
 class Post
 {
     #[ORM\Id]
@@ -69,7 +69,7 @@ class Post
     /**
      * @var Collection<int, Comment>
      */
-    #[ORM\OneToMany(targetEntity: Comment::class, mappedBy: 'post', orphanRemoval: true, cascade: ['persist'])]
+    #[ORM\OneToMany(mappedBy: 'post', targetEntity: Comment::class, cascade: ['persist'], orphanRemoval: true)]
     #[ORM\OrderBy(['publishedAt' => 'DESC'])]
     public Collection $comments;
 
@@ -77,7 +77,7 @@ class Post
      * @var Collection<int, Tag>
      */
     #[ORM\ManyToMany(targetEntity: Tag::class, cascade: ['persist'])]
-    #[ORM\JoinTable(name: 'post_tag')]
+    #[ORM\JoinTable(name: 'blog_post_tag')]
     #[ORM\OrderBy(['name' => 'ASC'])]
     #[Assert\Count(max: 4, maxMessage: 'post.too_many_tags')]
     public Collection $tags;

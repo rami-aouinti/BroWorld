@@ -11,6 +11,7 @@ use Doctrine\ORM\Mapping\JoinColumn;
 use Doctrine\ORM\Mapping\ManyToOne;
 
 #[ORM\Entity(repositoryClass: AnswerRepository::class)]
+#[ORM\Table(name: 'quiz_answer')]
 class Answer extends BaseEntity
 {
     #[ORM\Id]

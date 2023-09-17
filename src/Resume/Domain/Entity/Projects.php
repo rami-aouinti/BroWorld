@@ -11,6 +11,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: ProjectsRepository::class)]
+#[ORM\Table(name: 'resume_projects')]
 class Projects
 {
     #[ORM\Id]

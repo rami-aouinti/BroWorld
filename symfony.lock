@@ -143,6 +143,9 @@
     "justinrainbow/json-schema": {
         "version": "5.2.9"
     },
+    "knplabs/knp-paginator-bundle": {
+        "version": "v6.2.0"
+    },
     "knpuniversity/oauth2-client-bundle": {
         "version": "2.15",
         "recipe": {
@@ -163,6 +166,9 @@
     },
     "lorisleiva/cron-translator": {
         "version": "v0.2.1"
+    },
+    "mark-gerarts/automapper-plus-bundle": {
+        "version": "1.4.1"
     },
     "monolog/monolog": {
         "version": "1.25.3"
@@ -211,6 +217,19 @@
     },
     "roave/security-advisories": {
         "version": "dev-master"
+    },
+    "scheb/2fa-bundle": {
+        "version": "6.9",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "main",
+            "version": "6.0",
+            "ref": "1e6f68089146853a790b5da9946fc5974f6fcd49"
+        },
+        "files": [
+            "config/packages/scheb_2fa.yaml",
+            "config/routes/scheb_2fa.yaml"
+        ]
     },
     "sensio/framework-extra-bundle": {
         "version": "5.2",

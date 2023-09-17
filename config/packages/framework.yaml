@@ -30,6 +30,7 @@ framework:
     esi: true
     fragments: true
 
+    ide: null
 when@test:
     framework:
         test: true

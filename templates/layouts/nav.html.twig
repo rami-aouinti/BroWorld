@@ -1,12 +1,12 @@
 <div class="container position-sticky z-index-sticky top-0"><div class="row"><div class="col-12">
             <nav class="navbar navbar-expand-lg  blur border-radius-xl top-0 z-index-fixed shadow position-absolute my-3 py-2 start-0 end-0 mx-4">
-                <div class="container-fluid px-0">
+                <div class="container-fluid">
                     <a class="navbar-brand" href="{{ path('app_home') }}">
-                        <a href="{{ path('app_home') }}" class="avatar rounded-circle"  style="margin-top: -25px;">
+                        <a href="{{ path('app_home') }}" class="avatar rounded-circle">
                             <img alt="Image placeholder" src="{{ asset('frontend/assets/img/world.svg') }}">
                         </a>
                         <a href="{{ path('app_home') }}">
-                            <div class="text-dark text-center text-2xl"  style="margin-top: -25px;">
+                            <div class="text-dark text-center text-2xl">
                                 BroWorld
                             </div>
                         </a>
@@ -20,7 +20,7 @@
                     </button>
                     <div class="collapse navbar-collapse pt-3 pb-2 py-lg-0 w-100" id="navigation">
                         <ul class="navbar-nav navbar-nav-hover ms-auto">
-                            <li class="nav-item dropdown dropdown-hover mx-3 py-1">
+                            <li class="nav-item dropdown mx-3 py-0">
                                 <a class="nav-link ps-2 d-flex cursor-pointer align-items-center" id="dropdownMenuPages" data-bs-toggle="dropdown" aria-expanded="false">
                                     News
                                 </a>
@@ -73,13 +73,13 @@
                                 </div>
                             </li>
 
-                            <li class="nav-item mx-3 py-1">
+                            <li class="nav-item mx-3 py-0">
                                 <a class="nav-link ps-2 d-flex cursor-pointer align-items-center" href="{{ path('blog_index') }}">
                                     Blog
                                 </a>
                             </li>
 
-                            <li class="nav-item dropdown dropdown-hover mx-3 py-1">
+                            <li class="nav-item dropdown mx-3 py-0">
                                 <a class="nav-link ps-2 d-flex cursor-pointer align-items-center" id="dropdownMenuDocs" data-bs-toggle="dropdown" aria-expanded="false">
                                     Service
                                 </a>
@@ -93,8 +93,8 @@
                                                 </a>
                                             </li>
                                             <li class="nav-item list-group-item border-0 p-0">
-                                                <a class="dropdown-item py-2 ps-3 border-radius-md" href=" https://www.creative-tim.com/learning-lab/bootstrap/colors/material-kit ">
-                                                    <h6 class="dropdown-header text-dark font-weight-bolder d-flex justify-content-cente align-items-center p-0">Foundation</h6>
+                                                <a class="dropdown-item py-2 ps-3 border-radius-md" href="{{ path('app_property') }}">
+                                                    <h6 class="dropdown-header text-dark font-weight-bolder d-flex justify-content-cente align-items-center p-0">Announce</h6>
                                                     <span class="text-sm">See our colors, icons and typography</span>
                                                 </a>
                                             </li>
@@ -151,38 +151,19 @@
                                 </ul>
                             </li>
 
-                            <li class="nav-item mx-3 py-1">
+                            <li class="nav-item mx-3 py-0">
                                 <a class="nav-link ps-2 d-flex cursor-pointer align-items-center" href="{{ path('app_about') }}">
                                     About
                                 </a>
                             </li>
-                            <li class="nav-item mx-3 py-1">
+                            <li class="nav-item mx-3 py-0">
                                 <a class="nav-link ps-2 d-flex cursor-pointer align-items-center" href="{{ path('app_contact') }}">
                                     Contact
                                 </a>
                             </li>
-                            <li class="nav-item mx-4 py-1">
-                                <div class="input-group input-group-dynamic mb-4">
-                                    <span class="input-group-text"><i class="fas fa-search" aria-hidden="true"></i></span>
-                                    <input class="form-control" placeholder="Search" type="text" >
-                                </div>
-                            </li>
-                            <li class="nav-item dropdown py-1">
-                                <a href="javascript:;" class="nav-link ps-2 d-flex cursor-pointer align-items-center" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
-                                    <i class="material-icons opacity-6 me-2 text-md">language</i>
-                                </a>
-                                <ul class="dropdown-menu dropdown-menu-end dropdown-menu-animation dropdown-sm dropdown-sm-responsive mt-0 mt-lg-3 p-3 border-radius-lg" aria-labelledby="dropdownMenuButton">
-                                    {% for locale in locales() %}
-                                        {% set is_active = app.request.locale == locale.code %}
-                                        {% set is_rtl = locale.code in ['ar', 'fa', 'he'] %}
-                                        <li class="nav-item {{ is_active ? 'active bg-gradient-secondary' }} {{ is_rtl ? 'rtl' }}" translate="no">
-                                            <a class="dropdown-item border-radius-md stretched-link" lang="{{ locale.code }}" hreflang="{{ locale.code }}" href="{{ path(app.request.get('_route', 'blog_index'), app.request.get('_route_params', [])|merge({_locale: locale.code})) }}">
-                                                {{ locale.name|capitalize }}
-                                            </a>
-                                        </li>
-                                    {% endfor %}
-                                </ul>
-                            </li>
+                            {% include 'layouts/partials/_locale_switcher.html.twig' with {
+                                no_arrow: true
+                            } %}
                             {% if is_granted('IS_AUTHENTICATED_FULLY') %}
                                 <li class="nav-item dropdown py-1">
                                     <a class="nav-link ps-2 d-flex cursor-pointer align-items-center" id="dropdownMenuDocs" data-bs-toggle="dropdown" aria-expanded="false">
@@ -330,34 +311,33 @@
                                 <a href="javascript:;" class="avatar avatar rounded-circle" data-bs-placement="bottom" title="Ryan Tompson" id="dropdownMenuDocs" data-bs-toggle="dropdown" aria-expanded="false">
                                     <img alt="Image placeholder" src="{{ app.user.avatar }}">
                                 </a>
-                                <ul class="dropdown-menu dropdown-menu-end dropdown-menu-animation dropdown-sm dropdown-md-responsive mt-0 mt-lg-1 p-1 border-radius-lg" aria-labelledby="dropdownMenuDocs">
+                                <ul class="dropdown-menu dropdown-menu-end dropdown-menu-animation dropdown-sm dropdown-md-responsive mt-0 mt-lg-1 p-1 border-radius-sm rounded" aria-labelledby="dropdownMenuDocs">
                                     <div class="d-none d-lg-block">
                                         <ul class="list-group">
                                             <li class="nav-item list-group-item border-0 p-0">
-                                                <a class="dropdown-item py-2 ps-3 border-radius-md" href="{{ path('app_profile') }}">
-                                                    <h6 class="dropdown-header text-dark font-weight-bolder d-flex justify-content-cente align-items-center">
-                                                        <i class="material-icons">face</i>Profile
-                                                    </h6>
+                                                <a class="dropdown-item px-4 py-2 ps-3 border-radius-md" href="{{ path('app_profile') }}">
+                                                    <i class="material-icons">face</i>
+                                                    Profile
                                                 </a>
                                             </li>
                                             <li class="nav-item list-group-item border-0 p-0">
-                                                <a class="dropdown-item py-2 ps-3 border-radius-md" href="{{ path('app_profile_edit') }}">
-                                                    <h6 class="dropdown-header text-dark font-weight-bolder d-flex justify-content-cente align-items-center">
-                                                        <i class="material-icons">settings</i>Setting</h6>
+                                                <a class="dropdown-item px-4 py-2 ps-3 border-radius-md" href="{{ path('app_profile_edit') }}">
+                                                    <i class="material-icons">settings</i>
+                                                    Setting
                                                 </a>
                                             </li>
                                             {% if is_granted('ROLE_ADMIN') %}
                                                 <li class="nav-item list-group-item border-0 p-0">
-                                                    <a class="dropdown-item py-2 ps-3 border-radius-md" href="{{ path('app_admin') }}">
-                                                        <h6 class="dropdown-header text-dark font-weight-bolder d-flex justify-content-cente align-items-center">
-                                                            <i class="material-icons">settings</i>Administration</h6>
+                                                    <a class="dropdown-item px-4 py-2 ps-3 border-radius-md" href="{{ path('app_admin') }}">
+                                                        <i class="material-icons">settings</i>
+                                                        Administration
                                                     </a>
                                                 </li>
                                             {% endif %}
                                             <li class="nav-item list-group-item border-0 p-0">
-                                                <a class="dropdown-item py-2 ps-3 border-radius-md" href="{{ path('app_logout') }}">
-                                                    <h6 class="dropdown-header text-dark font-weight-bolder d-flex justify-content-cente align-items-center">
-                                                        <i class="material-icons">logout</i>Logout</h6>
+                                                <a class="dropdown-item px-4 py-2 ps-3 border-radius-md" href="{{ path('app_logout') }}">
+                                                    <i class="material-icons">logout</i>
+                                                    Logout
                                                 </a>
                                             </li>
                                         </ul>
@@ -365,24 +345,21 @@
                                 </ul>
                             </li>
                             {% else %}
-                                <li class="nav-item dropdown dropdown-hover mx-2 py-1">
+                                <li class="nav-item dropdown mx-2 py-1">
                                     <a class="nav-link ps-2 d-flex cursor-pointer align-items-center" id="dropdownMenuDocs" data-bs-toggle="dropdown" aria-expanded="false">
                                         <i class="material-icons opacity-6 me-2 text-md">person</i>
                                     </a>
-                                    <ul class="dropdown-menu dropdown-menu-end dropdown-menu-animation dropdown-sm dropdown-md-responsive mt-0 mt-lg-1 p-1 border-radius-sm" aria-labelledby="dropdownMenuDocs">
+                                    <ul class="dropdown-menu dropdown-menu-end dropdown-menu-animation dropdown-sm dropdown-md-responsive mt-0 mt-lg-1 p-1 border-radius-sm rounded" aria-labelledby="dropdownMenuDocs">
                                         <div class="d-none d-lg-block">
                                             <ul class="list-group">
                                                 <li class="nav-item list-group-item border-0 p-0">
                                                     <a class="dropdown-item py-2 ps-3 border-radius-md" href="{{ path('app_login') }}">
-                                                        <h6 class="dropdown-header text-dark font-weight-bolder d-flex justify-content-cente align-items-center">
-                                                            <i class="material-icons">login</i>Login
-                                                        </h6>
+                                                        <i class="material-icons">login</i> Login
                                                     </a>
                                                 </li>
                                                 <li class="nav-item list-group-item border-0 p-0">
                                                     <a class="dropdown-item py-2 ps-3 border-radius-md" href="{{ path('app_register') }}">
-                                                        <h6 class="dropdown-header text-dark font-weight-bolder d-flex justify-content-cente align-items-center">
-                                                            <i class="material-icons">app_registration</i>Register</h6>
+                                                        <i class="material-icons">app_registration</i> Register
                                                     </a>
                                                 </li>
                                             </ul>

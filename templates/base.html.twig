@@ -16,6 +16,7 @@
         <link id="pagestyle" href="{{ asset('frontend/assets/css/material-kit.css') }}" rel="stylesheet" />
         <meta name="google-site-verification" content="Kvcv0yhf4zzYxJ1f46wybMKDelxhse-GnzdBZ9Qr468" />
         <script defer data-site="www.broworld.de/de" src="https://api.nepcha.com/js/nepcha-analytics.js"></script>
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
         {% block stylesheets %}
             {{ encore_entry_link_tags('app') }}
         {% endblock %}
@@ -64,6 +65,8 @@
         {% block body %}{% endblock %}
     </div>
     {% include 'layouts/footer.html.twig' %}
+
+
     <!-- Google Tag Manager -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-6B9Y9GGZ8L"></script>
     <script>

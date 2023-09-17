@@ -16,6 +16,7 @@ use Symfony\Component\Validator\Context\ExecutionContextInterface;
 #[ORM\Entity(repositoryClass: PersonRepository::class)]
 #[UniqueEntity('twitter')]
 #[UniqueEntity('pseudo')]
+#[ORM\Table(name: 'quiz_author')]
 class Person extends BaseEntity
 {
     #[ORM\Id]
