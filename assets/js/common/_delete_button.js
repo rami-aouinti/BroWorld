@@ -1,3 +1,8 @@
+import $ from 'jquery';
+window.jQuery = $;
+window.$ = $;
+
+import bootbox from "bootbox";
 (function ($, bootbox) {
     'use strict';
 

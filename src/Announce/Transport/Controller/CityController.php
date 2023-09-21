@@ -19,7 +19,7 @@ final class CityController extends BaseController
         $properties = $service->getProperties($searchParams);
         $siteOptions = $service->decorateOptions($this->site($request), $city);
 
-        return $this->render('property/index.html.twig',
+        return $this->render('announce/property/index.html.twig',
             [
                 'site' => $siteOptions,
                 'properties' => $properties,

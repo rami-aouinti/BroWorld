@@ -1,5 +1,7 @@
 'use strict';
-
+import $ from 'jquery';
+window.jQuery = $;
+window.$ = $;
 const slugify = require('slugify');
 
 $(document).ready(function () {

@@ -1,0 +1,21 @@
+
+/* bootstrap thead.sticky-top has z-index 1020 and tomselect dropdowns often hide behind that */
+.ts-dropdown {
+    z-index: 1021;
+}
+
+/* Tabler defines a min-width of 7rem, what makes many input fields become a two-line field
+  e.g. a 7 rem input does not fit behind a word like "Germany" in a 3 column form inside a modal */
+.ts-control {
+    > input {
+        min-width: unset;
+    }
+}
+
+.ts-dropdown {
+    .optgroup {
+        [data-selectable].option {
+            padding-left: 20px;
+        }
+    }
+}

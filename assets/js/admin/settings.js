@@ -1,5 +1,9 @@
 import Dropzone from 'dropzone';
 
+import $ from 'jquery';
+window.jQuery = $;
+window.$ = $;
+
 Dropzone.autoDiscover = false;
 
 $(document).ready(function () {

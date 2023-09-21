@@ -2,8 +2,8 @@
 
 namespace App\Test\Controller;
 
-use App\Task\Domain\Entity\Task;
-use App\Task\Domain\Repository\TaskRepository;
+use App\Crm\Domain\Entity\Task;
+use App\Crm\Domain\Repository\TaskRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\KernelBrowser;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;

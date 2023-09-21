@@ -1,3 +1,7 @@
+import $ from 'jquery';
+window.jQuery = $;
+window.$ = $;
+
 import Dropzone from 'dropzone';
 import 'jquery-ui-dist/jquery-ui.js';
 
@@ -58,7 +62,6 @@ $(document).ready(function () {
                         window.location.reload();
                     })
                     .fail(function () {
-                        bootbox.alert('An error has occurred');
                     });
             }
         });

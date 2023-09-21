@@ -9,6 +9,8 @@ parameters:
     brochures_directory: '%kernel.project_dir%/public/uploads/users/images'
     app.notifications.email_sender: info@ramyworld.de
     requirements.uuid: "[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}"
+    app.jwtsecret: '%env(JWT_SECRET)%'
+    images_directory: '%kernel.project_dir%/public/assets/uploads/'
 
 services:
     # default configuration for services in *this* file
@@ -27,6 +29,8 @@ services:
             $elasticNumberOfShards: '%env(int:ELASTICSEARCH_NUMBER_OF_SHARDS)%'
             $elasticNumberOfReplicas: '%env(int:ELASTICSEARCH_NUMBER_OF_REPLICAS)%'
             $lockUserOnLoginFailureAttempts: '%env(int:LOCK_USER_ON_LOGIN_FAILURE_ATTEMPTS)%'
+            $projectDirectory: '%kernel.project_dir%'
+            $kernelEnvironment: '%kernel.environment%'
 
     _instanceof:
         App\General\Application\Rest\Interfaces\RestResourceInterface:
@@ -86,6 +90,10 @@ services:
         arguments:
             $targetDirectory: '%brochures_directory%'
 
+    App\User\Application\Service\FileUploader:
+        arguments:
+            $targetDirectory: '%brochures_directory%'
+
     App\Blog\Transport\EventSubscriber\CommentNotificationSubscriber:
         $sender: '%app.notifications.email_sender%'
 
@@ -105,6 +113,187 @@ services:
             $ignoredRoutes: '%env(json:REQUEST_LOG_IGNORED_ROUTES)%'
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
+
+    security.user.provider.chain:
+        class: App\Crm\Application\Security\KimaiUserProvider
+
+    App\Crm\Application\Configuration\MailConfiguration:
+        arguments: [ '%env(MAILER_FROM)%' ]
+
+    App\Crm\Application\Configuration\LocaleService:
+        arguments: [ '%kimai.languages%' ]
+
+    App\Crm\Application\Configuration\SystemConfiguration:
+        arguments:
+            $settings: '%kimai.config%'
+
+    App\Crm\Application\Service\Pdf\MPdfConverter:
+        arguments:
+            $cacheDirectory: '%kernel.cache_dir%'
+
+    App\Crm\Application\Plugin\PluginManager:
+        arguments: [ !tagged kimai.plugin ]
+
+    App\Crm\Transport\Validator\Constraints\TimesheetValidator:
+        arguments: [ !tagged timesheet.validator ]
+
+    App\Crm\Transport\Validator\Constraints\ProjectValidator:
+        arguments: [ !tagged project.validator ]
+
+    App\Crm\Transport\Validator\Constraints\QuickEntryTimesheetValidator:
+        arguments: [ !tagged timesheet.validator ]
+
+    App\Crm\Application\Utils\FileHelper:
+        arguments:
+            $dataDir: '%kimai.data_dir%'
+
+    App\Crm\Application\API\Serializer\ValidationFailedExceptionErrorHandler:
+        arguments: [ '@translator.default', '@fos_rest.serializer.flatten_exception_handler' ]
+
+    App\Crm\Application\Command\ExportCreateCommand:
+        arguments:
+            $mailer: '@App\Crm\Application\Service\Mail\KimaiMailer'
+
+    # ================================================================================
+    # DATABASE
+    # ================================================================================
+
+    # updates timesheet records and apply configured rate & rounding rules
+    App\Crm\Infrastructure\Doctrine\TimesheetSubscriber:
+        class: App\Crm\Infrastructure\Doctrine\TimesheetSubscriber
+        arguments: [ !tagged timesheet.calculator ]
+        tags:
+            - { name: doctrine.event_subscriber, priority: 50 }
+
+
+    # ================================================================================
+    # TIMESHEET RECORD CALCULATOR
+    # ================================================================================
+
+    App\Crm\Application\Service\Timesheet\RoundingService:
+        arguments:
+            $roundingModes: !tagged timesheet.rounding_mode
+            $rules: '%kimai.timesheet.rounding%'
+
+    App\Crm\Application\Service\Timesheet\RateService:
+        arguments: [ '%kimai.timesheet.rates%' ]
+
+    App\Crm\Application\Service\Timesheet\TrackingModeService:
+        arguments:
+            $modes: !tagged timesheet.tracking_mode
+
+    # ================================================================================
+    # SECURITY & VOTER
+    # ================================================================================
+
+    App\Crm\Application\Security\RoleService:
+        arguments:
+            $roles: '%kimai.permission_roles%'
+
+    App\Crm\Application\Security\RolePermissionManager:
+        arguments:
+            $permissions: '%kimai.permissions%'
+            $permissionNames: '%kimai.permission_names%'
+
+    # ================================================================================
+    # SAML Services
+    # ================================================================================
+    App\Crm\Application\Saml\SamlProvider:
+        arguments: [ '@App\User\Domain\Repository\UserRepository', '@security.user.provider.concrete.kimai_internal', '@App\Crm\Application\Configuration\SamlConfigurationInterface' ]
+
+    # ================================================================================
+    # REPOSITORIES
+    # ================================================================================
+
+    App\Crm\Domain\Repository\TimesheetRepository:
+        class: App\Crm\Domain\Repository\TimesheetRepository
+        factory: [ '@doctrine.orm.entity_manager', getRepository ]
+        arguments: [ 'App\Crm\Domain\Entity\Timesheet' ]
+
+    App\User\Domain\Repository\UserRepository:
+        class: App\User\Domain\Repository\UserRepository
+        factory: [ '@doctrine.orm.entity_manager', getRepository ]
+        arguments: [ 'App\User\Domain\Entity\User' ]
+
+    App\Crm\Domain\Repository\TeamRepository:
+        class: App\Crm\Domain\Repository\TeamRepository
+        factory: [ '@doctrine.orm.entity_manager', getRepository ]
+        arguments: [ 'App\Crm\Domain\Entity\Team' ]
+
+    App\Crm\Domain\Repository\ActivityRepository:
+        class: App\Crm\Domain\Repository\ActivityRepository
+        factory: [ '@doctrine.orm.entity_manager', getRepository ]
+        arguments: [ 'App\Crm\Domain\Entity\Activity' ]
+
+    App\Crm\Domain\Repository\ProjectRepository:
+        class: App\Crm\Domain\Repository\ProjectRepository
+        factory: [ '@doctrine.orm.entity_manager', getRepository ]
+        arguments: [ 'App\Crm\Domain\Entity\Project' ]
+
+    App\Crm\Domain\Repository\TagRepository:
+        class: App\Crm\Domain\Repository\TagRepository
+        factory: [ '@doctrine.orm.entity_manager', getRepository ]
+        arguments: [ 'App\Crm\Domain\Entity\Tag' ]
+
+    App\Crm\Domain\Repository\CustomerRepository:
+        class: App\Crm\Domain\Repository\CustomerRepository
+        factory: [ '@doctrine.orm.entity_manager', getRepository ]
+        arguments: [ 'App\Crm\Domain\Entity\Customer' ]
+
+    App\Crm\Domain\Repository\InvoiceTemplateRepository:
+        class: App\Crm\Domain\Repository\InvoiceTemplateRepository
+        factory: [ '@doctrine.orm.entity_manager', getRepository ]
+        arguments: [ 'App\Crm\Domain\Entity\InvoiceTemplate' ]
+
+    App\Crm\Domain\Repository\ConfigurationRepository:
+        class: App\Crm\Domain\Repository\ConfigurationRepository
+        factory: [ '@doctrine.orm.entity_manager', getRepository ]
+        arguments: [ 'App\Crm\Domain\Entity\Configuration' ]
+
+    App\User\Domain\Repository\RoleRepository:
+        class: App\User\Domain\Repository\RoleRepository
+        factory: [ '@doctrine.orm.entity_manager', getRepository ]
+        arguments: [ 'App\User\Domain\Entity\Role' ]
+
+    App\User\Domain\Repository\RolePermissionRepository:
+        class: App\User\Domain\Repository\RolePermissionRepository
+        factory: [ '@doctrine.orm.entity_manager', getRepository ]
+        arguments: [ 'App\User\Domain\Entity\RolePermission' ]
+
+    App\Crm\Domain\Repository\InvoiceDocumentRepository:
+        class: App\Crm\Domain\Repository\InvoiceDocumentRepository
+        arguments: [ '%kimai.invoice.documents%' ]
+
+    App\Crm\Domain\Repository\CustomerRateRepository:
+        class: App\Crm\Domain\Repository\CustomerRateRepository
+        factory: [ '@doctrine.orm.entity_manager', getRepository ]
+        arguments: [ 'App\Crm\Domain\Entity\CustomerRate' ]
+
+    App\Crm\Domain\Repository\ActivityRateRepository:
+        class: App\Crm\Domain\Repository\ActivityRateRepository
+        factory: [ '@doctrine.orm.entity_manager', getRepository ]
+        arguments: [ 'App\Crm\Domain\Entity\ActivityRate' ]
+
+    App\Crm\Domain\Repository\ProjectRateRepository:
+        class: App\Crm\Domain\Repository\ProjectRateRepository
+        factory: [ '@doctrine.orm.entity_manager', getRepository ]
+        arguments: [ 'App\Crm\Domain\Entity\ProjectRate' ]
+
+    App\Crm\Domain\Repository\InvoiceRepository:
+        class: App\Crm\Domain\Repository\InvoiceRepository
+        factory: [ '@doctrine.orm.entity_manager', getRepository ]
+        arguments: [ 'App\Crm\Domain\Entity\Invoice' ]
+
+    App\Crm\Domain\Repository\BookmarkRepository:
+        class: App\Crm\Domain\Repository\BookmarkRepository
+        factory: [ '@doctrine.orm.entity_manager', getRepository ]
+        arguments: [ 'App\Crm\Domain\Entity\Bookmark' ]
+
+    App\Crm\Domain\Repository\WorkingTimeRepository:
+        class: App\Crm\Domain\Repository\WorkingTimeRepository
+        factory: [ '@doctrine.orm.entity_manager', getRepository ]
+        arguments: [ 'App\Crm\Domain\Entity\WorkingTime' ]
+
 
     Symfony\Bridge\Twig\Extension\HttpFoundationExtension: '@twig.extension.httpfoundation'
     Symfony\Bridge\Twig\Extension\AssetExtension: '@twig.extension.assets'

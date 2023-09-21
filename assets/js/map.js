@@ -1,5 +1,14 @@
 /** global: ymaps */
+
+
+import ymaps from 'ymaps';
+
 ymaps.ready(init);
+import $ from 'jquery';
+window.jQuery = $;
+window.$ = $;
+
+
 
 const $map = $('#map');
 const latitude = $map.data('latitude');

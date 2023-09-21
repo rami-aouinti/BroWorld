@@ -13,6 +13,6 @@ class AuthorController extends AbstractController
     #[Route('/', name: 'app_author', methods: ['GET'])]
     public function index(AboutRepository $aboutRepository): Response
     {
-        return $this->render('author/index.html.twig');
+        return $this->render('frontend/author/index.html.twig');
     }
 }

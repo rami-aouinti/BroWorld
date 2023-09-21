@@ -1,0 +1,88 @@
+/*
+ * This file is part of the Kimai time-tracking app.
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
+/* used in security screens and other full-size pages */
+.page-center {
+    justify-content: center;
+}
+
+/* make sure that elements can be hidden without taking space (eg. hidden modals like the search or column visibility)  */
+.hidden-no-space {
+    margin: 0;
+    padding: 0;
+}
+
+/* used at least in the duration dropdown */
+.pre-scrollable {
+    max-height: 340px;
+    overflow-y: scroll;
+}
+
+td {
+    &.timesheet-description {
+        ul {
+            padding-left: 15px;
+        }
+        p {
+            margin: 0;
+        }
+    }
+    /* table cells that contain badges (like the team or timesheet view)
+       and are multi-line entries the badges do not have margin between them */
+    &.badges {
+        line-height: 22px;
+    }
+}
+
+.open-edit {
+    cursor: pointer;
+}
+
+/* allow minimized table columns, eg. customer team & visibility */
+th.w-min,
+td.w-min {
+    width: 1%;
+    white-space: nowrap;
+}
+table.dataTable thead > tr > th.hw-min {
+    width: 1%;
+    white-space: normal;
+}
+/* If a table column contains ONLY avatar <img> it will collapse, so make it a defined width */
+.w-avatar {
+    width: 40px;
+    img.avatar {
+        /* a weird bug in tables with real avatar <img> only causes them to collapse */
+        max-width: 40px;
+    }
+}
+
+.list-group-item{
+    /* !important rules, because dark theme overwrites list-group-item */
+    &.danger {
+        padding-left: $list-group-item-padding-x - 0.2rem;
+        border-left: 0.2rem solid $danger!important;
+    }
+    &.success {
+        padding-left: $list-group-item-padding-x - 0.2rem;
+        border-left: 0.2rem solid $success!important;;
+    }
+}
+
+/* Scrollable boxes (eg. widgets on dashboard) */
+.box-body-scrollable {
+    overflow: auto;
+    max-height: 340px;
+}
+
+#customer_details_box,
+#project_details_box,
+#activity_details_box {
+    th {
+        width: 30%;
+    }
+}

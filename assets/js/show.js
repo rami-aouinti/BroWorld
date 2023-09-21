@@ -1,3 +1,6 @@
+import $ from 'jquery';
+window.jQuery = $;
+window.$ = $;
 /* global questionId, code */
 /* eslint-disable no-new */
 
@@ -21,7 +24,7 @@ new Vue({
   data: {
     questionId: questionId, // Id of the current question (comes from the Sf javascript block)
     question: null, // question json object (see mounted).
-    questionUrl: questionUrl, // URL to get the question object
+    questionUrl: this.questionUrl, // URL to get the question object
     code: code, // raw PHP code of the question
     ready: false, // can the user answer the question? (question object must be available)
     hasValidated: false, // user has validated its answer?
@@ -74,7 +77,6 @@ new Vue({
       return await response.json(); // return question JSON
     },
     loadQuestion() {
-      self = this;
       this.fetchQuestion()
         .then(json => {
           self.question = json; // store the question

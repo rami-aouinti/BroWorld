@@ -41,7 +41,7 @@ final class PageController extends BaseController
             }
         }
 
-        return $this->render('page/show.html.twig',
+        return $this->render('frontend/page/show.html.twig',
             [
                 'site' => $this->site($request),
                 'page' => $page,

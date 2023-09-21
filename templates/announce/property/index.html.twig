@@ -1,0 +1,119 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ site.meta_title }}{{ searchParams.page|page }}{% endblock %}
+
+{% block description %}{{ site.meta_description }}{{ searchParams.page|page }}{% endblock %}
+
+{% block header %}
+
+{% endblock %}
+
+{% block body %}
+    <div class="container-fluid py-2">
+        <div class="row">
+            <div class="col-12 mx-auto">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="{{ path('app_home') }}">Home</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Announce</li>
+                    </ol>
+                </nav>
+            </div>
+
+        </div>
+    </div>
+    {% if is_granted('ROLE_ADMIN') %}
+
+        <a href="{{ url('admin_property_new') }}" class="btn btn-primary float">
+            <i class="fas fa-plus float-icon"></i>
+        </a>
+
+    {% elseif is_granted('ROLE_USER') %}
+
+        <a href="{{ url('user_property_new') }}" class="btn btn-primary float">
+            <i class="fas fa-plus float-icon"></i>
+        </a>
+
+    {% endif %}
+    <br>
+<div class="row">
+    <div class="col-md-3">
+        <div class="position-sticky pb-lg-5 pb-3 mt-lg-0 mt-5 ps-2" style="top: 100px">
+            {{ include('announce/property/partials/_search_form.html.twig') }}
+        </div>
+    </div>
+    <div class="col-md-9">
+
+        <div class="card-group">
+            {% for property in properties %}
+            <div class="col-md-4">
+                <div class="card col-11" data-animation="true">
+                    <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
+                        <a href="{{ path('property_show', {
+                            'id':  property.id,
+                            'citySlug': property.city.slug,
+                            'slug': property.slug}) }}">
+
+                            {% for photo in property.photos | slice(0, 1) %}
+
+                                <img class="img-fluid shadow border-radius-lg" src="/uploads/images/small/{{ photo.photo }}"
+                                     data-src="/uploads/images/small/{{ photo.photo }}"
+                                     alt="{{ property.address }}"
+                                     title="{{ property.address }}"/>
+
+                            {% else %}
+
+                                <img class="card-img-top border-bottom" src="{{ asset('/images/no-photo.png') }}"
+                                     alt="{{ property.address }}"
+                                     title="{{ property.address }}"/>
+
+                            {% endfor %}
+                        </a>
+                        <div class="colored-shadow" style="background-image: url(&quot;https://demos.creative-tim.com/test/material-dashboard-pro/assets/img/products/product-1-min.jpg&quot;);"></div>
+                    </div>
+                    <div class="card-body text-center">
+                        <div class="d-flex mt-n6 mx-auto">
+                            <a class="btn btn-link text-primary ms-auto border-0" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Refresh">
+                                <i class="material-icons text-lg">refresh</i>
+                            </a>
+                            <button class="btn btn-link text-info me-auto border-0" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Edit">
+                                <i class="material-icons text-lg">edit</i>
+                            </button>
+                        </div>
+                        <h6 class="font-weight-normal mt-3">
+                            <a href="{{ path('property_show', {
+                                'id':  property.id,
+                                'citySlug': property.city.slug,
+                                'slug': property.slug}) }}">
+                                {{ property.propertyDescription.title }}
+                            </a>
+                        </h6>
+                    </div>
+                    <hr class="dark horizontal my-0">
+                    <div class="card-footer d-flex">
+                        {% if property.price != '' %}
+                        <p class="text-sm font-weight-normal my-auto">
+                            {{ site.currency.symbolLeft }}{{ property.price }}
+                            {{ site.currency.symbolRight }}
+
+                            {% if property.priceType != '' %}/{{ property.priceType }}
+                            {% endif %}
+                        </p>
+                        {% endif %}
+                        <i class="material-icons position-relative ms-auto text-lg me-1 my-auto">place</i>
+                        <p class="text-sm my-auto"> {{ property.address }}</p>
+                    </div>
+                </div>
+                <br>
+                <br>
+            </div>
+            {% else %}
+                <div class="col-sm-12">
+                    {{ 'no_items_found' | trans }}
+                </div>
+            {% endfor %}
+        </div>
+        {{ knp_pagination_render(properties, 'my_pagination.html.twig') }}
+    </div>
+</div>
+{% endblock %}

@@ -11,9 +11,9 @@
 
 namespace App\Blog\Domain\Repository;
 
+use App\Blog\Application\Pagination\Paginator;
 use App\Blog\Domain\Entity\Post;
 use App\Blog\Domain\Entity\Tag;
-use App\Blog\Infrastructure\Pagination\Paginator;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 use function Symfony\Component\String\u;

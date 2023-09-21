@@ -17,7 +17,7 @@ class SettingController extends AbstractController
     #[Route('/', name: 'app_setting_index', methods: ['GET'])]
     public function index(SettingRepository $settingRepository): Response
     {
-        return $this->render('setting/index.html.twig', [
+        return $this->render('frontend/setting/index.html.twig', [
             'settings' => $settingRepository->findAll(),
         ]);
     }
@@ -36,7 +36,7 @@ class SettingController extends AbstractController
             return $this->redirectToRoute('app_setting_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->render('setting/new.html.twig', [
+        return $this->render('frontend/setting/new.html.twig', [
             'setting' => $setting,
             'form' => $form,
         ]);
@@ -45,7 +45,7 @@ class SettingController extends AbstractController
     #[Route('/{id}', name: 'app_setting_show', methods: ['GET'])]
     public function show(Setting $setting): Response
     {
-        return $this->render('setting/show.html.twig', [
+        return $this->render('frontend/setting/show.html.twig', [
             'setting' => $setting,
         ]);
     }
@@ -62,7 +62,7 @@ class SettingController extends AbstractController
             return $this->redirectToRoute('app_setting_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->render('setting/edit.html.twig', [
+        return $this->render('frontend/setting/edit.html.twig', [
             'setting' => $setting,
             'form' => $form,
         ]);

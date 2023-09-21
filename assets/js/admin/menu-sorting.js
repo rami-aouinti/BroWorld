@@ -1,5 +1,9 @@
 'use strict';
 
+import $ from 'jquery';
+window.jQuery = $;
+window.$ = $;
+
 const changeButtons = () => {
     $('.js-down-one')
         .removeClass('js-down-one')

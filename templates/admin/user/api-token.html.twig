@@ -1,0 +1,25 @@
+{% extends 'user/form.html.twig' %}
+{% import "macros/widgets.html.twig" as widgets %}
+
+{% block form_pre_content %}
+
+    {% if user.apiToken is empty %}
+        <div class="row mb-3">
+            <div class="">
+                {{ widgets.alert('warning', 'api_password.missing_description'|trans, 'api_password.missing_title'|trans, 'warning', false) }}
+            </div>
+        </div>
+    {% endif %}
+
+    <div class="row mb-3">
+        <div class="d-flex">
+            {{ 'api_password.intro'|trans }}
+
+            <div class="ms-auto">
+                <a class="btn btn-icon" target="_blank" href="{{ path('api.swagger_ui') }}" data-toggle="tooltip" title="Swagger API Docs">{{ icon('documentation', true) }}</a>
+                <a class="btn btn-icon" target="_blank" href="{{ 'rest-api.html'|docu_link }}" data-toggle="tooltip" title="{{ 'help'|trans({}, 'about') }}">{{ icon('help', true) }}</a>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

@@ -1,4 +1,7 @@
 'use strict';
+import $ from 'jquery';
+window.jQuery = $;
+window.$ = $;
 
 $(document).ready(function () {
     let $checkbox = $('#page_add_contact_form');

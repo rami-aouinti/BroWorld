@@ -37,9 +37,20 @@ Encore
     .addEntry('js/password', './assets/js/user/password/password.js')
     .addEntry('js/google_authenticator', './assets/js/user/two_factor/google_authenticator.js')
     .addEntry('js/bottom-bar', './assets/js/bottom-bar.js')
-
+    .addEntry('export-pdf', './assets/export-pdf.js')
+    .addEntry('invoice', './assets/invoice.js')
+    .addEntry('invoice-pdf', './assets/invoice-pdf.js')
+    .addEntry('chart', './assets/chart.js')
+    .addEntry('calendar', './assets/calendar.js')
+    .addEntry('dashboard', './assets/dashboard.js')
     // When enabled, Webpack "splits" your files into smaller pieces for greater optimization.
     .splitEntryChunks()
+    .configureSplitChunks(function(splitChunks) {
+        splitChunks.chunks = 'async';
+    })
+
+    // in the past there was a bug with empty hashes in entrypoints.json, disable if it happens again
+    .enableIntegrityHashes(Encore.isProduction())
 
     // will require an extra script tag for runtime.js
     // but, you probably want this, unless you're building a single-page app
@@ -67,7 +78,35 @@ Encore
 
 
     // enables Sass/SCSS support
-    .enableSassLoader()
+    .enableSassLoader(function(sassOptions) {}, {
+        resolveUrlLoader: false
+    })
+
+    .configureCssMinimizerPlugin((options) => {
+        options.minimizerOptions = {
+            preset: ['default', { discardComments: { removeAll: true } }],
+        }
+    })
+
+    // compress javascript in production build
+    .configureTerserPlugin((options) => {
+        options.terserOptions = {
+            compress: true,
+            output: {
+                comments: false,
+            },
+            // chart.js will fail if sources are mangled
+            /*
+            mangle: {
+                properties: {
+                    regex: /^_/,
+                },
+            },
+            */
+        }
+    })
+
+    .enableEslintPlugin()
 
     // uncomment if you use TypeScript
     //.enableTypeScriptLoader()

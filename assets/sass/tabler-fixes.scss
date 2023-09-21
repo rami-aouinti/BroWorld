@@ -1,0 +1,18 @@
+/* fix for vertical labels in date-time pickers, if they are used in half-column forms, e.g. "create tasks" or "create expenses" */
+fieldset legend.col-form-label {
+    padding-top: 0;
+}
+
+/* See project assignment to teams */
+fieldset.form-fieldset legend {
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+/* Fixing the margin between the divider and items in context menu or dropdowns with optgroups  */
+.ts-dropdown .optgroup:before {
+    --tblr-spacer: .5rem;
+}
+.dropdown-divider {
+    --tblr-dropdown-divider-margin-y: .5rem;
+}

@@ -13,7 +13,7 @@ class AboutController extends AbstractController
     #[Route('/', name: 'app_about', methods: ['GET'])]
     public function index(AboutRepository $aboutRepository): Response
     {
-        return $this->render('about/index.html.twig', [
+        return $this->render('frontend/about/index.html.twig', [
             'about' => $aboutRepository->findOneBy([
                 'active' => true
             ]),

@@ -42,6 +42,7 @@ final class AppFixtures extends Fixture
         foreach ($this->getUserData() as [$fullname, $username, $password, $email, $roles]) {
             $user = new User();
             $user->setFirstName($fullname);
+            $user->setUsername($username);
             $user->setLastName($username);
             $user->setPassword($this->passwordHasher->hashPassword($user, $password));
             $user->setEmail($email);

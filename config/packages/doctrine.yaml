@@ -11,6 +11,8 @@ doctrine:
         # https://symfony.com/doc/current/messenger.html#doctrine-transport
         schema_filter: '~^(?!messenger_messages)~'
         url: '%env(resolve:DATABASE_URL)%'
+        types:
+            datetime: App\Crm\Infrastructure\Doctrine\UTCDateTimeType
     orm:
         auto_generate_proxy_classes: true
         enable_lazy_ghost_objects: true
@@ -39,12 +41,12 @@ doctrine:
                         dir: '%kernel.project_dir%/src/Blog/Domain/Entity'
                         prefix: 'App\Blog\Domain\Entity'
                         alias: Blog
-                    Task:
+                    Crm:
                         is_bundle: false
                         type: attribute
-                        dir: '%kernel.project_dir%/src/Task/Domain/Entity'
-                        prefix: 'App\Task\Domain\Entity'
-                        alias: Task
+                        dir: '%kernel.project_dir%/src/Crm/Domain/Entity'
+                        prefix: 'App\Crm\Domain\Entity'
+                        alias: Crm
                     Resume:
                         is_bundle: false
                         type: attribute
@@ -63,9 +65,21 @@ doctrine:
                         dir: '%kernel.project_dir%/src/Announce/Domain/Entity'
                         prefix: 'App\Announce\Domain\Entity'
                         alias: Announce
+                    Ecommerce:
+                        is_bundle: false
+                        type: attribute
+                        dir: '%kernel.project_dir%/src/Ecommerce/Domain/Entity'
+                        prefix: 'App\Ecommerce\Domain\Entity'
+                        alias: Ecommerce
                     Log:
                         is_bundle: false
                         type: attribute
                         dir: '%kernel.project_dir%/src/Log/Domain/Entity'
                         prefix: 'App\Log\Domain\Entity'
                         alias: Log
+                dql:
+                    datetime_functions:
+                        date: App\Crm\Infrastructure\Doctrine\Extensions\Date
+                        day: App\Crm\Infrastructure\Doctrine\Extensions\Day
+                        month: App\Crm\Infrastructure\Doctrine\Extensions\Month
+                        year: App\Crm\Infrastructure\Doctrine\Extensions\Year

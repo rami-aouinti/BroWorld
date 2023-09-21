@@ -1,0 +1,60 @@
+/* bootstrap thead.sticky-top has z-index 1020 and the reporting form dropdowns hide behind that */
+.checkbox-menu.show {
+    z-index: 1021;
+}
+
+/* make sure that at least xx:yy fits into the widget */
+.duration-widget {
+    .input-group {
+        min-width: 110px;
+    }
+    input.duration-input {
+        min-width: 55px;
+    }
+}
+
+#report-form {
+    div.btn-list {
+        width: 100%;
+        div.selectpicker {
+            min-width: 200px;
+            max-width: 400px;
+        }
+
+        li.dropdown-item {
+            .form-check {
+                margin-bottom: 0;
+            }
+        }
+    }
+}
+
+.color-choice-item {
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+    margin-right: 10px;
+    border-radius: var(--tblr-border-radius);
+}
+
+fieldset:empty {
+    display: none;
+}
+
+/* e.g. the work contract settings is user profile render rows with mb-3 and the last row doesn't need that */
+fieldset > .mb-3.row:last-child {
+    margin-bottom: 0!important;
+}
+
+.form-fieldset-light {
+    border-radius: 0;
+    margin-bottom: 0;
+    border-top: none;
+    border-right: none;
+    border-left: none;
+    background-color: unset;
+}
+
+.form-fieldset-light:last-child {
+    border:none;
+}

@@ -1,2 +1,16 @@
-User-Agent: *
-Disallow: /
+User-agent: *
+Disallow: /admin/
+Disallow: /core/
+Disallow: /tmp/
+Disallow: /views/
+Disallow: /setup/
+Disallow: /log/
+#
+Disallow: /newsletter/
+Disallow: /en/newsletter/
+
+# Sitemap files
+Sitemap: https://www.broworld.de/sitemap.default.xml
+
+Sitemap: https://www.broworld.de/sitemap.xml
+

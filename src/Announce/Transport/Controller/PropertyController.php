@@ -27,7 +27,7 @@ final class PropertyController extends BaseController
         $properties = $repository->findByFilter($searchParams);
 
         return $this->render(
-            'property/index.html.twig',
+            'announce/property/index.html.twig',
             [
                 'site' => $this->site($request),
                 'properties' => $properties,
@@ -40,7 +40,7 @@ final class PropertyController extends BaseController
     public function mapView(Request $request, PropertyRepository $repository): Response
     {
         return $this->render(
-            'property/map.html.twig',
+            'announce/property/map.html.twig',
             [
                 'site' => $this->site($request),
                 'properties' => $repository->findAllPublished(),
@@ -61,7 +61,7 @@ final class PropertyController extends BaseController
             $showBackButton = true;
         }
         return $this->render(
-            'property/show.html.twig',
+            'announce/property/show.html.twig',
             [
                 'site' => $this->site($request),
                 'property' => $property,

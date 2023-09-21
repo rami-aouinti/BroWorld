@@ -2,8 +2,8 @@
 
 namespace App\Test\Controller;
 
-use App\Task\Domain\Entity\Status;
-use App\Task\Domain\Repository\StatusRepository;
+use App\Crm\Domain\Entity\Status;
+use App\Crm\Domain\Repository\StatusRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\KernelBrowser;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;

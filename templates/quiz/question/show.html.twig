@@ -16,7 +16,7 @@
     <script>
       const questionId = {{ question.id }}
       const code = `{{ code }}`
-      const questionUrl = '/api/questions' + '{{ question.id }}';
+      const questionUrl = '/api/questions{{ question.id }}';
     </script>
     {{ parent() }}
 {% endblock %}

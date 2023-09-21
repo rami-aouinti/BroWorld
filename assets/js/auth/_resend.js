@@ -1,3 +1,7 @@
+import $ from 'jquery';
+window.jQuery = $;
+window.$ = $;
+
 (function ($, bootbox) {
     'use strict';
 
@@ -30,4 +34,4 @@
     };
 
     link.click(resend);
-})($, bootbox);
+})($);

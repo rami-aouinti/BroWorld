@@ -14,28 +14,28 @@ final class SitemapController extends AbstractController
 {
     private const DEFAULTS = ['_format' => 'xml'];
 
-    #[Route(path: '/sitemap.xml', name: 'sitemap', defaults: self::DEFAULTS)]
+    #[Route(path: '/sitemap.xml', name: 'sitemap', options: ['sitemap' => true], defaults: self::DEFAULTS)]
     public function siteMap(): Response
     {
-        return $this->render('sitemap/sitemap.xml.twig', []);
+        return $this->render('announce/sitemap/sitemap.xml.twig', []);
     }
 
-    #[Route(path: '/sitemap/cities.xml', name: 'cities_sitemap', defaults: self::DEFAULTS)]
+    #[Route(path: '/sitemap/cities.xml', name: 'cities_sitemap', options: ['sitemap' => true], defaults: self::DEFAULTS)]
     public function cities(CityRepository $cityRepository): Response
     {
         $cities = $cityRepository->findAll();
 
-        return $this->render('sitemap/cities.xml.twig', [
+        return $this->render('announce/sitemap/cities.xml.twig', [
             'cities' => $cities,
         ]);
     }
 
-    #[Route(path: '/sitemap/properties.xml', name: 'properties_sitemap', defaults: self::DEFAULTS)]
+    #[Route(path: '/sitemap/properties.xml', name: 'properties_sitemap', options: ['sitemap' => true], defaults: self::DEFAULTS)]
     public function properties(PropertyRepository $propertyRepository): Response
     {
         $properties = $propertyRepository->findAllPublished();
 
-        return $this->render('sitemap/properties.xml.twig', [
+        return $this->render('announce/sitemap/properties.xml.twig', [
             'properties' => $properties,
         ]);
     }

@@ -31,10 +31,10 @@ user-controllers:
         _locale: '%locale%'
 
 
-task-controllers:
+crm-controllers:
     resource:
-        path: '../src/Task/Transport/Controller/'
-        namespace: App\Task\Transport\Controller
+        path: '../src/Crm/Transport/Controller/'
+        namespace: App\Crm\Transport\Controller
     type: attribute
     prefix: /{_locale}
     requirements:
@@ -86,3 +86,72 @@ announce-controllers:
         _locale: '%app_locales%'
     defaults:
         _locale: '%locale%'
+
+ecommerce-controllers:
+    resource:
+        path: '../src/Ecommerce/Transport/Controller/'
+        namespace: App\Ecommerce\Transport\Controller
+    type: attribute
+    prefix: /{_locale}
+    requirements:
+        _locale: '%app_locales%'
+    defaults:
+        _locale: '%locale%'
+
+api.swagger_ui:
+    path: /api/doc
+    methods: GET
+    defaults: { _controller: nelmio_api_doc.controller.swagger_ui }
+
+api.swagger:
+    path: /api/doc.json
+    methods: GET
+    defaults: { _controller: nelmio_api_doc.controller.swagger }
+
+api:
+    resource: ../src/Crm/Application/API/
+    type: annotation
+    prefix: /api
+
+auth:
+    resource: ../src/Crm/Transport/Controller/Auth/
+    type: annotation
+    prefix: /auth
+
+security:
+    resource: ../src/Crm/Transport/Controller/Security/
+    type: annotation
+    prefix: /{_locale}
+    requirements:
+        _locale: '%app_locales%'
+    defaults:
+        _locale: '%locale%'
+
+kernel:
+    resource: ../src/Kernel.php
+    type: annotation
+
+home:
+    path: /
+    defaults:
+        _controller: Symfony\Bundle\FrameworkBundle\Controller\RedirectController::redirectAction
+        route: homepage
+        permanent: true
+
+homeLocale:
+    path: /{_locale}
+    requirements:
+        _locale: '%app_locales%'
+    defaults:
+        _controller: Symfony\Bundle\FrameworkBundle\Controller\RedirectController::redirectAction
+        _locale: '%locale%'
+        route: homepage
+        permanent: true
+
+2fa_login:
+    path: /{_locale}/auth/2fa
+    defaults:
+        _controller: "scheb_two_factor.form_controller::form"
+
+2fa_login_check:
+    path: /{_locale}/auth/2fa_check

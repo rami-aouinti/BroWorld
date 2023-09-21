@@ -19,7 +19,7 @@ class FacebookController extends AbstractController
      *
      * @Route("/connect/facebook", name="connect_facebook_start")
      */
-    public function connectAction(ClientRegistry $clientRegistry)
+    public function connectAction(ClientRegistry $clientRegistry): \Symfony\Component\HttpFoundation\RedirectResponse
     {
         // on Symfony 3.3 or lower, $clientRegistry = $this->get('knpu.oauth2.registry');
 

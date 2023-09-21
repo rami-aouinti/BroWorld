@@ -1,6 +1,11 @@
 'use strict';
 
+import $ from 'jquery';
+window.jQuery = $;
+window.$ = $;
 import '../common/_delete_button';
+
+import Cookies from 'js-cookie';
 
 $(document).ready(() => {
     let currentUrl = window.location.href;

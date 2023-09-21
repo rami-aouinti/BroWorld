@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+  <file source-language="en" target-language="da" datatype="plaintext" original="system-configuration.en.xlf">
+    <body>
+      <trans-unit id="lt2Y2LO" resname="timesheet">
+        <source>Time tracking</source>
+        <target>Tidsregistrering</target>
+      </trans-unit>
+      <trans-unit id="PLggHn." resname="theme">
+        <source>theme</source>
+        <target>Tema</target>
+      </trans-unit>
+      <trans-unit id="mPRUBFX" resname="theme.markdown_content">
+        <source>theme.markdown_content</source>
+        <target>Tillad markdownformattering i beskrivelser og kommentarer</target>
+      </trans-unit>
+      <trans-unit id="FaGqoTT" resname="timesheet.mode">
+        <source>timesheet.mode</source>
+        <target>Tidstrackingstilstand</target>
+      </trans-unit>
+      <trans-unit id="A11vhSN" resname="timesheet.mode_default">
+        <source>timesheet.mode_default</source>
+        <target>[Standard] start- og sluttider kan redigeres</target>
+      </trans-unit>
+      <trans-unit id="CJZhtYx" resname="timesheet.mode_duration_fixed_begin">
+        <source>timesheet.mode_duration_fixed_begin</source>
+        <target>[Varighed] konfigurerbar fast starttid, kun varighed kan ændres</target>
+      </trans-unit>
+      <trans-unit id="3tlkqJC" resname="timesheet.mode_punch">
+        <source>timesheet.mode_punch</source>
+        <target>[Ur] bruger kan starte og stoppe registreringer, men kan ikke redigere tid eller varighed</target>
+      </trans-unit>
+      <trans-unit id="k4pl27g" resname="timesheet.rules.allow_future_times">
+        <source>timesheet.rules.allow_future_times</source>
+        <target>Tillad tidsindlæg i fremtiden</target>
+      </trans-unit>
+      <trans-unit id="Fe18zp4" resname="timesheet.active_entries.hard_limit">
+        <source>timesheet.active_entries.hard_limit</source>
+        <target>Tilladt antal af samtidigt kørende tidsregistreringer</target>
+      </trans-unit>
+      <trans-unit id="t38HFZd" resname="calendar.week_numbers">
+        <source>calendar.week_numbers</source>
+        <target>Vis ugenumre</target>
+      </trans-unit>
+      <trans-unit id="qaoBvYU" resname="calendar.weekends">
+        <source>calendar.weekends</source>
+        <target>Vis weekender</target>
+      </trans-unit>
+      <trans-unit id="yUeuM2_" resname="calendar.businessHours.begin">
+        <source>calendar.businessHours.begin</source>
+        <target>Starttid for normale arbejdstider (fremhæves)</target>
+      </trans-unit>
+      <trans-unit id="Aa_Ushz" resname="calendar.businessHours.end">
+        <source>calendar.businessHours.end</source>
+        <target>Sluttid for normale arbejdstider (fremhæves)</target>
+      </trans-unit>
+      <trans-unit id="1bHgx7p" resname="calendar.visibleHours.begin">
+        <source>calendar.visibleHours.begin</source>
+        <target>Start for synligt tidsinterval</target>
+      </trans-unit>
+      <trans-unit id="6nayLDB" resname="calendar.visibleHours.end">
+        <source>calendar.visibleHours.end</source>
+        <target>Slut for synligt tidsinterval</target>
+      </trans-unit>
+      <trans-unit id="BYy.c1V" resname="calendar.slot_duration">
+        <source>calendar.slot_duration</source>
+        <target>Pladsvarighed for uge- og dagstilstande (format: hh:mm:ss)</target>
+      </trans-unit>
+      <trans-unit id="nwuLBP4" resname="branding">
+        <source>branding</source>
+        <target>Markedsføring</target>
+      </trans-unit>
+      <trans-unit id="o9mON14" resname="theme.branding.logo">
+        <source>theme.branding.logo</source>
+        <target>Logo (Billede URL, erstatter firmalogoet i loginskærmen)</target>
+      </trans-unit>
+      <trans-unit id="en0.Ahu" resname="theme.branding.company">
+        <source>theme.branding.company</source>
+        <target>Firma</target>
+      </trans-unit>
+      <trans-unit id="Gdb5M4w" resname="rounding">
+        <source>rounding</source>
+        <target>Tidsafrunding</target>
+      </trans-unit>
+      <trans-unit id="ZMvZTTx" resname="timesheet.rounding.default.begin">
+        <source>timesheet.rounding.default.begin</source>
+        <target>Afrunding af starttid i minutter (0 = deaktiveret)</target>
+      </trans-unit>
+      <trans-unit id="AUc43eR" resname="timesheet.rounding.default.end">
+        <source>timesheet.rounding.default.end</source>
+        <target>Afrunding af sluttid i minutter (0 = deaktiveret)</target>
+      </trans-unit>
+      <trans-unit id="t.YW9eU" resname="timesheet.rounding.default.duration">
+        <source>timesheet.rounding.default.duration</source>
+        <target>Afrunding af varighed i minutter (0 = deaktiveret)</target>
+      </trans-unit>
+      <trans-unit id="O8E4Hj5" resname="timesheet.rounding.default.mode">
+        <source>timesheet.rounding.default.mode</source>
+        <target>Afrundingstilstand</target>
+      </trans-unit>
+      <trans-unit id="oL_eD_9" resname="timesheet.rounding.default.days">
+        <source>timesheet.rounding.default.days</source>
+        <target>Ugedage når afrunding er anvendt</target>
+      </trans-unit>
+      <trans-unit id="agDfwdy" resname="Monday">
+        <source>Monday</source>
+        <target>Mandag</target>
+      </trans-unit>
+      <trans-unit id="fYrx3hJ" resname="Tuesday">
+        <source>Tuesday</source>
+        <target>Tirsdag</target>
+      </trans-unit>
+      <trans-unit id="wKbMgpz" resname="Wednesday">
+        <source>Wednesday</source>
+        <target>Onsdag</target>
+      </trans-unit>
+      <trans-unit id=".CZiBi." resname="Thursday">
+        <source>Thursday</source>
+        <target>Torsdag</target>
+      </trans-unit>
+      <trans-unit id="4h8.Nyp" resname="Friday">
+        <source>Friday</source>
+        <target>Fredag</target>
+      </trans-unit>
+      <trans-unit id="2_Ncc2P" resname="Saturday">
+        <source>Saturday</source>
+        <target>Lørdag</target>
+      </trans-unit>
+      <trans-unit id="hz.vdg5" resname="Sunday">
+        <source>Sunday</source>
+        <target>Søndag</target>
+      </trans-unit>
+      <trans-unit id="jmsE4EY" resname="Ceil">
+        <source>Ceil</source>
+        <target>Ceil: start, slut, og varighed rundes op</target>
+      </trans-unit>
+      <trans-unit id="Y_qmsDz" resname="Closest">
+        <source>Closest</source>
+        <target>Tætteste: matematisk afrunding til nærmeste værdi</target>
+      </trans-unit>
+      <trans-unit id="IbERy.5" resname="Default">
+        <source>Default</source>
+        <target>Standard: start rundes ned, og slut rundes op</target>
+      </trans-unit>
+      <trans-unit id="0mjJxEk" resname="Floor">
+        <source>Floor</source>
+        <target>Floor: start, slut, og varighed rundes ned</target>
+      </trans-unit>
+      <trans-unit id="SnkW0Pk" resname="theme.avatar_url">
+        <source>theme.avatar_url</source>
+        <target>Tillad brugen af URL'er for avatar billeder</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

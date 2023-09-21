@@ -21,6 +21,7 @@ final class UserFixtures extends Fixture
         foreach ($this->getUserData() as [$fullName, $username, $phone, $email, $roles]) {
             $user = new User();
             $user->setPassword($username);
+            $user->setUsername($username);
             $user->setEmail($email);
             $user->setRoles($roles);
             $user->setProfile(

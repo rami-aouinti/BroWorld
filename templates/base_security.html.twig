@@ -1,0 +1,172 @@
+<html lang="{{ app.request.locale }}"{% if tabler_bundle.isRightToLeft() %} dir="rtl"{% endif %}>
+<head>
+    {% block head %}
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+        <meta name="robots" content="noindex,nofollow">
+    {% endblock %}
+    <title>{% block title %}Log in{% endblock %}</title>
+    {% block stylesheets %}
+        {% if tabler_bundle.isRightToLeft() %}
+            <link rel="stylesheet" href="{{ asset('bundles/tabler/tabler-rtl.css') }}?{{ tabler_asset_version() }}">
+        {% else %}
+            <link rel="stylesheet" href="{{ asset('bundles/tabler/tabler.css') }}?{{ tabler_asset_version() }}">
+        {% endif %}
+        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
+        <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900|Roboto+Slab:400,700" />
+        <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
+        <!-- Material Icons -->
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
+        <link id="pagestyle" href="{{ asset('assets/css/material-dashboard.css') }}" rel="stylesheet" />
+        {{ encore_entry_link_tags('app') }}
+    {% endblock %}
+</head>
+<body{% block body_start %}{% endblock %} class="bg-gray-200 dark-version antialiased {% block body_login_border %}border-top-wide border-primary{% endblock %} d-flex flex-column {% block body_class %}{% endblock %}">
+{% block after_body_start %}{% endblock %}
+{% block page_before %}{% endblock %}
+<main class="main-content  mt-0">
+    <div class="page-header align-items-start min-vh-100" style="background-image: url('https://images.unsplash.com/photo-1497294815431-9365093b7331?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1950&q=80');">
+        <span class="mask bg-gradient-dark opacity-6"></span>
+        <div class="{% block page_classes %}container my-auto{% endblock %}">
+                {% block container_before %}{% endblock %}
+            <div class="row">
+                <div class="col-lg-4 col-md-8 col-12 mx-auto">
+                    <div class="card z-index-0 fadeIn3 fadeInBottom">
+                        <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
+                            <div class="bg-gradient-primary shadow-primary border-radius-lg py-3 pe-1">
+                                <h2 class="text-dark font-weight-bolder text-center mt-2 mb-0">BroWorld</h2>
+                                <h4 class="text-dark font-weight-bolder text-center mt-2 mb-0">Sign in</h4>
+                                <div class="row mt-3">
+                                    <div class="col-2 text-center ms-auto">
+                                        <a class="btn btn-link px-3" href="{{ path('connect_facebook_start') }}">
+                                            <i class="fa fa-facebook text-dark text-lg"></i>
+                                        </a>
+                                    </div>
+                                    <div class="col-2 text-center px-1">
+                                        <a class="btn btn-link px-3" href="javascript:;">
+                                            <i class="fa fa-github text-dark text-lg"></i>
+                                        </a>
+                                    </div>
+                                    <div class="col-2 text-center me-auto">
+                                        <a class="btn btn-link px-3" href="{{ path('connect_google') }}">
+                                            <i class="fa fa-google text-dark text-lg"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="{% block card_classes %}{% endblock %}">
+                            {% block login_box %}
+                                <div class="card-body">
+                                    <h2 class="card-title text-center mb-4">{% block login_box_msg %}{% endblock %}</h2>
+                                    {% block login_box_error %}
+                                        {% if error|default(false) %}
+                                            <div class="alert alert-important alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+                                        {% endif %}
+                                    {% endblock %}
+                                    {% block login_form %}
+                                        <form action="{{ path('tabler_login_check'|tabler_route) }}" method="post" autocomplete="off" class="login-box-body security-login">
+                                            {% block login_form_start %}{% endblock %}
+                                            <div class="mb-3">
+                                                <label for="username" class="form-label">{{ 'Username'|trans({}, 'TablerBundle') }}</label>
+                                                <input type="text" id="username" name="_username" tabindex="10" class="form-control" placeholder="{{ 'Username'|trans({}, 'TablerBundle') }}" value="{{ last_username|default('') }}" required="required">
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="password" class="form-label">
+                                                    {{ 'Password'|trans({}, 'TablerBundle') }}
+                                                    {% block password_forgotten %}
+                                                        {% if 'tabler_password_reset'|tabler_route != 'tabler_password_reset' %}
+                                                            <span class="form-label-description">
+                                            <a href="{{ path('tabler_password_reset'|tabler_route) }}" tabindex="100">{{ 'I forgot my password'|trans({}, 'TablerBundle') }}</a>
+                                        </span>
+                                                        {% endif %}
+                                                    {% endblock %}
+                                                </label>
+                                                <div class="input-group input-group-flat">
+                                                    <input id="password" name="_password" type="password" tabindex="20" class="form-control" placeholder="{{ 'Password'|trans({}, 'TablerBundle') }}" required="required">
+                                                </div>
+                                            </div>
+                                            {% block remember_me %}
+                                                <div class="mb-3">
+                                                    <label class="form-check">
+                                                        <input id="remember_me" tabindex="30" name="_remember_me" type="checkbox" class="form-check-input">
+                                                        <span class="form-check-label">{{ 'Remember Me'|trans({}, 'TablerBundle') }}</span>
+                                                    </label>
+                                                </div>
+                                            {% endblock %}
+                                            <div class="form-footer">
+                                                <button type="submit" tabindex="40" class="btn btn-primary w-100">{{ 'Sign In'|trans({}, 'TablerBundle') }}</button>
+                                            </div>
+                                            {% block csrf_token %}
+                                                <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}"/>
+                                            {% endblock %}
+                                            {% block login_form_end %}{% endblock %}
+                                        </form>
+                                    {% endblock %}
+                                </div>
+                            {% endblock %}
+
+                            {% block login_social_auth %}
+                                <div class="hr-text">{{ 'or'|trans({}, 'TablerBundle') }}</div>
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col">
+                                            <a href="#" class="btn btn-white w-100">
+                                                <i class="icon fab fa-github text-github"></i> Github
+                                            </a>
+                                        </div>
+                                        <div class="col">
+                                            <a href="#" class="btn btn-white w-100">
+                                                <i class="icon fab fa-twitter text-twitter"></i> Twitter
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endblock %}
+                        </div>
+                        {% block login_actions %}
+            {% block registration %}
+                {% if 'tabler_registration'|tabler_route != 'tabler_registration' %}
+                    <div class="text-center text-body-secondary mt-3">
+                        <a href="{{ path('tabler_registration'|tabler_route) }}">
+                            {{ 'Register a new account'|trans({}, 'TablerBundle') }}
+                        </a>
+                    </div>
+                {% endif %}
+            {% endblock %}
+        {% endblock %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    {% block container_after %}{% endblock %}
+</div>
+        </div>
+    </div>
+</main>
+
+{% block javascripts %}
+    <script src="{{ asset('bundles/tabler/tabler.js') }}?{{ tabler_asset_version() }}"></script>
+{% endblock %}
+<script src="{{ asset('assets/js/core/popper.min.js') }}"></script>
+<script src="{{ asset('assets/js/core/bootstrap.min.js') }}"></script>
+<script src="{{ asset('assets/js/plugins/perfect-scrollbar.min.js') }}"></script>
+<script src="{{ asset('assets/js/plugins/smooth-scrollbar.min.js') }}"></script>
+<script>
+    var win = navigator.platform.indexOf('Win') > -1;
+    if (win && document.querySelector('#sidenav-scrollbar')) {
+        var options = {
+            damping: '0.5'
+        }
+        Scrollbar.init(document.querySelector('#sidenav-scrollbar'), options);
+    }
+</script>
+<!-- Github buttons -->
+<script async defer src="https://buttons.github.io/buttons.js"></script>
+<!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
+<script src="{{ asset('assets/js/material-dashboard.min.js') }}"></script>
+</body>
+</html>

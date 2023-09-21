@@ -16,7 +16,7 @@ use Symfony\Component\Security\Http\Logout\LogoutUrlGenerator;
 
 class ProfileController extends AbstractController
 {
-    #[Route('/profile', name: 'app_profile')]
+    #[Route('/profile', name: 'app_profile', options: ['sitemap' => true])]
     public function index(#[CurrentUser] ?User $user): Response
     {
         return $this->render('profile/index.html.twig', [

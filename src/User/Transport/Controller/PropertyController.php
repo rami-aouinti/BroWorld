@@ -16,7 +16,7 @@ use Symfony\Component\Security\Http\Attribute\IsGranted;
 
 final class PropertyController extends BaseController
 {
-    #[Route(path: '/user/property', name: 'user_property', defaults: ['page' => 1], methods: ['GET'])]
+    #[Route(path: '/user/property', name: 'user_property', options: ['sitemap' => true], defaults: ['page' => 1], methods: ['GET'])]
     public function index(Request $request, PropertyService $service): Response
     {
         $properties = $service->getUserProperties($request);

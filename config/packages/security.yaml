@@ -1,54 +1,103 @@
 security:
-    # https://symfony.com/doc/current/security.html#registering-the-user-hashing-passwords
     password_hashers:
-        Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface: 'auto'
+        App\User\Domain\Entity\User: auto
 
-    # https://symfony.com/doc/current/security.html#loading-the-user-the-user-provider
     providers:
-        # used to reload user from session & other features (e.g. switch_user)
-        app_user_provider:
+        chain_provider:
+            chain:
+                providers: [kimai_internal,kimai_ldap]
+        kimai_internal:
             entity:
                 class: App\User\Domain\Entity\User
-                property: email
+        kimai_ldap:
+            id: App\Crm\Application\Ldap\LdapUserProvider
 
-    # https://symfony.com/doc/current/security.html#a-configuring-how-your-users-will-authenticate
     firewalls:
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
-        main:
-            lazy: true
-            provider: app_user_provider
-            entry_point: App\User\Application\Security\LoginFormAuthenticator
+
+        api:
+            request_matcher: App\Crm\Application\API\Authentication\ApiRequestMatcher
+            user_checker: App\Crm\Application\Security\UserChecker
+            stateless: true
+            remember_me: false
+            provider: chain_provider
             custom_authenticators:
-                - App\User\Application\Security\LoginFormAuthenticator
-                - App\User\Application\Security\GoogleAuthenticator
-                - App\User\Application\Security\MyFacebookAuthenticator
+                - App\Crm\Application\API\Authentication\TokenAuthenticator
+
+        secured_area:
+            kimai_ldap: ~
+            pattern: ^/
+            user_checker: App\Crm\Application\Security\UserChecker
+            stateless: false
+
+            entry_point: form_login
+
+            custom_authenticators:
+                - App\Crm\Application\API\Authentication\SessionAuthenticator
+                - App\Crm\Application\Saml\SamlAuthenticator
+
+            remember_me:
+                secret: '%kernel.secret%'
+                lifetime: 604800
+                path: /
+                always_remember_me: true
+
+            # activate all configured user provider
+            provider: chain_provider
+
+            form_login:
+                check_path: security_check
+                login_path: login
+                enable_csrf: true
+
+            two_factor:
+                auth_form_path: 2fa_login
+                check_path: 2fa_login_check
+                remember_me_sets_trusted: true
 
             logout:
-                path: app_logout
-            # activate different ways to authenticate
-            # https://symfony.com/doc/current/security.html#the-firewall
+                path: logout
+                target: homepage
 
-            # https://symfony.com/doc/current/security/impersonating_user.html
-            # switch_user: true
+            login_throttling:
+                max_attempts: 5
+                interval: '5 minutes'
 
-    # Easy way to control access for large sections of your site
-    # Note: Only the *first* access control that matches will be used
+    access_decision_manager:
+        strategy: unanimous
+        allow_if_all_abstain: false
+
+    role_hierarchy:
+        ROLE_USER:        ~
+        ROLE_TEAMLEAD:    ROLE_USER
+        ROLE_ADMIN:       ROLE_TEAMLEAD
+        ROLE_SUPER_ADMIN: ROLE_ADMIN
+
     access_control:
-        - { path: ^/(%app_locales%)/admin, roles: ROLE_ADMIN }
-        - { path: ^/(%app_locales%)/profile, roles: ROLE_USER }
-        - { path: ^/(%app_locales%)/command-scheduler, roles: ROLE_ADMIN }
+        - { path: '^/auth/2fa', role: IS_AUTHENTICATED_2FA_IN_PROGRESS }
+        - { path: '^/auth', roles: PUBLIC_ACCESS }
+        - { path: '^/(%app_locales%)$', role: PUBLIC_ACCESS }
+        - { path: '^/(%app_locales%)/auth', role: PUBLIC_ACCESS }
+        - { path: '^/(%app_locales%)/login', role: PUBLIC_ACCESS }
+        - { path: '^/(%app_locales%)/register', role: PUBLIC_ACCESS }
+        - { path: '^/(%app_locales%)/resetting', role: PUBLIC_ACCESS }
+        - { path: '^/(%app_locales%)/', roles: ROLE_USER }
+        - { path: '^/api', roles: IS_AUTHENTICATED_REMEMBERED }
 
 when@test:
+    # this configuration simplifies testing URLs protected by the security mechanism
+    # See https://symfony.com/doc/current/cookbook/testing/http_authentication.html
     security:
         password_hashers:
-            # By default, password hashers are resource intensive and take time. This is
-            # important to generate secure password hashes. In tests however, secure hashes
-            # are not important, waste resources and increase test times. The following
-            # reduces the work factor to the lowest possible values.
-            Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface:
+            App\Entity\User:
                 algorithm: auto
+                # see https://github.com/symfony/recipes/pull/1026
                 cost: 4 # Lowest possible value for bcrypt
                 time_cost: 3 # Lowest possible value for argon
                 memory_cost: 10 # Lowest possible value for argon
+
+        firewalls:
+            secured_area:
+                http_basic: ~

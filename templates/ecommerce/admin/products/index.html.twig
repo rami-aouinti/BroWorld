@@ -1,0 +1,46 @@
+{% extends "base_admin.html.twig" %}
+
+{% block title %}Liste des produits{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <div class="row">
+            {% include "ecommerce/_partials/_adminnav.html.twig" %}
+            <main class="col-9 border border-light p-2">
+                <h1>Liste des produits</h1>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Photo</th>
+                            <th>Nom</th>
+                            <th>Prix</th>
+                            <th>Stock</th>
+                            <th>Catégorie</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for produit in produits %}
+                            <tr>
+                                <td>{{ produit.id }}</td>
+                                <td>
+                                    {% if produit.images[0].name|default(null) %}
+                                    <img src="{{ asset('assets/uploads/products/mini/300x300-' ~ produit.images[0].name ) }}" alt="{{ produit.name }}" class="img-thumbnail">
+                                    {% endif %}
+                                </td>
+                                <td>{{ produit.name }}</td>
+                                <td>{{ produit.price / 100 }}</td>
+                                <td>{{ produit.stock }}</td>
+                                <td>{{ produit.categories.name }}</td>
+                                <td>
+                                    <a href="{{ path('ecommerce_admin_products_edit', {id: produit.id})}}" class="btn btn-success">Modifier</a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </main>
+        </div>
+    </div>
+{% endblock %}
