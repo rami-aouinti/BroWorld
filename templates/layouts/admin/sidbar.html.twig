@@ -340,6 +340,72 @@
                     <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
                         <i class="material-icons opacity-10">dashboard</i>
                     </div>
+                    <span class="nav-link-text ms-1">Ecommerce</span>
+                </a>
+                <ul class="navbar-nav dropdown-menu  dropdown-menu  px-2 py-3 me-sm-n4" aria-labelledby="dropdownMenuButton">
+                    <li class="nav-item mb-1">
+                        <a class="dropdown-item border-radius-md" href="#">
+                            <div class="d-flex py-1">
+                                <div class="my-auto">
+                                    <span class="material-icons text-warning">settings</span>
+                                </div>
+                                <div class="d-flex flex-column justify-content-center">
+                                    <h6 class="text-sm font-weight-normal mb-1">
+                                        <span class="font-weight-bold">Configuration</span>
+                                    </h6>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="nav-item mb-1">
+                        <a class="dropdown-item border-radius-md" href="{{ path('ecommerce_admin_categories_index') }}">
+                            <div class="d-flex py-1">
+                                <div class="my-auto">
+                                    <span class="material-icons text-warning">settings</span>
+                                </div>
+                                <div class="d-flex flex-column justify-content-center">
+                                    <h6 class="text-sm font-weight-normal mb-1">
+                                        <span class="font-weight-bold">Categories</span>
+                                    </h6>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="nav-item mb-1">
+                        <a class="dropdown-item border-radius-md" href="{{ path('ecommerce_admin_products_index') }}">
+                            <div class="d-flex py-1">
+                                <div class="my-auto">
+                                    <span class="material-icons text-warning">grade</span>
+                                </div>
+                                <div class="d-flex flex-column justify-content-center">
+                                    <h6 class="text-sm font-weight-normal mb-1">
+                                        <span class="font-weight-bold">Products</span>
+                                    </h6>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="nav-item mb-1">
+                        <a class="dropdown-item border-radius-md" href="{{ path('admin_news_index') }}">
+                            <div class="d-flex py-1">
+                                <div class="my-auto">
+                                    <span class="material-icons text-warning">inbox</span>
+                                </div>
+                                <div class="d-flex flex-column justify-content-center">
+                                    <h6 class="text-sm font-weight-normal mb-1">
+                                        <span class="font-weight-bold">Contact</span>
+                                    </h6>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li class="nav-item dropdown align-items-center">
+                <a href="javascript:;" class="nav-link" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                    <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+                        <i class="material-icons opacity-10">dashboard</i>
+                    </div>
                     <span class="nav-link-text ms-1">Crm</span>
                 </a>
                 <ul class="navbar-nav dropdown-menu  dropdown-menu  px-2 py-3 me-sm-n4" aria-labelledby="dropdownMenuButton">

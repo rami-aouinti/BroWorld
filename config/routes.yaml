@@ -19,6 +19,17 @@ frontend-controllers:
     defaults:
         _locale: '%locale%'
 
+admin-controllers:
+    resource:
+        path: '../src/Admin/Transport/Controller/'
+        namespace: App\Admin\Transport\Controller
+    type: attribute
+    prefix: /{_locale}
+    requirements:
+        _locale: '%app_locales%'
+    defaults:
+        _locale: '%locale%'
+
 user-controllers:
     resource:
         path: '../src/User/Transport/Controller/'
